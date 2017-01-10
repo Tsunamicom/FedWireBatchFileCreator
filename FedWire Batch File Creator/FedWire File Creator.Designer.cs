@@ -653,7 +653,7 @@
             this.wireAmt.Size = new System.Drawing.Size(100, 20);
             this.wireAmt.TabIndex = 1;
             this.wireAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.wireAmt_KeyPress);
-            this.wireAmt.Validating += new System.ComponentModel.CancelEventHandler(this.wireAmt_Validating);
+            this.wireAmt.Leave += new System.EventHandler(this.wireAmt_Leave);
             // 
             // label24
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 
 namespace FedWire_Batch_File_Creator
@@ -41,7 +42,7 @@ namespace FedWire_Batch_File_Creator
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(currentWire.WireAmount.FieldValue);
         }
 
         public string validateTextAsNumber(TextBox currentForm, string wireField)
@@ -150,18 +151,22 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
-        private void wireAmt_Validating(object sender, CancelEventArgs e)
+        private bool verifyCurrencyField(TextBox form)
         {
-            if (string.IsNullOrWhiteSpace(wireAmt.Text))
+            Regex pattern = new Regex(@"^[0-9]{1,10}[.\]*[0-9]{0,3}$");
+            return pattern.IsMatch(form.Text);
+        }
+
+        private void wireAmt_Leave(object sender, EventArgs e)
+        {
+
+            if (verifyCurrencyField(wireAmt) == true)
             {
-                e.Cancel = true;
-                wireAmt.Focus();
-                errorProvider1.SetError(wireAmt, "Required: Amount");
+                currentWire.WireAmount.FieldValue = wireAmt.Text;
             }
             else
             {
-                e.Cancel = false;
-                errorProvider1.SetError(wireAmt, "");
+                currentWire.WireAmount.FieldValue = null;
             }
         }
     }
