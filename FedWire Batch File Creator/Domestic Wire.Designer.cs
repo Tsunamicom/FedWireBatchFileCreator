@@ -10,6 +10,7 @@ namespace FedWire_Batch_File_Creator
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         
+        
 
         /// <summary>
         /// Clean up any resources being used.
@@ -102,7 +103,7 @@ namespace FedWire_Batch_File_Creator
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            this.textBoxList = new System.Collections.Generic.List<System.Windows.Forms.TextBox>();
+            
             // 
             // FedWireDetailTitle
             // 
@@ -919,7 +920,8 @@ namespace FedWire_Batch_File_Creator
         private System.Windows.Forms.ToolStripMenuItem closeWindowToolStripMenuItem;
         private System.Windows.Forms.ErrorProvider errorProvider1;
 
-        public List<TextBox> textBoxList { get; private set; }
+        public List<TextBox> textBoxList = new List<TextBox>();
+        
     }
 }
 
