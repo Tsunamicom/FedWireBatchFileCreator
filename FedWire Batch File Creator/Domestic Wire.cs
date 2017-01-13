@@ -23,21 +23,16 @@ namespace FedWire_Batch_File_Creator
 
         private void DomesticWireForm(object sender, EventArgs e)
         {
-            
-            // Associate the Default Values for the Wire Form Type
             associateDefaultWireValues();
-            
-            
         }
 
         private void associateDefaultWireValues()
         {
-            currentWire.initiatorName = "Test Dummy"; // User Profile Name
+            currentWire.initiatorName = "Test Dummy"; // User Profile Name (Temporary)
             activeUser.Text = currentWire.initiatorName;
 
-            currentWire.wireID = 00000001; // Next Database ID
+            currentWire.wireID = 00000001; // Next Database ID (Temporary)
             wireIDNum.Text = currentWire.wireID.ToString();
-            
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
@@ -60,21 +55,6 @@ namespace FedWire_Batch_File_Creator
                 }
             }
             return wireField;
-        }
-
-        private void dbtCustAcctNum_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void wireAmt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void wireTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void wireTypeSelect_Leave(object sender, EventArgs e)
@@ -188,6 +168,11 @@ namespace FedWire_Batch_File_Creator
             {
                 currentWire.Originator["Name"] = null;
             }
+        }
+
+        private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

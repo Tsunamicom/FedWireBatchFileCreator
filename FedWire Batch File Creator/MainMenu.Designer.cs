@@ -225,6 +225,8 @@
             // 
             // openNewDomesticWireButton
             // 
+            this.openNewDomesticWireButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.openNewDomesticWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.openNewDomesticWireButton.Location = new System.Drawing.Point(12, 39);
             this.openNewDomesticWireButton.Name = "openNewDomesticWireButton";
             this.openNewDomesticWireButton.Size = new System.Drawing.Size(150, 100);
@@ -235,6 +237,8 @@
             // 
             // openNewInternationalWireButton
             // 
+            this.openNewInternationalWireButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.openNewInternationalWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.openNewInternationalWireButton.FlatAppearance.BorderSize = 5;
             this.openNewInternationalWireButton.Location = new System.Drawing.Point(185, 39);
             this.openNewInternationalWireButton.Name = "openNewInternationalWireButton";
@@ -245,6 +249,7 @@
             // 
             // openReportsButton
             // 
+            this.openReportsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openReportsButton.Location = new System.Drawing.Point(12, 162);
             this.openReportsButton.Name = "openReportsButton";
             this.openReportsButton.Size = new System.Drawing.Size(150, 100);
@@ -254,6 +259,7 @@
             // 
             // openTemplateButton
             // 
+            this.openTemplateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openTemplateButton.Location = new System.Drawing.Point(185, 162);
             this.openTemplateButton.Name = "openTemplateButton";
             this.openTemplateButton.Size = new System.Drawing.Size(150, 100);

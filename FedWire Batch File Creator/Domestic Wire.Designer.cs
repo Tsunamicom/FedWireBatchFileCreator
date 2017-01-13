@@ -89,14 +89,13 @@
             this.label24 = new System.Windows.Forms.Label();
             this.activeUser = new System.Windows.Forms.Label();
             this.wireTypeSelect = new System.Windows.Forms.ComboBox();
-            this.headerMenu = new System.Windows.Forms.MenuStrip();
+            this.domesticWireHeaderMenu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.headerMenu.SuspendLayout();
+            this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +117,6 @@
             this.dbtCustAcctNum.Size = new System.Drawing.Size(240, 20);
             this.dbtCustAcctNum.TabIndex = 2;
             this.dbtCustAcctNum.WordWrap = false;
-            this.dbtCustAcctNum.TextChanged += new System.EventHandler(this.dbtCustAcctNum_TextChanged);
             // 
             // dbtCustName
             // 
@@ -719,19 +717,17 @@
             this.wireTypeSelect.TabIndex = 0;
             this.wireTypeSelect.TabStop = false;
             this.wireTypeSelect.Text = "1000 - Funds Transfer Basic";
-            this.wireTypeSelect.SelectedValueChanged += new System.EventHandler(this.wireTypeSelect_SelectedIndexChanged);
             this.wireTypeSelect.Leave += new System.EventHandler(this.wireTypeSelect_Leave);
             // 
-            // headerMenu
+            // domesticWireHeaderMenu
             // 
-            this.headerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.editToolStripMenuItem});
-            this.headerMenu.Location = new System.Drawing.Point(0, 0);
-            this.headerMenu.Name = "headerMenu";
-            this.headerMenu.Size = new System.Drawing.Size(754, 24);
-            this.headerMenu.TabIndex = 72;
-            this.headerMenu.Text = "Menu";
+            this.domesticWireHeaderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.domesticWireHeaderMenu.Location = new System.Drawing.Point(0, 0);
+            this.domesticWireHeaderMenu.Name = "domesticWireHeaderMenu";
+            this.domesticWireHeaderMenu.Size = new System.Drawing.Size(754, 24);
+            this.domesticWireHeaderMenu.TabIndex = 72;
+            this.domesticWireHeaderMenu.Text = "domesticWireHeaderMenu";
             // 
             // toolStripMenuItem1
             // 
@@ -741,38 +737,33 @@
             this.closeWindowToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.toolStripMenuItem1.Text = "File";
+            this.toolStripMenuItem1.Text = "&File";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // openTemplateToolStripMenuItem
             // 
             this.openTemplateToolStripMenuItem.Name = "openTemplateToolStripMenuItem";
-            this.openTemplateToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.openTemplateToolStripMenuItem.Text = "Open Template";
+            this.openTemplateToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openTemplateToolStripMenuItem.Text = "&Open Template";
             // 
             // saveTemplateToolStripMenuItem
             // 
             this.saveTemplateToolStripMenuItem.Name = "saveTemplateToolStripMenuItem";
-            this.saveTemplateToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.saveTemplateToolStripMenuItem.Text = "Save Template";
+            this.saveTemplateToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveTemplateToolStripMenuItem.Text = "&Save As Template";
             // 
             // closeWindowToolStripMenuItem
             // 
             this.closeWindowToolStripMenuItem.Name = "closeWindowToolStripMenuItem";
-            this.closeWindowToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.closeWindowToolStripMenuItem.Text = "Close Window";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.closeWindowToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeWindowToolStripMenuItem.Text = "E&xit";
+            this.closeWindowToolStripMenuItem.Click += new System.EventHandler(this.closeWindowToolStripMenuItem_Click);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // MainWindow
+            // DomesticWireFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -839,15 +830,15 @@
             this.Controls.Add(this.dbtCustName);
             this.Controls.Add(this.dbtCustAcctNum);
             this.Controls.Add(this.FedWireDetailTitle);
-            this.Controls.Add(this.headerMenu);
+            this.Controls.Add(this.domesticWireHeaderMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuStrip = this.headerMenu;
-            this.Name = "MainWindow";
+            this.MainMenuStrip = this.domesticWireHeaderMenu;
+            this.Name = "DomesticWireFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FedWire File Creator";
             this.Load += new System.EventHandler(this.DomesticWireForm);
-            this.headerMenu.ResumeLayout(false);
-            this.headerMenu.PerformLayout();
+            this.domesticWireHeaderMenu.ResumeLayout(false);
+            this.domesticWireHeaderMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -916,12 +907,11 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label activeUser;
         private System.Windows.Forms.ComboBox wireTypeSelect;
-        private System.Windows.Forms.MenuStrip headerMenu;
+        private System.Windows.Forms.MenuStrip domesticWireHeaderMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeWindowToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
