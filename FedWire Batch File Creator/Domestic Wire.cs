@@ -42,7 +42,7 @@ namespace FedWire_Batch_File_Creator
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(currentWire.WireAmount.FieldValue);
+            MessageBox.Show(currentWire.WireAmount.FieldValue, currentWire.Originator["Name"]);
         }
 
         public string validateTextAsNumber(TextBox currentForm, string wireField)
@@ -142,31 +142,51 @@ namespace FedWire_Batch_File_Creator
 
         }
 
-        private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
+        private void convertToDecimal_KeyPress(TextBox numberTextBox, KeyPressEventArgs e)
         {
-            char amt = e.KeyChar;
-            if (!Char.IsDigit(amt) && amt != 8 && amt != 46)
+            int periodIndex = numberTextBox.Text.IndexOf('.');
+            e.Handled = !(char.IsNumber(e.KeyChar)
+            || (e.KeyChar == '.' && periodIndex == -1)
+            || e.KeyChar == ','
+            || e.KeyChar == (char)Keys.Back);
+
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true;
+                numberTextBox.Text = string.Format("{0:n2}", double.Parse(numberTextBox.Text));
             }
         }
 
-        private bool verifyCurrencyField(TextBox form)
+        private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            convertToDecimal_KeyPress(wireAmt, e);
+        }
+
+        private bool verifyUSCurrencyField(TextBox form)
         {
             Regex pattern = new Regex(@"^[0-9]{1,10}[.\]*[0-9]{0,3}$");
+            return pattern.IsMatch(form.Text);
+        }
+
+        private bool verifyAllAlpha(TextBox form, int length)
+        {
+            Regex pattern = new Regex(@"^[A-Za-z ]{1," + length.ToString() + "}");
             return pattern.IsMatch(form.Text);
         }
 
         private void wireAmt_Leave(object sender, EventArgs e)
         {
 
-            if (verifyCurrencyField(wireAmt) == true)
+        }
+
+        private void dbtCustName_TextChanged(object sender, EventArgs e)
+        {
+            if (verifyAllAlpha(dbtCustName, 35) == true)
             {
-                currentWire.WireAmount.FieldValue = wireAmt.Text;
+                currentWire.Originator["Name"] = dbtCustName.Text;
             }
             else
             {
-                currentWire.WireAmount.FieldValue = null;
+                currentWire.Originator["Name"] = null;
             }
         }
     }

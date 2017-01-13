@@ -127,6 +127,7 @@
             this.dbtCustName.Size = new System.Drawing.Size(240, 20);
             this.dbtCustName.TabIndex = 3;
             this.dbtCustName.WordWrap = false;
+            this.dbtCustName.TextChanged += new System.EventHandler(this.dbtCustName_TextChanged);
             // 
             // label1
             // 
@@ -638,7 +639,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(259, 74);
+            this.label6.Location = new System.Drawing.Point(248, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 0;
@@ -647,11 +648,12 @@
             // wireAmt
             // 
             this.wireAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wireAmt.Location = new System.Drawing.Point(329, 71);
+            this.wireAmt.Location = new System.Drawing.Point(318, 71);
             this.wireAmt.MaxLength = 12;
             this.wireAmt.Name = "wireAmt";
-            this.wireAmt.Size = new System.Drawing.Size(100, 20);
+            this.wireAmt.Size = new System.Drawing.Size(138, 20);
             this.wireAmt.TabIndex = 1;
+            this.wireAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.wireAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.wireAmt_KeyPress);
             this.wireAmt.Leave += new System.EventHandler(this.wireAmt_Leave);
             // 
