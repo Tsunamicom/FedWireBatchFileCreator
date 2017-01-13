@@ -99,6 +99,7 @@
             this.domesticWireToolStripMenuItem.Name = "domesticWireToolStripMenuItem";
             this.domesticWireToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.domesticWireToolStripMenuItem.Text = "Domestic Wire";
+            this.domesticWireToolStripMenuItem.Click += new System.EventHandler(this.domesticWireToolStripMenuItem_Click);
             // 
             // internationalWireToolStripMenuItem
             // 
@@ -150,6 +151,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -238,7 +240,7 @@
             this.openNewInternationalWireButton.Name = "openNewInternationalWireButton";
             this.openNewInternationalWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewInternationalWireButton.TabIndex = 2;
-            this.openNewInternationalWireButton.Text = "INTERNATIONAL WIRE";
+            this.openNewInternationalWireButton.Text = "INTERNATIONAL WIRE (TBD)";
             this.openNewInternationalWireButton.UseVisualStyleBackColor = true;
             // 
             // openReportsButton
@@ -247,7 +249,7 @@
             this.openReportsButton.Name = "openReportsButton";
             this.openReportsButton.Size = new System.Drawing.Size(150, 100);
             this.openReportsButton.TabIndex = 3;
-            this.openReportsButton.Text = "REPORTS";
+            this.openReportsButton.Text = "REPORTS (TBD)";
             this.openReportsButton.UseVisualStyleBackColor = true;
             // 
             // openTemplateButton
@@ -256,7 +258,7 @@
             this.openTemplateButton.Name = "openTemplateButton";
             this.openTemplateButton.Size = new System.Drawing.Size(150, 100);
             this.openTemplateButton.TabIndex = 4;
-            this.openTemplateButton.Text = "TEMPLATES";
+            this.openTemplateButton.Text = "HISTORY (TBD)";
             this.openTemplateButton.UseVisualStyleBackColor = true;
             // 
             // MainMenu

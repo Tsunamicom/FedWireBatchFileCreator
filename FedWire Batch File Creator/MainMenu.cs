@@ -27,5 +27,20 @@ namespace FedWire_Batch_File_Creator
             Form newDomesticWire = new DomesticWireFrm();
             newDomesticWire.ShowDialog();
         }
+
+        private void domesticWireToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form newDomesticWire = new DomesticWireFrm();
+            newDomesticWire.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmExit = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if(confirmExit.Equals(DialogResult.OK))
+            {
+                Application.Exit();
+            }
+        }
     }
 }
