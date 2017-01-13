@@ -21,8 +21,7 @@ namespace FedWire_Batch_File_Creator
             assignFieldValue();
         }
         
-
-        private void assignFieldValue()
+        public void assignFieldValue()
         {
             switch (base.Tag)
             {
