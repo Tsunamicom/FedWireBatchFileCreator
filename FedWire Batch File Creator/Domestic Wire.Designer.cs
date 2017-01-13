@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace FedWire_Batch_File_Creator
 {
@@ -920,8 +919,7 @@ namespace FedWire_Batch_File_Creator
         private System.Windows.Forms.ToolStripMenuItem closeWindowToolStripMenuItem;
         private System.Windows.Forms.ErrorProvider errorProvider1;
 
-        public List<TextBox> textBoxList = new List<TextBox>();
-        
+        public System.Collections.Generic.List<TextBox> textBoxList = new System.Collections.Generic.List<TextBox>();
     }
 }
 

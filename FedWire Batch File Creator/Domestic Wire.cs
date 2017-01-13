@@ -24,6 +24,11 @@ namespace FedWire_Batch_File_Creator
         private void DomesticWireForm(object sender, EventArgs e)
         {
             associateDefaultWireValues();
+            associateDefaultTextBoxes();
+        }
+
+        private void associateDefaultTextBoxes()
+        {
             textBoxList.Add(wireAmt);
             textBoxList.Add(dbtCustAcctNum);
             textBoxList.Add(dbtCustName);
@@ -49,7 +54,6 @@ namespace FedWire_Batch_File_Creator
             textBoxList.Add(bnfCustAddrThree);
             textBoxList.Add(bnfCustAddrFour);
             textBoxList.Add(obiText);
-            
         }
 
         private void associateDefaultWireValues()
