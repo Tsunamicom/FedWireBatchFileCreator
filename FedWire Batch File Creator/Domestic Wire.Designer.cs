@@ -99,10 +99,11 @@ namespace FedWire_Batch_File_Creator
             this.saveTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label25 = new System.Windows.Forms.Label();
+            this.initiatedTime = new System.Windows.Forms.Label();
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            
             // 
             // FedWireDetailTitle
             // 
@@ -612,7 +613,7 @@ namespace FedWire_Batch_File_Creator
             // wireIDNum
             // 
             this.wireIDNum.AutoSize = true;
-            this.wireIDNum.Location = new System.Drawing.Point(77, 60);
+            this.wireIDNum.Location = new System.Drawing.Point(605, 57);
             this.wireIDNum.Name = "wireIDNum";
             this.wireIDNum.Size = new System.Drawing.Size(0, 13);
             this.wireIDNum.TabIndex = 69;
@@ -621,7 +622,7 @@ namespace FedWire_Batch_File_Creator
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 60);
+            this.label13.Location = new System.Drawing.Point(540, 57);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 13);
             this.label13.TabIndex = 0;
@@ -663,7 +664,7 @@ namespace FedWire_Batch_File_Creator
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(4, 79);
+            this.label24.Location = new System.Drawing.Point(561, 76);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(32, 13);
             this.label24.TabIndex = 70;
@@ -673,7 +674,7 @@ namespace FedWire_Batch_File_Creator
             // activeUser
             // 
             this.activeUser.AutoSize = true;
-            this.activeUser.Location = new System.Drawing.Point(77, 79);
+            this.activeUser.Location = new System.Drawing.Point(605, 76);
             this.activeUser.Name = "activeUser";
             this.activeUser.Size = new System.Drawing.Size(0, 13);
             this.activeUser.TabIndex = 71;
@@ -768,6 +769,23 @@ namespace FedWire_Batch_File_Creator
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(546, 38);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(47, 13);
+            this.label25.TabIndex = 73;
+            this.label25.Text = "Initiated:";
+            // 
+            // initiatedTime
+            // 
+            this.initiatedTime.AutoSize = true;
+            this.initiatedTime.Location = new System.Drawing.Point(605, 38);
+            this.initiatedTime.Name = "initiatedTime";
+            this.initiatedTime.Size = new System.Drawing.Size(0, 13);
+            this.initiatedTime.TabIndex = 74;
+            // 
             // DomesticWireFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -775,6 +793,8 @@ namespace FedWire_Batch_File_Creator
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(754, 586);
+            this.Controls.Add(this.initiatedTime);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.wireTypeSelect);
             this.Controls.Add(this.activeUser);
             this.Controls.Add(this.label24);
@@ -920,6 +940,8 @@ namespace FedWire_Batch_File_Creator
         private System.Windows.Forms.ErrorProvider errorProvider1;
 
         public System.Collections.Generic.List<TextBox> textBoxList = new System.Collections.Generic.List<TextBox>();
+        private Label initiatedTime;
+        private Label label25;
     }
 }
 

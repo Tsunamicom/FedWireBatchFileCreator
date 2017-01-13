@@ -63,6 +63,9 @@ namespace FedWire_Batch_File_Creator
 
             currentWire.wireID = 00000001; // Next Database ID (Temporary)
             wireIDNum.Text = currentWire.wireID.ToString();
+
+            currentWire.initiatedTime = DateTime.Now;
+            initiatedTime.Text = currentWire.initiatedTime.ToString();
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
