@@ -21,5 +21,11 @@ namespace FedWire_Batch_File_Creator
         {
 
         }
+
+        private void openNewDomesticWireButton_Click(object sender, EventArgs e)
+        {
+            Form newDomesticWire = new DomesticWireFrm();
+            newDomesticWire.ShowDialog();
+        }
     }
 }

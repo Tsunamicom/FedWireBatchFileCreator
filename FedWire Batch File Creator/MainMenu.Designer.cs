@@ -229,6 +229,7 @@
             this.openNewDomesticWireButton.TabIndex = 1;
             this.openNewDomesticWireButton.Text = "DOMESTIC WIRE";
             this.openNewDomesticWireButton.UseVisualStyleBackColor = true;
+            this.openNewDomesticWireButton.Click += new System.EventHandler(this.openNewDomesticWireButton_Click);
             // 
             // openNewInternationalWireButton
             // 

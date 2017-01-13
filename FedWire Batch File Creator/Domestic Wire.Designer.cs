@@ -1,6 +1,6 @@
 ﻿namespace FedWire_Batch_File_Creator
 {
-    partial class MainWindow
+    partial class DomesticWireFrm
     {
         /// <summary>
         /// Required designer variable.

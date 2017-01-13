@@ -12,11 +12,11 @@ using System.Text.RegularExpressions;
 
 namespace FedWire_Batch_File_Creator
 {
-    public partial class MainWindow : Form
+    public partial class DomesticWireFrm : Form
     {
         Wire currentWire = new Wire();
 
-        public MainWindow()
+        public DomesticWireFrm()
         {
             InitializeComponent();
         }
