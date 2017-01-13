@@ -24,6 +24,32 @@ namespace FedWire_Batch_File_Creator
         private void DomesticWireForm(object sender, EventArgs e)
         {
             associateDefaultWireValues();
+            textBoxList.Add(wireAmt);
+            textBoxList.Add(dbtCustAcctNum);
+            textBoxList.Add(dbtCustName);
+            textBoxList.Add(dbtCustAddrOne);
+            textBoxList.Add(dbtCustAddrTwo);
+            textBoxList.Add(dbtCustAddrThree);
+            textBoxList.Add(dbtCustAddrFour);
+            textBoxList.Add(recBankABA);
+            textBoxList.Add(recBankName);
+            textBoxList.Add(recBankAddrOne);
+            textBoxList.Add(recBankAddrTwo);
+            textBoxList.Add(recBankAddrThree);
+            textBoxList.Add(recBankAddrFour);
+            textBoxList.Add(bnfBankABA);
+            textBoxList.Add(bnfBankName);
+            textBoxList.Add(bnfBankAddrOne);
+            textBoxList.Add(bnfBankAddrTwo);
+            textBoxList.Add(bnfBankAddrThree);
+            textBoxList.Add(bnfBankAddrFour);
+            textBoxList.Add(bnfCustAcctNum);
+            textBoxList.Add(bnfCustAddrOne);
+            textBoxList.Add(bnfCustAddrTwo);
+            textBoxList.Add(bnfCustAddrThree);
+            textBoxList.Add(bnfCustAddrFour);
+            textBoxList.Add(obiText);
+            
         }
 
         private void associateDefaultWireValues()
@@ -37,7 +63,7 @@ namespace FedWire_Batch_File_Creator
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(currentWire.WireAmount.FieldValue, currentWire.Originator["Name"]);
+            MessageBox.Show(currentWire.WireAmount.FieldValue);
         }
 
         public string validateTextAsNumber(TextBox currentForm, string wireField)
@@ -64,35 +90,14 @@ namespace FedWire_Batch_File_Creator
 
         private void toggleLockAllFields(bool isUnlocked)
         {
+            for (int boxnum = 0; boxnum < textBoxList.Count; boxnum++)
+            {
+                textBoxList[boxnum].Enabled = isUnlocked;
+            }
+
             wireTypeSelect.Enabled = isUnlocked;
-            wireAmt.Enabled = isUnlocked;
-            dbtCustAcctNum.Enabled = isUnlocked;
-            dbtCustName.Enabled = isUnlocked;
-            dbtCustAddrOne.Enabled = isUnlocked;
-            dbtCustAddrTwo.Enabled = isUnlocked;
-            dbtCustAddrThree.Enabled = isUnlocked;
-            dbtCustAddrFour.Enabled = isUnlocked;
-            recBankABA.Enabled = isUnlocked;
             recBankAcctType.Enabled = isUnlocked;
-            recBankName.Enabled = isUnlocked;
-            recBankAddrOne.Enabled = isUnlocked;
-            recBankAddrTwo.Enabled = isUnlocked;
-            recBankAddrThree.Enabled = isUnlocked;
-            recBankAddrFour.Enabled = isUnlocked;
-            bnfBankABA.Enabled = isUnlocked;
             bnfBankAcctType.Enabled = isUnlocked;
-            bnfBankName.Enabled = isUnlocked;
-            bnfBankAddrOne.Enabled = isUnlocked;
-            bnfBankAddrTwo.Enabled = isUnlocked;
-            bnfBankAddrThree.Enabled = isUnlocked;
-            bnfBankAddrFour.Enabled = isUnlocked;
-            bnfCustAcctNum.Enabled = isUnlocked;
-            bnfCustName.Enabled = isUnlocked;
-            bnfCustAddrOne.Enabled = isUnlocked;
-            bnfCustAddrTwo.Enabled = isUnlocked;
-            bnfCustAddrThree.Enabled = isUnlocked;
-            bnfCustAddrFour.Enabled = isUnlocked;
-            obiText.Enabled = isUnlocked;
             wireFormSubmit.Enabled = !isUnlocked;
         }
 
@@ -162,11 +167,11 @@ namespace FedWire_Batch_File_Creator
         {
             if (verifyAllAlpha(dbtCustName, 35) == true)
             {
-                currentWire.Originator["Name"] = dbtCustName.Text;
+                currentWire.Originator.FieldValue = dbtCustName.Text;
             }
             else
             {
-                currentWire.Originator["Name"] = null;
+                currentWire.Originator.FieldValue = null;
             }
         }
 

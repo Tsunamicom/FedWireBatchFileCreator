@@ -1,4 +1,7 @@
-﻿namespace FedWire_Batch_File_Creator
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace FedWire_Batch_File_Creator
 {
     partial class DomesticWireFrm
     {
@@ -6,6 +9,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        
 
         /// <summary>
         /// Clean up any resources being used.
@@ -98,6 +102,7 @@
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
+            this.textBoxList = new System.Collections.Generic.List<System.Windows.Forms.TextBox>();
             // 
             // FedWireDetailTitle
             // 
@@ -913,6 +918,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeWindowToolStripMenuItem;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+
+        public List<TextBox> textBoxList { get; private set; }
     }
 }
 
