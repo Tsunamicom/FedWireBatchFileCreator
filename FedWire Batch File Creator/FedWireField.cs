@@ -13,13 +13,19 @@ namespace FedWire_Batch_File_Creator
         private string _tag;
         private string _regex;
         private bool _isValid = false;
-
         
         public string FieldValue
         {
             get
             {
-                return _FieldValue;
+                if (_isValid)
+                {
+                    return _FieldValue;
+                }
+                else
+                {
+                    return "";
+                }
             }
             set
             {
@@ -35,8 +41,9 @@ namespace FedWire_Batch_File_Creator
                 }
             }
         }
+
         public string Tag { get { return _tag; } }
-        public string isValid { get; }
+        public string isValid { get { return isValid; } }
 
         public FedWireField(string tag, string regex="")
         {
