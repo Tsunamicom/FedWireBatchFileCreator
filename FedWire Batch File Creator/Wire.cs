@@ -41,25 +41,39 @@ namespace FedWire_Batch_File_Creator
             regex:@"^([\d]{8})([\w]{8})([\d]{6})$");
         
         // {2000} Amount
-        public FedWireField WireAmount = new FedWireField(tag:"2000");
+        public FedWireField WireAmount = new FedWireField(
+            tag:"2000",
+            regex:@"^[\d]{12}$");
 
         // {3100} Sender DI
-        public FedWireField SenderDI = new FedWireField(tag:"3100");
+        public FedWireField SenderDI = new FedWireField(
+            tag:"3100",
+            regex:@"^([\d]{9})([\w\s]{1,18})?");
 
         // {3400} Reciever DI
-        public FedWireField RecieverDI = new FedWireField(tag:"3400");
+        public FedWireField RecieverDI = new FedWireField(
+            tag:"3400", 
+            regex:@"^([\d]{9})([\w\s]{1,18})?");
 
         // {3600} Business Function Code
-        public FedWireField BusinessFunctionCode = new FedWireField(tag:"3600");
+        public FedWireField BusinessFunctionCode = new FedWireField(
+            tag:"3600",
+            regex:@"^([BC]TR|CKS|CTP|DEP|DR[BCW]|FF[RS]|SVC)((?<=CTR)[A-Z]{3})?$");
 
         // {3320} Sender Reference
-        public FedWireField SenderReference = new FedWireField(tag:"3320");
+        public FedWireField SenderReference = new FedWireField(
+            tag:"3320",
+            regex:@"^[\w]{1,16}");
 
         // {3500} Previous Message Identifier
-        public FedWireField PreviousMessageIdentifier = new FedWireField(tag:"3500");
+        public FedWireField PreviousMessageIdentifier = new FedWireField(
+            tag:"3500",
+            regex:@"^[\w]{1,22}$");
 
         // {3610} Local Instrument
-        public FedWireField LocalInstrument = new FedWireField(tag:"3610");
+        public FedWireField LocalInstrument = new FedWireField(
+            tag:"3610",
+            regex: @"^(ANSI|COVS|[GI]XML|NARR|PROP|RMTS|RRMT|S820|SWIF|UEDI)((?<=PROP)[\w]{1,35})?$");
 
         // {3620} Payment Notification
         public FedWireField PaymentNotification = new FedWireField(tag:"3620");
