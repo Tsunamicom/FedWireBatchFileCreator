@@ -76,6 +76,7 @@
     <Compile Include="Domestic Wire.Designer.cs">
       <DependentUpon>Domestic Wire.cs</DependentUpon>
     </Compile>
+    <Compile Include="IFedWireField.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
