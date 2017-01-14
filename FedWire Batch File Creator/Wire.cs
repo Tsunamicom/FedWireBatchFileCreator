@@ -26,25 +26,25 @@ namespace FedWire_Batch_File_Creator
         //                         WIRE FIELDS
         // 
         // {1500} Sender Supplied Information
-        public MandatoryFedWireField SenderSuppliedInfo = new MandatoryFedWireField("1500");
+        public FedWireField SenderSuppliedInfo = new FedWireField("1500");
 
         // {1510} Type/Subtype
-        public MandatoryFedWireField WireType = new MandatoryFedWireField(tag: "1510");
+        public FedWireField WireType = new FedWireField(tag: "1510");
 
         // {1520} Input Message Accountability Data (IMAD)
-        public MandatoryFedWireField IMAD = new MandatoryFedWireField(tag: "1520");
+        public FedWireField IMAD = new FedWireField(tag: "1520");
         
         // {2000} Amount
-        public MandatoryFedWireField WireAmount = new MandatoryFedWireField(tag: "2000");
+        public FedWireField WireAmount = new FedWireField(tag: "2000");
 
         // {3100} Sender DI
-        public MandatoryFedWireField SenderDI = new MandatoryFedWireField(tag: "3100");
+        public FedWireField SenderDI = new FedWireField(tag: "3100");
 
         // {3400} Reciever DI
-        public MandatoryFedWireField RecieverDI = new MandatoryFedWireField(tag: "3400");
+        public FedWireField RecieverDI = new FedWireField(tag: "3400");
 
         // {3600} Business Function Code
-        public MandatoryFedWireField BusinessFunctionCode = new MandatoryFedWireField(tag: "3600");
+        public FedWireField BusinessFunctionCode = new FedWireField(tag: "3600");
 
         // {3320} Sender Reference
         public FedWireField SenderReference = new FedWireField(tag: "3320");
