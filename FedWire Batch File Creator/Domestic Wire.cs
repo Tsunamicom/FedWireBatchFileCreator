@@ -15,7 +15,7 @@ namespace FedWire_Batch_File_Creator
     public partial class DomesticWireFrm : Form
     {
         Wire currentWire = new Wire();
-
+        
         public DomesticWireFrm()
         {
             InitializeComponent();
