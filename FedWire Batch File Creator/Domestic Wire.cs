@@ -23,6 +23,7 @@ namespace FedWire_Batch_File_Creator
 
         private void DomesticWireForm(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
             associateDefaultWireValues();
             associateDefaultTextBoxes();
         }
@@ -54,10 +55,12 @@ namespace FedWire_Batch_File_Creator
             textBoxList.Add(bnfCustAddrThree);
             textBoxList.Add(bnfCustAddrFour);
             textBoxList.Add(obiText);
+            System.Diagnostics.Debug.WriteLine("Finished Writing {0} TextBoxes to textBoxList", textBoxList.Count);
         }
 
         private void associateDefaultWireValues()
         {
+            System.Diagnostics.Debug.WriteLine("Associating Default Wire Values");
             currentWire.initiatorName = "Test Dummy"; // User Profile Name (Temporary)
             activeUser.Text = currentWire.initiatorName;
 
@@ -115,6 +118,7 @@ namespace FedWire_Batch_File_Creator
                 toggleLockAllFields(isUnlocked: false);
                 toggleAssociateWireDetail(confirmed: true);
                 wireFormVerify.Text = "Edit Wire";
+                debugTextBoxValues();
             }
             else
             {
@@ -188,7 +192,16 @@ namespace FedWire_Batch_File_Creator
             {
                 this.Close();
             }
-            
+        }
+
+        private void debugTextBoxValues()
+        {
+            System.Diagnostics.Debug.WriteLine("**** TEXTBOX VALUE DEBUG START {0} ****", DateTime.Now);
+            for (int i = 0; i < textBoxList.Count; i++)
+            {
+                System.Diagnostics.Debug.WriteLine("  Textbox {0} value: {1}", textBoxList[i].Name, textBoxList[i].Text);
+            }
+            System.Diagnostics.Debug.WriteLine("**** END TEXTBOX VALUE DEBUG ****");
         }
     }
 }
