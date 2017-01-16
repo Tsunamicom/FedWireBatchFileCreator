@@ -74,8 +74,7 @@ namespace FedWire_Batch_File_Creator
             this.label17 = new System.Windows.Forms.Label();
             this.bnfCustName = new System.Windows.Forms.TextBox();
             this.bnfCustAcctNum = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.fedWireDirectoryLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -500,25 +499,16 @@ namespace FedWire_Batch_File_Creator
             this.bnfCustAcctNum.TabIndex = 14;
             this.bnfCustAcctNum.WordWrap = false;
             // 
-            // linkLabel1
+            // fedWireDirectoryLinkLabel
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(633, 126);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(92, 13);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "FedWire Directory";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(633, 317);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(92, 13);
-            this.linkLabel2.TabIndex = 0;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "FedWire Directory";
+            this.fedWireDirectoryLinkLabel.AutoSize = true;
+            this.fedWireDirectoryLinkLabel.Location = new System.Drawing.Point(633, 100);
+            this.fedWireDirectoryLinkLabel.Name = "fedWireDirectoryLinkLabel";
+            this.fedWireDirectoryLinkLabel.Size = new System.Drawing.Size(92, 13);
+            this.fedWireDirectoryLinkLabel.TabIndex = 0;
+            this.fedWireDirectoryLinkLabel.TabStop = true;
+            this.fedWireDirectoryLinkLabel.Text = "FedWire Directory";
+            this.fedWireDirectoryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.fedWireDirectoryLinkLabel1_LinkClicked);
             // 
             // label18
             // 
@@ -812,8 +802,7 @@ namespace FedWire_Batch_File_Creator
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.fedWireDirectoryLinkLabel);
             this.Controls.Add(this.bnfCustAddrFour);
             this.Controls.Add(this.bnfCustAddrThree);
             this.Controls.Add(this.bnfCustAddrTwo);
@@ -913,8 +902,7 @@ namespace FedWire_Batch_File_Creator
         public System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox bnfCustName;
         private System.Windows.Forms.TextBox bnfCustAcctNum;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel fedWireDirectoryLinkLabel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;

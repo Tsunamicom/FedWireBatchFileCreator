@@ -60,6 +60,7 @@ namespace FedWire_Batch_File_Creator
 
         private void associateDefaultWireValues()
         {
+
             System.Diagnostics.Debug.WriteLine("Associating Default Wire Values");
             currentWire.initiatorName = "Test Dummy"; // User Profile Name (Temporary)
             activeUser.Text = currentWire.initiatorName;
@@ -202,6 +203,12 @@ namespace FedWire_Batch_File_Creator
                 System.Diagnostics.Debug.WriteLine("  Textbox {0} value: {1}", textBoxList[i].Name, textBoxList[i].Text);
             }
             System.Diagnostics.Debug.WriteLine("**** END TEXTBOX VALUE DEBUG ****");
+        }
+
+        private void fedWireDirectoryLinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            fedWireDirectoryLinkLabel.LinkVisited = true;
+            System.Diagnostics.Process.Start(@"https://www.frbservices.org/EPaymentsDirectory/searchFedwire.html");
         }
     }
 }
