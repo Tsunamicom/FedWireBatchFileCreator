@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 
 namespace FedWire_Batch_File_Creator
@@ -140,7 +141,7 @@ namespace FedWire_Batch_File_Creator
 
         }
 
-        private void convertToDecimal_KeyPress(TextBox numberTextBox, KeyPressEventArgs e)
+        private void convertToDouble_KeyPress(TextBox numberTextBox, KeyPressEventArgs e)
         {
             int periodIndex = numberTextBox.Text.IndexOf('.');
             e.Handled = !(char.IsNumber(e.KeyChar)
@@ -148,44 +149,11 @@ namespace FedWire_Batch_File_Creator
             || e.KeyChar == ','
             || e.KeyChar == (char)Keys.Back);
 
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                numberTextBox.Text = string.Format("{0:n2}", double.Parse(numberTextBox.Text));
-            }
         }
 
         private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            convertToDecimal_KeyPress(wireAmt, e);
-        }
-
-        private bool verifyUSCurrencyField(TextBox form)
-        {
-            Regex pattern = new Regex(@"^[0-9]{1,10}[.\]*[0-9]{0,3}$");
-            return pattern.IsMatch(form.Text);
-        }
-
-        private bool verifyAllAlpha(TextBox form, int length)
-        {
-            Regex pattern = new Regex(@"^[A-Za-z ]{1," + length.ToString() + "}");
-            return pattern.IsMatch(form.Text);
-        }
-
-        private void wireAmt_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dbtCustName_TextChanged(object sender, EventArgs e)
-        {
-            if (verifyAllAlpha(dbtCustName, 35) == true)
-            {
-                currentWire.Originator.FieldValue = dbtCustName.Text;
-            }
-            else
-            {
-                currentWire.Originator.FieldValue = null;
-            }
+            convertToDouble_KeyPress(wireAmt, e);
         }
 
         private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -218,6 +186,42 @@ namespace FedWire_Batch_File_Creator
             {
                 textBoxList[boxnum].Text = null;
             }
+        }
+
+        private void dbtCustAcctNum_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private string stringToCurrency(TextBox currencyTextBox)
+        {
+            StringBuilder cleanAmt = new StringBuilder();
+            int centLoc;
+
+            for (int c = 0; c < currencyTextBox.Text.Length; c++)
+            {
+                if (char.IsNumber(currencyTextBox.Text[c]))
+                {
+                    cleanAmt.Append(currencyTextBox.Text[c]);
+                }
+            }
+
+            if (currencyTextBox.Text.Contains('.'))
+            {
+                centLoc = currencyTextBox.Text.IndexOf('.');
+            }
+            else
+            {
+                centLoc = cleanAmt.Length - 2;
+            }
+            cleanAmt.Insert(centLoc, '.');
+
+            return cleanAmt.ToString();
+        }
+
+        private void wireAmt_Leave(object sender, EventArgs e)
+        {
+            wireAmt.Text = string.Format("{0:C2}", decimal.Parse(stringToCurrency(wireAmt)));
         }
     }
 }

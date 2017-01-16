@@ -123,6 +123,7 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustAcctNum.Size = new System.Drawing.Size(240, 20);
             this.dbtCustAcctNum.TabIndex = 2;
             this.dbtCustAcctNum.WordWrap = false;
+            this.dbtCustAcctNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dbtCustAcctNum_KeyDown);
             // 
             // dbtCustName
             // 
@@ -131,7 +132,6 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustName.Size = new System.Drawing.Size(240, 20);
             this.dbtCustName.TabIndex = 3;
             this.dbtCustName.WordWrap = false;
-            this.dbtCustName.TextChanged += new System.EventHandler(this.dbtCustName_TextChanged);
             // 
             // label1
             // 

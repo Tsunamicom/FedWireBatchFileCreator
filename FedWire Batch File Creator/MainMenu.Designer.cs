@@ -214,13 +214,13 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&View Help";
             // 
             // aboutFWFCToolStripMenuItem
             // 
             this.aboutFWFCToolStripMenuItem.Name = "aboutFWFCToolStripMenuItem";
-            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutFWFCToolStripMenuItem.Text = "&About FWFC";
             // 
             // openNewDomesticWireButton
@@ -280,7 +280,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainMenu";
-            this.Text = "(FWFG) FedWire File Generator";
+            this.Text = "(FWFC) FedWire File Creator";
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
