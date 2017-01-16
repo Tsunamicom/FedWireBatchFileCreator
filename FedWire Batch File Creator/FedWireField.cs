@@ -13,9 +13,7 @@ namespace FedWire_Batch_File_Creator
         private string _tag;
         
         public string FieldValue{ get { return _FieldValue; } set { _FieldValue = value; } }
-
         public string Tag { get { return _tag; } }
-        public string isValid { get { return isValid; } }
 
         public FedWireField(string tag)
         {
