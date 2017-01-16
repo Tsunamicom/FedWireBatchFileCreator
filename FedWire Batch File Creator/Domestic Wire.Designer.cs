@@ -714,7 +714,6 @@ namespace FedWire_Batch_File_Creator
             this.wireTypeSelect.TabIndex = 0;
             this.wireTypeSelect.TabStop = false;
             this.wireTypeSelect.Text = "1000 - Funds Transfer Basic";
-            this.wireTypeSelect.Leave += new System.EventHandler(this.wireTypeSelect_Leave);
             // 
             // domesticWireHeaderMenu
             // 

@@ -78,28 +78,6 @@ namespace FedWire_Batch_File_Creator
             MessageBox.Show(currentWire.WireAmount.FieldValue);
         }
 
-        public string validateTextAsNumber(TextBox currentForm, string wireField)
-        {
-            for (int i = 0; i < currentForm.Text.Length; i++)
-            {
-                byte testnum;
-                if (byte.TryParse(currentForm.Text[i].ToString(), out testnum))
-                {
-                    wireField = currentForm.Text;
-                }
-                else
-                {
-                    wireField = "Invalid";
-                }
-            }
-            return wireField;
-        }
-
-        private void wireTypeSelect_Leave(object sender, EventArgs e)
-        {
-            currentWire.WireType.FieldValue = wireTypeSelect.Text.Substring(0, 4);
-        }
-
         private void toggleLockAllFields(bool isUnlocked)
         {
             for (int boxnum = 0; boxnum < textBoxList.Count; boxnum++)
@@ -189,7 +167,10 @@ namespace FedWire_Batch_File_Creator
 
         private void wireAmt_Leave(object sender, EventArgs e)
         {
-            wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
+            if (wireAmt.Text != "")
+            {
+                wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
+            }
         }
     }
 }
