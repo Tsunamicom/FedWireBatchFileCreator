@@ -26,122 +26,76 @@ namespace FedWire_Batch_File_Creator
         //                         WIRE FIELDS
         // 
         // {1500} Sender Supplied Information
-        public FedWireField SenderSuppliedInfo = new FedWireField(
-            tag: "1500",
-            regex: @"^(30)([\w]{8})([TP])([\sP])$");
+        public FedWireField SenderSuppliedInfo = new FedWireField(tag: "1500");
 
         // {1510} Type/Subtype
-        public FedWireField WireType = new FedWireField(
-            tag: "1510",
-            regex: @"^([\d]{2})([\d]{2})$");
+        public FedWireField WireType = new FedWireField(tag: "1510");
 
         // {1520} Input Message Accountability Data (IMAD)
-        public FedWireField IMAD = new FedWireField(
-            tag: "1520",
-            regex: @"^([\d]{8})([\w]{8})([\d]{6})$");
+        public FedWireField IMAD = new FedWireField(tag: "1520");
 
         // {2000} Amount
-        public FedWireField WireAmount = new FedWireField(
-            tag: "2000",
-            regex: @"^[\d]{12}$");
+        public FedWireField WireAmount = new FedWireField(tag: "2000");
 
         // {3100} Sender DI
-        public FedWireField SenderDI = new FedWireField(
-            tag: "3100",
-            regex: @"^([\d]{9})([\w\s]{1,18})?$");
+        public FedWireField SenderDI = new FedWireField(tag: "3100");
 
         // {3400} Reciever DI
-        public FedWireField RecieverDI = new FedWireField(
-            tag: "3400",
-            regex: @"^([\d]{9})([\w\s]{1,18})?$");
+        public FedWireField RecieverDI = new FedWireField(tag: "3400");
 
         // {3600} Business Function Code
-        public FedWireField BusinessFunctionCode = new FedWireField(
-            tag: "3600",
-            regex: @"^([BC]TR|CKS|CTP|DEP|DR[BCW]|FF[RS]|SVC)((?<=CTR)[A-Z]{3})?$");
+        public FedWireField BusinessFunctionCode = new FedWireField(tag: "3600");
 
         // {3320} Sender Reference
-        public FedWireField SenderReference = new FedWireField(
-            tag: "3320",
-            regex: @"^[\w]{1,16}");
+        public FedWireField SenderReference = new FedWireField(tag: "3320");
 
         // {3500} Previous Message Identifier
-        public FedWireField PreviousMessageIdentifier = new FedWireField(
-            tag: "3500",
-            regex: @"^[\w]{1,22}$");
+        public FedWireField PreviousMessageIdentifier = new FedWireField(tag: "3500");
 
         // {3610} Local Instrument
-        public FedWireField LocalInstrument = new FedWireField(
-            tag: "3610",
-            regex: @"^(ANSI|COVS|[GI]XML|NARR|PROP|RMTS|RRMT|S820|SWIF|UEDI)((?<=PROP)\w{1,35})?$");
+        public FedWireField LocalInstrument = new FedWireField(tag: "3610");
 
         // {3620} Payment Notification
-        public FedWireField PaymentNotification = new FedWireField(
-            tag: "3620",
-            regex: @"^(\d)?([\w@:/,.\]{1,2048})?([\w,.\]{1,140})?([-\d]{1,35}){0,3}(\w{1,35})?$");
+        public FedWireField PaymentNotification = new FedWireField(tag: "3620");
 
         // {3700} Charges
-        public FedWireField WireCharges = new FedWireField(
-            tag: "3700",
-            regex: @"^([BS][*])?([A-Z]{3}[\d,]{1,12}[*]?){0,4}$");
+        public FedWireField WireCharges = new FedWireField(tag: "3700");
 
         // {3710} Instructed Amount
-        public FedWireField InstructedAmount = new FedWireField(
-            tag: "3710",
-            regex: @"^([A-Z]{3})((\d{1,12})(,)?(\d{2}?)?)$");
+        public FedWireField InstructedAmount = new FedWireField(tag: "3710");
 
         // {3720} Exchange Rate
-        public FedWireField ExchangeRate = new FedWireField(
-            tag: "3720",
-            regex: @"^(\d{1,12})(,)?(\d{2}?)?$");
+        public FedWireField ExchangeRate = new FedWireField(tag: "3720");
 
         // {4000} Intermediary FI
-        public FedWireField IntermediaryFI = new FedWireField(
-            tag: "4000",
-            regex: @"^([BCDFU])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField IntermediaryFI = new FedWireField(tag: "4000");
 
         // {4100} Beneficiary FI
-        public FedWireField BeneficiaryFI = new FedWireField(
-            tag: "4100",
-            regex: @"^([BCDFU])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField BeneficiaryFI = new FedWireField(tag: "4100");
 
         // {4200} Beneficiary
-        public FedWireField Beneficiary = new FedWireField(
-            tag: "4200",
-            regex: @"^([BCDFTU123459])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField Beneficiary = new FedWireField(tag: "4200");
 
         // {4320} Reference for Beneficiary
-        public FedWireField ReferenceForBeneficiary = new FedWireField(
-            tag: "4320",
-            regex:@"^[\w]{1, 16}$");
+        public FedWireField ReferenceForBeneficiary = new FedWireField(tag: "4320");
 
         // {4400} Account Debited in Drawdown
-        public FedWireField AccountDebitedInDrawdown = new FedWireField(
-            tag:"4400",
-            regex: @"^(D)([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField AccountDebitedInDrawdown = new FedWireField(tag:"4400");
 
         // {5000} Originator
-        public FedWireField Originator = new FedWireField(
-            tag:"5000",
-            regex:@"^([BCDFTU123459])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField Originator = new FedWireField(tag:"5000");
 
         // {5010} Originator Option F
         public FedWireField OriginatorOptionF = new FedWireField(tag:"5010");
 
         // {5100} Originator FI
-        public FedWireField OriginatorFI = new FedWireField(
-            tag:"5100",
-            regex:@"^([BCDFU])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField OriginatorFI = new FedWireField(tag:"5100");
 
         // {5200} Instructing FI
-        public FedWireField InstructingFI = new FedWireField(
-            tag:"5200",
-            regex:@"^([BCDFU])([\w\s]{1,34})([*]?[\w\s,]{1,35})(([*]?[\w\s,]{1,35}){0,3})[*]$");
+        public FedWireField InstructingFI = new FedWireField(tag:"5200");
 
         // {5400} Account Credited in Drawdown
-        public FedWireField AccountCreditedInDrawdown = new FedWireField(
-            tag:"5400",
-            regex:@"^\d{9}$");
+        public FedWireField AccountCreditedInDrawdown = new FedWireField(tag:"5400");
 
         // {6000} Originator to Beneficiary Information
         public FedWireField OriginatorToBeneficiaryInfo = new FedWireField(tag:"6000");

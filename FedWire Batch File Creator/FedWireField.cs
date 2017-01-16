@@ -11,44 +11,15 @@ namespace FedWire_Batch_File_Creator
     {
         private string _FieldValue;
         private string _tag;
-        private string _regex;
-        private bool _isValid = false;
         
-        public string FieldValue
-        {
-            get
-            {
-                if (_isValid)
-                {
-                    return _FieldValue;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            set
-            {
-                if (Regex.IsMatch(value, _regex))
-                {
-                    _FieldValue = value;
-                    _isValid = true;
-                }
-                else
-                {
-                    _FieldValue = "";
-                    _isValid = false;
-                }
-            }
-        }
+        public string FieldValue{ get { return _FieldValue; } set { _FieldValue = value; } }
 
         public string Tag { get { return _tag; } }
         public string isValid { get { return isValid; } }
 
-        public FedWireField(string tag, string regex="")
+        public FedWireField(string tag)
         {
             _tag = tag;
-            _regex = regex;
         }
     }
 }
