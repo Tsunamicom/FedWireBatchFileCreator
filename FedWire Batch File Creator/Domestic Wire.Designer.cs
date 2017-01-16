@@ -39,7 +39,7 @@ namespace FedWire_Batch_File_Creator
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.obiText = new System.Windows.Forms.TextBox();
+            this.obiTextOne = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dbtCustAddrOne = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -101,6 +101,9 @@ namespace FedWire_Batch_File_Creator
             this.label25 = new System.Windows.Forms.Label();
             this.initiatedTime = new System.Windows.Forms.Label();
             this.clearAllButton = new System.Windows.Forms.Button();
+            this.obiTextTwo = new System.Windows.Forms.TextBox();
+            this.obiTextThree = new System.Windows.Forms.TextBox();
+            this.obiTextFour = new System.Windows.Forms.TextBox();
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -119,18 +122,20 @@ namespace FedWire_Batch_File_Creator
             // dbtCustAcctNum
             // 
             this.dbtCustAcctNum.Location = new System.Drawing.Point(104, 150);
+            this.dbtCustAcctNum.MaxLength = 34;
             this.dbtCustAcctNum.Name = "dbtCustAcctNum";
             this.dbtCustAcctNum.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustAcctNum.TabIndex = 2;
+            this.dbtCustAcctNum.TabIndex = 1;
             this.dbtCustAcctNum.WordWrap = false;
             this.dbtCustAcctNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dbtCustAcctNum_KeyDown);
             // 
             // dbtCustName
             // 
             this.dbtCustName.Location = new System.Drawing.Point(104, 176);
+            this.dbtCustName.MaxLength = 35;
             this.dbtCustName.Name = "dbtCustName";
             this.dbtCustName.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustName.TabIndex = 3;
+            this.dbtCustName.TabIndex = 2;
             this.dbtCustName.WordWrap = false;
             // 
             // label1
@@ -157,20 +162,22 @@ namespace FedWire_Batch_File_Creator
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(122, 499);
+            this.label7.Location = new System.Drawing.Point(122, 497);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(203, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Originator to Beneficiary Info (OBI)";
             // 
-            // obiText
+            // obiTextOne
             // 
-            this.obiText.AcceptsReturn = true;
-            this.obiText.Location = new System.Drawing.Point(104, 515);
-            this.obiText.Multiline = true;
-            this.obiText.Name = "obiText";
-            this.obiText.Size = new System.Drawing.Size(240, 61);
-            this.obiText.TabIndex = 26;
+            this.obiTextOne.AcceptsReturn = true;
+            this.obiTextOne.Location = new System.Drawing.Point(104, 514);
+            this.obiTextOne.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.obiTextOne.MaxLength = 35;
+            this.obiTextOne.Multiline = true;
+            this.obiTextOne.Name = "obiTextOne";
+            this.obiTextOne.Size = new System.Drawing.Size(240, 20);
+            this.obiTextOne.TabIndex = 25;
             // 
             // label11
             // 
@@ -187,9 +194,10 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustAddrOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbtCustAddrOne.Location = new System.Drawing.Point(104, 202);
             this.dbtCustAddrOne.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dbtCustAddrOne.MaxLength = 35;
             this.dbtCustAddrOne.Name = "dbtCustAddrOne";
             this.dbtCustAddrOne.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustAddrOne.TabIndex = 4;
+            this.dbtCustAddrOne.TabIndex = 3;
             this.dbtCustAddrOne.WordWrap = false;
             // 
             // label12
@@ -207,9 +215,10 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustAddrTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbtCustAddrTwo.Location = new System.Drawing.Point(104, 222);
             this.dbtCustAddrTwo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dbtCustAddrTwo.MaxLength = 35;
             this.dbtCustAddrTwo.Name = "dbtCustAddrTwo";
             this.dbtCustAddrTwo.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustAddrTwo.TabIndex = 5;
+            this.dbtCustAddrTwo.TabIndex = 4;
             this.dbtCustAddrTwo.WordWrap = false;
             // 
             // dbtCustAddrThree
@@ -217,9 +226,10 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustAddrThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbtCustAddrThree.Location = new System.Drawing.Point(104, 242);
             this.dbtCustAddrThree.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dbtCustAddrThree.MaxLength = 35;
             this.dbtCustAddrThree.Name = "dbtCustAddrThree";
             this.dbtCustAddrThree.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustAddrThree.TabIndex = 6;
+            this.dbtCustAddrThree.TabIndex = 5;
             this.dbtCustAddrThree.WordWrap = false;
             // 
             // dbtCustAddrFour
@@ -227,9 +237,10 @@ namespace FedWire_Batch_File_Creator
             this.dbtCustAddrFour.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbtCustAddrFour.Location = new System.Drawing.Point(104, 262);
             this.dbtCustAddrFour.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dbtCustAddrFour.MaxLength = 35;
             this.dbtCustAddrFour.Name = "dbtCustAddrFour";
             this.dbtCustAddrFour.Size = new System.Drawing.Size(240, 20);
-            this.dbtCustAddrFour.TabIndex = 7;
+            this.dbtCustAddrFour.TabIndex = 6;
             this.dbtCustAddrFour.WordWrap = false;
             // 
             // recBankAddrFour
@@ -237,9 +248,10 @@ namespace FedWire_Batch_File_Creator
             this.recBankAddrFour.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recBankAddrFour.Location = new System.Drawing.Point(485, 262);
             this.recBankAddrFour.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.recBankAddrFour.MaxLength = 35;
             this.recBankAddrFour.Name = "recBankAddrFour";
             this.recBankAddrFour.Size = new System.Drawing.Size(240, 20);
-            this.recBankAddrFour.TabIndex = 13;
+            this.recBankAddrFour.TabIndex = 12;
             this.recBankAddrFour.WordWrap = false;
             // 
             // recBankAddrThree
@@ -247,9 +259,10 @@ namespace FedWire_Batch_File_Creator
             this.recBankAddrThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recBankAddrThree.Location = new System.Drawing.Point(485, 242);
             this.recBankAddrThree.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.recBankAddrThree.MaxLength = 35;
             this.recBankAddrThree.Name = "recBankAddrThree";
             this.recBankAddrThree.Size = new System.Drawing.Size(240, 20);
-            this.recBankAddrThree.TabIndex = 12;
+            this.recBankAddrThree.TabIndex = 11;
             this.recBankAddrThree.WordWrap = false;
             // 
             // recBankAddrTwo
@@ -257,9 +270,10 @@ namespace FedWire_Batch_File_Creator
             this.recBankAddrTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recBankAddrTwo.Location = new System.Drawing.Point(485, 222);
             this.recBankAddrTwo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.recBankAddrTwo.MaxLength = 35;
             this.recBankAddrTwo.Name = "recBankAddrTwo";
             this.recBankAddrTwo.Size = new System.Drawing.Size(240, 20);
-            this.recBankAddrTwo.TabIndex = 11;
+            this.recBankAddrTwo.TabIndex = 10;
             this.recBankAddrTwo.WordWrap = false;
             // 
             // label3
@@ -287,9 +301,10 @@ namespace FedWire_Batch_File_Creator
             this.recBankAddrOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recBankAddrOne.Location = new System.Drawing.Point(485, 202);
             this.recBankAddrOne.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.recBankAddrOne.MaxLength = 35;
             this.recBankAddrOne.Name = "recBankAddrOne";
             this.recBankAddrOne.Size = new System.Drawing.Size(240, 20);
-            this.recBankAddrOne.TabIndex = 10;
+            this.recBankAddrOne.TabIndex = 9;
             this.recBankAddrOne.WordWrap = false;
             // 
             // label5
@@ -305,17 +320,19 @@ namespace FedWire_Batch_File_Creator
             // recBankName
             // 
             this.recBankName.Location = new System.Drawing.Point(485, 176);
+            this.recBankName.MaxLength = 35;
             this.recBankName.Name = "recBankName";
             this.recBankName.Size = new System.Drawing.Size(240, 20);
-            this.recBankName.TabIndex = 9;
+            this.recBankName.TabIndex = 8;
             this.recBankName.WordWrap = false;
             // 
             // recBankABA
             // 
             this.recBankABA.Location = new System.Drawing.Point(485, 150);
+            this.recBankABA.MaxLength = 34;
             this.recBankABA.Name = "recBankABA";
             this.recBankABA.Size = new System.Drawing.Size(240, 20);
-            this.recBankABA.TabIndex = 8;
+            this.recBankABA.TabIndex = 7;
             this.recBankABA.WordWrap = false;
             // 
             // bnfBankAddrFour
@@ -323,9 +340,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfBankAddrFour.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfBankAddrFour.Location = new System.Drawing.Point(485, 453);
             this.bnfBankAddrFour.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfBankAddrFour.MaxLength = 35;
             this.bnfBankAddrFour.Name = "bnfBankAddrFour";
             this.bnfBankAddrFour.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankAddrFour.TabIndex = 25;
+            this.bnfBankAddrFour.TabIndex = 24;
             this.bnfBankAddrFour.WordWrap = false;
             // 
             // bnfBankAddrThree
@@ -333,9 +351,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfBankAddrThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfBankAddrThree.Location = new System.Drawing.Point(485, 433);
             this.bnfBankAddrThree.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfBankAddrThree.MaxLength = 35;
             this.bnfBankAddrThree.Name = "bnfBankAddrThree";
             this.bnfBankAddrThree.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankAddrThree.TabIndex = 24;
+            this.bnfBankAddrThree.TabIndex = 23;
             this.bnfBankAddrThree.WordWrap = false;
             // 
             // bnfBankAddrTwo
@@ -343,9 +362,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfBankAddrTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfBankAddrTwo.Location = new System.Drawing.Point(485, 413);
             this.bnfBankAddrTwo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfBankAddrTwo.MaxLength = 35;
             this.bnfBankAddrTwo.Name = "bnfBankAddrTwo";
             this.bnfBankAddrTwo.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankAddrTwo.TabIndex = 23;
+            this.bnfBankAddrTwo.TabIndex = 22;
             this.bnfBankAddrTwo.WordWrap = false;
             // 
             // label8
@@ -373,9 +393,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfBankAddrOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfBankAddrOne.Location = new System.Drawing.Point(485, 393);
             this.bnfBankAddrOne.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfBankAddrOne.MaxLength = 35;
             this.bnfBankAddrOne.Name = "bnfBankAddrOne";
             this.bnfBankAddrOne.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankAddrOne.TabIndex = 22;
+            this.bnfBankAddrOne.TabIndex = 21;
             this.bnfBankAddrOne.WordWrap = false;
             // 
             // label10
@@ -391,17 +412,19 @@ namespace FedWire_Batch_File_Creator
             // bnfBankName
             // 
             this.bnfBankName.Location = new System.Drawing.Point(485, 367);
+            this.bnfBankName.MaxLength = 35;
             this.bnfBankName.Name = "bnfBankName";
             this.bnfBankName.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankName.TabIndex = 21;
+            this.bnfBankName.TabIndex = 20;
             this.bnfBankName.WordWrap = false;
             // 
             // bnfBankABA
             // 
             this.bnfBankABA.Location = new System.Drawing.Point(485, 341);
+            this.bnfBankABA.MaxLength = 34;
             this.bnfBankABA.Name = "bnfBankABA";
             this.bnfBankABA.Size = new System.Drawing.Size(240, 20);
-            this.bnfBankABA.TabIndex = 20;
+            this.bnfBankABA.TabIndex = 19;
             this.bnfBankABA.WordWrap = false;
             // 
             // bnfCustAddrFour
@@ -409,9 +432,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfCustAddrFour.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfCustAddrFour.Location = new System.Drawing.Point(104, 453);
             this.bnfCustAddrFour.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfCustAddrFour.MaxLength = 35;
             this.bnfCustAddrFour.Name = "bnfCustAddrFour";
             this.bnfCustAddrFour.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustAddrFour.TabIndex = 19;
+            this.bnfCustAddrFour.TabIndex = 18;
             this.bnfCustAddrFour.WordWrap = false;
             // 
             // bnfCustAddrThree
@@ -419,9 +443,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfCustAddrThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfCustAddrThree.Location = new System.Drawing.Point(104, 433);
             this.bnfCustAddrThree.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfCustAddrThree.MaxLength = 35;
             this.bnfCustAddrThree.Name = "bnfCustAddrThree";
             this.bnfCustAddrThree.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustAddrThree.TabIndex = 18;
+            this.bnfCustAddrThree.TabIndex = 17;
             this.bnfCustAddrThree.WordWrap = false;
             // 
             // bnfCustAddrTwo
@@ -429,9 +454,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfCustAddrTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfCustAddrTwo.Location = new System.Drawing.Point(104, 413);
             this.bnfCustAddrTwo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfCustAddrTwo.MaxLength = 35;
             this.bnfCustAddrTwo.Name = "bnfCustAddrTwo";
             this.bnfCustAddrTwo.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustAddrTwo.TabIndex = 17;
+            this.bnfCustAddrTwo.TabIndex = 16;
             this.bnfCustAddrTwo.WordWrap = false;
             // 
             // label14
@@ -459,9 +485,10 @@ namespace FedWire_Batch_File_Creator
             this.bnfCustAddrOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnfCustAddrOne.Location = new System.Drawing.Point(104, 393);
             this.bnfCustAddrOne.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bnfCustAddrOne.MaxLength = 35;
             this.bnfCustAddrOne.Name = "bnfCustAddrOne";
             this.bnfCustAddrOne.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustAddrOne.TabIndex = 16;
+            this.bnfCustAddrOne.TabIndex = 15;
             this.bnfCustAddrOne.WordWrap = false;
             // 
             // label16
@@ -487,17 +514,19 @@ namespace FedWire_Batch_File_Creator
             // bnfCustName
             // 
             this.bnfCustName.Location = new System.Drawing.Point(104, 367);
+            this.bnfCustName.MaxLength = 35;
             this.bnfCustName.Name = "bnfCustName";
             this.bnfCustName.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustName.TabIndex = 15;
+            this.bnfCustName.TabIndex = 14;
             this.bnfCustName.WordWrap = false;
             // 
             // bnfCustAcctNum
             // 
             this.bnfCustAcctNum.Location = new System.Drawing.Point(104, 341);
+            this.bnfCustAcctNum.MaxLength = 34;
             this.bnfCustAcctNum.Name = "bnfCustAcctNum";
             this.bnfCustAcctNum.Size = new System.Drawing.Size(240, 20);
-            this.bnfCustAcctNum.TabIndex = 14;
+            this.bnfCustAcctNum.TabIndex = 13;
             this.bnfCustAcctNum.WordWrap = false;
             // 
             // fedWireDirectoryLinkLabel
@@ -506,8 +535,7 @@ namespace FedWire_Batch_File_Creator
             this.fedWireDirectoryLinkLabel.Location = new System.Drawing.Point(633, 100);
             this.fedWireDirectoryLinkLabel.Name = "fedWireDirectoryLinkLabel";
             this.fedWireDirectoryLinkLabel.Size = new System.Drawing.Size(92, 13);
-            this.fedWireDirectoryLinkLabel.TabIndex = 0;
-            this.fedWireDirectoryLinkLabel.TabStop = true;
+            this.fedWireDirectoryLinkLabel.TabIndex = 999999;
             this.fedWireDirectoryLinkLabel.Text = "FedWire Directory";
             this.fedWireDirectoryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.fedWireDirectoryLinkLabel1_LinkClicked);
             // 
@@ -593,10 +621,10 @@ namespace FedWire_Batch_File_Creator
             // wireFormSubmit
             // 
             this.wireFormSubmit.Enabled = false;
-            this.wireFormSubmit.Location = new System.Drawing.Point(670, 553);
+            this.wireFormSubmit.Location = new System.Drawing.Point(670, 587);
             this.wireFormSubmit.Name = "wireFormSubmit";
             this.wireFormSubmit.Size = new System.Drawing.Size(75, 23);
-            this.wireFormSubmit.TabIndex = 28;
+            this.wireFormSubmit.TabIndex = 31;
             this.wireFormSubmit.Text = "Submit";
             this.wireFormSubmit.UseVisualStyleBackColor = true;
             this.wireFormSubmit.Click += new System.EventHandler(this.wireFormSubmit_Click);
@@ -622,10 +650,10 @@ namespace FedWire_Batch_File_Creator
             // 
             // wireFormVerify
             // 
-            this.wireFormVerify.Location = new System.Drawing.Point(589, 553);
+            this.wireFormVerify.Location = new System.Drawing.Point(589, 587);
             this.wireFormVerify.Name = "wireFormVerify";
             this.wireFormVerify.Size = new System.Drawing.Size(75, 23);
-            this.wireFormVerify.TabIndex = 27;
+            this.wireFormVerify.TabIndex = 30;
             this.wireFormVerify.Text = "Lock In";
             this.wireFormVerify.UseVisualStyleBackColor = true;
             this.wireFormVerify.Click += new System.EventHandler(this.wireFormVerify_Click);
@@ -647,7 +675,7 @@ namespace FedWire_Batch_File_Creator
             this.wireAmt.MaxLength = 12;
             this.wireAmt.Name = "wireAmt";
             this.wireAmt.Size = new System.Drawing.Size(138, 20);
-            this.wireAmt.TabIndex = 1;
+            this.wireAmt.TabIndex = 0;
             this.wireAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.wireAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.wireAmt_KeyPress);
             this.wireAmt.Leave += new System.EventHandler(this.wireAmt_Leave);
@@ -777,13 +805,46 @@ namespace FedWire_Batch_File_Creator
             // 
             // clearAllButton
             // 
-            this.clearAllButton.Location = new System.Drawing.Point(416, 553);
+            this.clearAllButton.Location = new System.Drawing.Point(416, 587);
             this.clearAllButton.Name = "clearAllButton";
             this.clearAllButton.Size = new System.Drawing.Size(75, 23);
-            this.clearAllButton.TabIndex = 75;
+            this.clearAllButton.TabIndex = 29;
             this.clearAllButton.Text = "Clear All";
             this.clearAllButton.UseVisualStyleBackColor = true;
             this.clearAllButton.Click += new System.EventHandler(this.clearAllButton_Click);
+            // 
+            // obiTextTwo
+            // 
+            this.obiTextTwo.AcceptsReturn = true;
+            this.obiTextTwo.Location = new System.Drawing.Point(104, 534);
+            this.obiTextTwo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.obiTextTwo.MaxLength = 35;
+            this.obiTextTwo.Multiline = true;
+            this.obiTextTwo.Name = "obiTextTwo";
+            this.obiTextTwo.Size = new System.Drawing.Size(240, 20);
+            this.obiTextTwo.TabIndex = 26;
+            // 
+            // obiTextThree
+            // 
+            this.obiTextThree.AcceptsReturn = true;
+            this.obiTextThree.Location = new System.Drawing.Point(104, 554);
+            this.obiTextThree.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.obiTextThree.MaxLength = 35;
+            this.obiTextThree.Multiline = true;
+            this.obiTextThree.Name = "obiTextThree";
+            this.obiTextThree.Size = new System.Drawing.Size(240, 20);
+            this.obiTextThree.TabIndex = 27;
+            // 
+            // obiTextFour
+            // 
+            this.obiTextFour.AcceptsReturn = true;
+            this.obiTextFour.Location = new System.Drawing.Point(104, 574);
+            this.obiTextFour.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.obiTextFour.MaxLength = 35;
+            this.obiTextFour.Multiline = true;
+            this.obiTextFour.Name = "obiTextFour";
+            this.obiTextFour.Size = new System.Drawing.Size(240, 20);
+            this.obiTextFour.TabIndex = 28;
             // 
             // DomesticWireFrm
             // 
@@ -791,7 +852,10 @@ namespace FedWire_Batch_File_Creator
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(754, 586);
+            this.ClientSize = new System.Drawing.Size(754, 618);
+            this.Controls.Add(this.obiTextFour);
+            this.Controls.Add(this.obiTextThree);
+            this.Controls.Add(this.obiTextTwo);
             this.Controls.Add(this.clearAllButton);
             this.Controls.Add(this.initiatedTime);
             this.Controls.Add(this.label25);
@@ -848,7 +912,7 @@ namespace FedWire_Batch_File_Creator
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dbtCustAddrOne);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.obiText);
+            this.Controls.Add(this.obiTextOne);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dbtCustName);
@@ -877,7 +941,7 @@ namespace FedWire_Batch_File_Creator
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox obiText;
+        private System.Windows.Forms.TextBox obiTextOne;
         public System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox dbtCustAddrOne;
         private System.Windows.Forms.Label label12;
@@ -941,6 +1005,9 @@ namespace FedWire_Batch_File_Creator
         private Label initiatedTime;
         private Label label25;
         private Button clearAllButton;
+        private TextBox obiTextFour;
+        private TextBox obiTextThree;
+        private TextBox obiTextTwo;
     }
 }
 

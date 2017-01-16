@@ -55,7 +55,10 @@ namespace FedWire_Batch_File_Creator
             textBoxList.Add(bnfCustAddrTwo);
             textBoxList.Add(bnfCustAddrThree);
             textBoxList.Add(bnfCustAddrFour);
-            textBoxList.Add(obiText);
+            textBoxList.Add(obiTextOne);
+            textBoxList.Add(obiTextTwo);
+            textBoxList.Add(obiTextThree);
+            textBoxList.Add(obiTextFour);
             System.Diagnostics.Debug.WriteLine("Finished Writing {0} TextBoxes to textBoxList", textBoxList.Count);
         }
 

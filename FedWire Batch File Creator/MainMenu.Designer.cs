@@ -231,7 +231,7 @@
             this.openNewDomesticWireButton.Name = "openNewDomesticWireButton";
             this.openNewDomesticWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewDomesticWireButton.TabIndex = 1;
-            this.openNewDomesticWireButton.Text = "DOMESTIC WIRE";
+            this.openNewDomesticWireButton.Text = "DOMESTIC WIRE (BASIC)";
             this.openNewDomesticWireButton.UseVisualStyleBackColor = true;
             this.openNewDomesticWireButton.Click += new System.EventHandler(this.openNewDomesticWireButton_Click);
             // 
@@ -244,7 +244,7 @@
             this.openNewInternationalWireButton.Name = "openNewInternationalWireButton";
             this.openNewInternationalWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewInternationalWireButton.TabIndex = 2;
-            this.openNewInternationalWireButton.Text = "INTERNATIONAL WIRE (TBD)";
+            this.openNewInternationalWireButton.Text = "INTERNATIONAL WIRE (BASIC - TBD)";
             this.openNewInternationalWireButton.UseVisualStyleBackColor = true;
             // 
             // openReportsButton
