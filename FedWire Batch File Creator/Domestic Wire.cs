@@ -193,35 +193,9 @@ namespace FedWire_Batch_File_Creator
 
         }
 
-        private string stringToCurrency(TextBox currencyTextBox)
-        {
-            StringBuilder cleanAmt = new StringBuilder();
-            int centLoc;
-
-            for (int c = 0; c < currencyTextBox.Text.Length; c++)
-            {
-                if (char.IsNumber(currencyTextBox.Text[c]))
-                {
-                    cleanAmt.Append(currencyTextBox.Text[c]);
-                }
-            }
-
-            if (currencyTextBox.Text.Contains('.'))
-            {
-                centLoc = currencyTextBox.Text.IndexOf('.');
-            }
-            else
-            {
-                centLoc = cleanAmt.Length - 2;
-            }
-            cleanAmt.Insert(centLoc, '.');
-
-            return cleanAmt.ToString();
-        }
-
         private void wireAmt_Leave(object sender, EventArgs e)
         {
-            wireAmt.Text = string.Format("{0:C2}", decimal.Parse(stringToCurrency(wireAmt)));
+            wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
         }
     }
 }
