@@ -100,6 +100,7 @@ namespace FedWire_Batch_File_Creator
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label25 = new System.Windows.Forms.Label();
             this.initiatedTime = new System.Windows.Forms.Label();
+            this.clearAllButton = new System.Windows.Forms.Button();
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -776,6 +777,16 @@ namespace FedWire_Batch_File_Creator
             this.initiatedTime.Size = new System.Drawing.Size(0, 13);
             this.initiatedTime.TabIndex = 74;
             // 
+            // clearAllButton
+            // 
+            this.clearAllButton.Location = new System.Drawing.Point(416, 553);
+            this.clearAllButton.Name = "clearAllButton";
+            this.clearAllButton.Size = new System.Drawing.Size(75, 23);
+            this.clearAllButton.TabIndex = 75;
+            this.clearAllButton.Text = "Clear All";
+            this.clearAllButton.UseVisualStyleBackColor = true;
+            this.clearAllButton.Click += new System.EventHandler(this.clearAllButton_Click);
+            // 
             // DomesticWireFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -783,6 +794,7 @@ namespace FedWire_Batch_File_Creator
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(754, 586);
+            this.Controls.Add(this.clearAllButton);
             this.Controls.Add(this.initiatedTime);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.wireTypeSelect);
@@ -930,6 +942,7 @@ namespace FedWire_Batch_File_Creator
         public System.Collections.Generic.List<TextBox> textBoxList = new System.Collections.Generic.List<TextBox>();
         private Label initiatedTime;
         private Label label25;
+        private Button clearAllButton;
     }
 }
 

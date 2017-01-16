@@ -110,6 +110,7 @@ namespace FedWire_Batch_File_Creator
             recBankAcctType.Enabled = isUnlocked;
             bnfBankAcctType.Enabled = isUnlocked;
             wireFormSubmit.Enabled = !isUnlocked;
+            clearAllButton.Enabled = isUnlocked;
         }
 
         private void wireFormVerify_Click(object sender, EventArgs e)
@@ -198,9 +199,9 @@ namespace FedWire_Batch_File_Creator
         private void debugTextBoxValues()
         {
             System.Diagnostics.Debug.WriteLine("**** TEXTBOX VALUE DEBUG START {0} ****", DateTime.Now);
-            for (int i = 0; i < textBoxList.Count; i++)
+            for (int boxnum = 0; boxnum < textBoxList.Count; boxnum++)
             {
-                System.Diagnostics.Debug.WriteLine("  Textbox {0} value: {1}", textBoxList[i].Name, textBoxList[i].Text);
+                System.Diagnostics.Debug.WriteLine("  Textbox {0} value: {1}", textBoxList[boxnum].Name, textBoxList[boxnum].Text);
             }
             System.Diagnostics.Debug.WriteLine("**** END TEXTBOX VALUE DEBUG ****");
         }
@@ -209,6 +210,14 @@ namespace FedWire_Batch_File_Creator
         {
             fedWireDirectoryLinkLabel.LinkVisited = true;
             System.Diagnostics.Process.Start(@"https://www.frbservices.org/EPaymentsDirectory/searchFedwire.html");
+        }
+
+        private void clearAllButton_Click(object sender, EventArgs e)
+        {
+            for (int boxnum = 0; boxnum < textBoxList.Count; boxnum++)
+            {
+                textBoxList[boxnum].Text = null;
+            }
         }
     }
 }
