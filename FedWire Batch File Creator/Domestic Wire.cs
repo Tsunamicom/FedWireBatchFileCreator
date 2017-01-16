@@ -133,27 +133,21 @@ namespace FedWire_Batch_File_Creator
 
         private void toggleAssociateWireDetail(bool confirmed)
         {
-
+            // Will be used to Associate the current fields to the class.
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void convertToDouble_KeyPress(TextBox numberTextBox, KeyPressEventArgs e)
+        private void allowedKeysAmtField(TextBox numberTextBox, KeyPressEventArgs e)
         {
             int periodIndex = numberTextBox.Text.IndexOf('.');
             e.Handled = !(char.IsNumber(e.KeyChar)
             || (e.KeyChar == '.' && periodIndex == -1)
             || e.KeyChar == ','
             || e.KeyChar == (char)Keys.Back);
-
         }
 
         private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            convertToDouble_KeyPress(wireAmt, e);
+            allowedKeysAmtField(wireAmt, e);
         }
 
         private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
