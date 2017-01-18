@@ -134,12 +134,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FedWireBatchFileCreatorDatabase.mdf">
+    <Content Include="FWFCdb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="FedWireBatchFileCreatorDatabase_log.ldf">
+    <Content Include="FWFCdb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>FedWireBatchFileCreatorDatabase.mdf</DependentUpon>
+      <DependentUpon>FWFCdb.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
