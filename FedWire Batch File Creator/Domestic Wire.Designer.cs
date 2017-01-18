@@ -706,15 +706,15 @@ namespace FedWire_Batch_File_Creator
             this.wireTypeSelect.FormatString = "N0";
             this.wireTypeSelect.FormattingEnabled = true;
             this.wireTypeSelect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.wireTypeSelect.Items.AddRange(new DropdownBoxNameValue[] {
-            new DropdownBoxNameValue("1000 - Funds Transfer Basic", "1000"),
-            new DropdownBoxNameValue("1001 - Funds Transfer Reversal Request (Same Day)", "1001"),
-            new DropdownBoxNameValue("1002 - Funds Transfer Reversal (Same Day)","1002"),
-            new DropdownBoxNameValue("1007 - Funds Transfer Reversal Request (Prior Day)","1007"),
-            new DropdownBoxNameValue("1008 - Funds Transfer Reversal (Prior Day)","1008"),
-            new DropdownBoxNameValue("1031 - Funds Transfer Request for Credit (Drawdown)","1031"),
-            new DropdownBoxNameValue("1032 - Funds Transfer Honoring Request for Credit (Drawdown)","1032")
-            /*"1033 - Refusal to Honor a Request for Credit (Drawdown)",
+            this.wireTypeSelect.Items.AddRange(new object[] {
+            "1000 - Funds Transfer Basic",
+            "1001 - Funds Transfer Reversal Request (Same Day)",
+            "1002 - Funds Transfer Reversal (Same Day)",
+            "1007 - Funds Transfer Reversal Request (Prior Day)",
+            "1008 - Funds Transfer Reversal (Prior Day)",
+            "1031 - Funds Transfer Request for Credit (Drawdown)",
+            "1032 - Funds Transfer Honoring Request for Credit (Drawdown)",
+            "1033 - Refusal to Honor a Request for Credit (Drawdown)",
             "1090 - Service Message",
             "1500 - Foreign Funds Transfer Basic",
             "1501 - Foreign Funds Transfer Reversal Request (Same Day)",
@@ -733,7 +733,7 @@ namespace FedWire_Batch_File_Creator
             "1631 - Bank-to-Bank Funds Transfer Request for Credit (Drawdown)",
             "1632 - Bank-to-Bank Funds Transfer Honoring Request for Credit (Drawdown)",
             "1633 - Bank-to-Bank Refusal to Honor a Request for Credit (Drawdown)",
-            "1690 - Bank-to-Bank Service Message"*/});
+            "1690 - Bank-to-Bank Service Message"});
             this.wireTypeSelect.Location = new System.Drawing.Point(179, 97);
             this.wireTypeSelect.MaxLength = 4;
             this.wireTypeSelect.Name = "wireTypeSelect";
