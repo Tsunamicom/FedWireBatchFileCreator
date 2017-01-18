@@ -36,7 +36,7 @@ namespace FedWire_Batch_File_Creator
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            DialogResult confirmExit = MessageBox.Show("Confirm Exit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if(confirmExit.Equals(DialogResult.OK))
             {
                 Application.Exit();
