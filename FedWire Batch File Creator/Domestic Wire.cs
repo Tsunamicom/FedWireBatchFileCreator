@@ -78,7 +78,8 @@ namespace FedWire_Batch_File_Creator
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(currentWire.WireAmount.FieldValue);
+            
+            MessageBox.Show(wireTypeSelect.Items.
         }
 
         private void toggleLockAllFields(bool isUnlocked)
