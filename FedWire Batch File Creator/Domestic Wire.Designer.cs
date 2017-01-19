@@ -536,6 +536,7 @@ namespace FedWire_Batch_File_Creator
             this.fedWireDirectoryLinkLabel.Name = "fedWireDirectoryLinkLabel";
             this.fedWireDirectoryLinkLabel.Size = new System.Drawing.Size(92, 13);
             this.fedWireDirectoryLinkLabel.TabIndex = 999999;
+            this.fedWireDirectoryLinkLabel.TabStop = true;
             this.fedWireDirectoryLinkLabel.Text = "FedWire Directory";
             this.fedWireDirectoryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.fedWireDirectoryLinkLabel1_LinkClicked);
             // 
