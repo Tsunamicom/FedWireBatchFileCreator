@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1687aebf87b742e1bb83d1a5ccd5e2eb" Name="Diagram1" ZoomLevel="121">
+      <Diagram DiagramId="1687aebf87b742e1bb83d1a5ccd5e2eb" Name="Diagram1" ZoomLevel="89">
         <EntityTypeShape EntityType="FWFCdbModel.BnfInfo" Width="1.5" PointX="8.625" PointY="41" IsExpanded="true" />
         <EntityTypeShape EntityType="FWFCdbModel.CoverPymtSeqB" Width="1.5" PointX="7" PointY="41" IsExpanded="true" />
         <EntityTypeShape EntityType="FWFCdbModel.FedWireSVCInfo" Width="1.5" PointX="10.25" PointY="41" IsExpanded="true" />

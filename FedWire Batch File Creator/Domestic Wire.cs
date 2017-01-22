@@ -15,8 +15,6 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class DomesticWireFrm : Form
     {
-        Wire currentWire = new Wire();
-        
         public DomesticWireFrm()
         {
             InitializeComponent();
@@ -65,20 +63,11 @@ namespace FedWire_Batch_File_Creator
         private void associateDefaultWireValues()
         {
 
-            System.Diagnostics.Debug.WriteLine("Associating Default Wire Values");
-            currentWire.initiatorName = "Test Dummy"; // User Profile Name (Temporary)
-            activeUser.Text = currentWire.initiatorName;
-
-            currentWire.wireID = 00000001; // Next Database ID (Temporary)
-            wireIDNum.Text = currentWire.wireID.ToString();
-
-            currentWire.initiatedTime = DateTime.Now;
-            initiatedTime.Text = currentWire.initiatedTime.ToString();
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(currentWire.WireAmount.FieldValue);
+            
         }
 
         private void toggleLockAllFields(bool isUnlocked)
