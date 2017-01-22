@@ -39,5 +39,6 @@ namespace FedWire_Batch_File_Creator
         public virtual DbSet<UnstructAddenda> UnstructAddendas { get; set; }
         public virtual DbSet<WireMain> WireMains { get; set; }
         public virtual DbSet<WireTemplate> WireTemplates { get; set; }
+        public virtual DbSet<Batch> Batches { get; set; }
     }
 }

@@ -62,12 +62,14 @@ namespace FedWire_Batch_File_Creator
 
         private void associateDefaultWireValues()
         {
-
+            initiatedTime.Text = DateTime.Now.ToString();
+            wireIDNum.Text = "00001 Placeholder";
+            activeUser.Text = "Test User";
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Clicking this will save the wire to the database");
         }
 
         private void toggleLockAllFields(bool isUnlocked)

@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Batch.cs">
+      <DependentUpon>FWFCdbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BnfInfo.cs">
       <DependentUpon>FWFCdbModel.tt</DependentUpon>
     </Compile>

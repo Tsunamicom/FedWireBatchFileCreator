@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FWFCdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FWFCdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opened_Time" Type="datetime" />
+          <Property Name="Opened_User" Type="nvarchar" MaxLength="70" />
+          <Property Name="Submitted_Date" Type="datetime" />
+          <Property Name="Submitted_User" Type="nvarchar" MaxLength="70" />
+          <Property Name="OFAC_Verified" Type="bit" />
+        </EntityType>
         <EntityType Name="BnfInfo">
           <Key>
             <PropertyRef Name="Beneficiary_ID" />
@@ -426,6 +437,7 @@
           <Property Name="Verify_DateTime" Type="datetime" />
           <Property Name="Verify_UserName" Type="nvarchar" MaxLength="70" />
           <Property Name="Status" Type="nchar" MaxLength="4" />
+          <Property Name="FK_BatchID" Type="int" />
         </EntityType>
         <EntityType Name="WireTemplate">
           <Key>
@@ -726,7 +738,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WireMain_ToBatch">
+          <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+          <End Role="WireMain" Type="Self.WireMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="BatchID" />
+            </Principal>
+            <Dependent Role="WireMain">
+              <PropertyRef Name="FK_BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FWFCdbModelStoreContainer">
+          <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BnfInfo" EntityType="Self.BnfInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoverPymtSeqB" EntityType="Self.CoverPymtSeqB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FedWireSVCInfo" EntityType="Self.FedWireSVCInfo" Schema="dbo" store:Type="Tables" />
@@ -837,9 +862,12 @@
             <End Role="WireTemplate" EntitySet="WireTemplate" />
             <End Role="UnstructAddenda" EntitySet="UnstructAddenda" />
           </AssociationSet>
+          <AssociationSet Name="FK_WireMain_ToBatch" Association="Self.FK_WireMain_ToBatch">
+            <End Role="Batch" EntitySet="Batch" />
+            <End Role="WireMain" EntitySet="WireMain" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FWFCdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1300,6 +1328,8 @@
           <NavigationProperty Name="StructRemitRepeats" Relationship="Self.FK_StructRemitRepeat_ToWireMain" FromRole="WireMain" ToRole="StructRemitRepeat" />
           <NavigationProperty Name="SVCInfoes" Relationship="Self.FK_SVCInfo_ToWireMain" FromRole="WireMain" ToRole="SVCInfo" />
           <NavigationProperty Name="UnstructAddendas" Relationship="Self.FK_UnstructAddenda_ToWireMain" FromRole="WireMain" ToRole="UnstructAddenda" />
+          <Property Name="FK_BatchID" Type="Int32" />
+          <NavigationProperty Name="Batch" Relationship="FWFCdbModel.FK_WireMain_ToBatch" FromRole="WireMain" ToRole="Batch" />
         </EntityType>
         <EntityType Name="WireTemplate">
           <Key>
@@ -1723,7 +1753,36 @@
             <End Role="WireTemplate" EntitySet="WireTemplates" />
             <End Role="UnstructAddenda" EntitySet="UnstructAddendas" />
           </AssociationSet>
+          <EntitySet Name="Batches" EntityType="FWFCdbModel.Batch" />
+          <AssociationSet Name="FK_WireMain_ToBatch" Association="FWFCdbModel.FK_WireMain_ToBatch">
+            <End Role="Batch" EntitySet="Batches" />
+            <End Role="WireMain" EntitySet="WireMains" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opened_Time" Type="DateTime" Precision="3" />
+          <Property Name="Opened_User" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Submitted_Date" Type="DateTime" Precision="3" />
+          <Property Name="Submitted_User" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="OFAC_Verified" Type="Boolean" />
+          <NavigationProperty Name="WireMains" Relationship="FWFCdbModel.FK_WireMain_ToBatch" FromRole="Batch" ToRole="WireMain" />
+        </EntityType>
+        <Association Name="FK_WireMain_ToBatch">
+          <End Type="FWFCdbModel.Batch" Role="Batch" Multiplicity="0..1" />
+          <End Type="FWFCdbModel.WireMain" Role="WireMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="BatchID" />
+            </Principal>
+            <Dependent Role="WireMain">
+              <PropertyRef Name="FK_BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2154,6 +2213,7 @@
           <EntitySetMapping Name="WireMains">
             <EntityTypeMapping TypeName="FWFCdbModel.WireMain">
               <MappingFragment StoreEntitySet="WireMain">
+                <ScalarProperty Name="FK_BatchID" ColumnName="FK_BatchID" />
                 <ScalarProperty Name="WireID" ColumnName="WireID" />
                 <ScalarProperty Name="Init_DateTime" ColumnName="Init_DateTime" />
                 <ScalarProperty Name="Init_UserName" ColumnName="Init_UserName" />
@@ -2174,6 +2234,18 @@
                 <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
                 <ScalarProperty Name="Date_LastUsed" ColumnName="Date_LastUsed" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="FWFCdbModel.Batch">
+              <MappingFragment StoreEntitySet="Batch">
+                <ScalarProperty Name="OFAC_Verified" ColumnName="OFAC_Verified" />
+                <ScalarProperty Name="Submitted_User" ColumnName="Submitted_User" />
+                <ScalarProperty Name="Submitted_Date" ColumnName="Submitted_Date" />
+                <ScalarProperty Name="Opened_User" ColumnName="Opened_User" />
+                <ScalarProperty Name="Opened_Time" ColumnName="Opened_Time" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

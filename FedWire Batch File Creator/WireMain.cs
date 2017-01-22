@@ -39,6 +39,7 @@ namespace FedWire_Batch_File_Creator
         public Nullable<System.DateTime> Verify_DateTime { get; set; }
         public string Verify_UserName { get; set; }
         public string Status { get; set; }
+        public Nullable<int> FK_BatchID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BnfInfo> BnfInfoes { get; set; }
@@ -64,5 +65,6 @@ namespace FedWire_Batch_File_Creator
         public virtual ICollection<SVCInfo> SVCInfoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UnstructAddenda> UnstructAddendas { get; set; }
+        public virtual Batch Batch { get; set; }
     }
 }
