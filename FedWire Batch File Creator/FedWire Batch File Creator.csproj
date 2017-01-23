@@ -214,8 +214,8 @@
       <LastGenOutput>FWFCdbModel.cs</LastGenOutput>
     </Content>
     <Content Include="FWFCdb_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FWFCdb.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
