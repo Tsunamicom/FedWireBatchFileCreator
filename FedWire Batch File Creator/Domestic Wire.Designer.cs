@@ -102,6 +102,7 @@ namespace FedWire_Batch_File_Creator
             this.obiTextFour = new System.Windows.Forms.TextBox();
             this.batchIDLabel = new System.Windows.Forms.Label();
             this.batchID = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -814,11 +815,19 @@ namespace FedWire_Batch_File_Creator
             // batchID
             // 
             this.batchID.AutoSize = true;
-            this.batchID.Location = new System.Drawing.Point(77, 38);
+            this.batchID.Location = new System.Drawing.Point(179, 38);
             this.batchID.Name = "batchID";
             this.batchID.Size = new System.Drawing.Size(0, 13);
             this.batchID.TabIndex = 1000001;
             this.batchID.Tag = "0";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(78, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(33, 21);
+            this.comboBox1.TabIndex = 1000002;
             // 
             // DomesticWireFrm
             // 
@@ -827,6 +836,7 @@ namespace FedWire_Batch_File_Creator
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(754, 618);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.batchIDLabel);
             this.Controls.Add(this.batchID);
             this.Controls.Add(this.obiTextFour);
@@ -892,6 +902,7 @@ namespace FedWire_Batch_File_Creator
             this.Controls.Add(this.FedWireDetailTitle);
             this.Controls.Add(this.domesticWireHeaderMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.domesticWireHeaderMenu;
             this.Name = "DomesticWireFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -978,6 +989,7 @@ namespace FedWire_Batch_File_Creator
         private TextBox obiTextTwo;
         private Label batchIDLabel;
         private Label batchID;
+        private ComboBox comboBox1;
     }
 }
 

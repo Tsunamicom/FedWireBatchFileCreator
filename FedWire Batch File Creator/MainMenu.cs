@@ -14,7 +14,22 @@ namespace FedWire_Batch_File_Creator
     {
         public MainMenu()
         {
+            startNewBatch();
             InitializeComponent();
+        }
+
+        private void startNewBatch()
+        {
+            using (var currentBatch = new FWFCdbEntities())
+            {
+                Batch newbatch = currentBatch.Batches.Add(new Batch
+                {
+                    Opened_Time = DateTime.Now,
+                    Opened_User = "Test User",
+                    OFAC_Verified = false
+                });
+                currentBatch.SaveChanges();
+            }
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)

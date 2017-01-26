@@ -15,15 +15,15 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class DomesticWireFrm : Form
     {
-        string username = "TestUser";
+        string username;
         int domWireIDNum;
         int domBatchIDNum;
-        string myBankABA = "12345679";
-        //string myBankName = "The Bank of Testing";
-        string myBankShortName = "BANK OF TEST";
+        string myBankABA;
+        string myBankShortName;
         string recBankABA;
         string recBankShortName;
-        string defaultBusFuncCode = "CTR";
+        string defaultBusFuncCode;
+        
 
         public DomesticWireFrm()
         {
@@ -74,17 +74,21 @@ namespace FedWire_Batch_File_Creator
 
         private void associateDefaultWireValues()
         {
-            
+            username = "Test User";
+            myBankABA = "12345678";
+            myBankShortName = "BANK OF TEST";
+            defaultBusFuncCode = "CTR";
+
             using (FWFCdbEntities domesticWireStart = new FWFCdbEntities())
             {
-                Batch newbatch = domesticWireStart.Batches.Add(
-                    new Batch
-                    {
-                        Opened_Time = DateTime.Now,
-                        Opened_User = username,
-                        OFAC_Verified = false
-                    });
-                Debug.WriteLine("New Batch Created");
+                //Batch newbatch = domesticWireStart.Batches.Add(
+                //    new Batch
+                //    {
+                //        Opened_Time = DateTime.Now,
+                //        Opened_User = username,
+                //        OFAC_Verified = false
+                //    });
+                Batch newbatch = domesticWireStart.Batches.Where(c => c.BatchID == 1).Single();
 
                 WireMain newwire = domesticWireStart.WireMains.Add(
                     new WireMain
@@ -219,14 +223,36 @@ namespace FedWire_Batch_File_Creator
                     FK_WireID = thiswire.WireID
                 });
 
-                domesticWireUpdate.SaveChanges();
+                try
+                {
+                    domesticWireUpdate.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        }
+                    }
+                }
             }
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
-            updateDomesticWireDetail();
-            MessageBox.Show("You have updated the current wire!"); // Placeholder
+            if (verifyRequiredTextBoxes())
+            {
+                updateDomesticWireDetail();
+                MessageBox.Show("Wire Submitted!");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Some Required Fields are Blank!");
+            }
+            
         }
 
         private void toggleLockAllFields(bool isUnlocked)
@@ -265,22 +291,15 @@ namespace FedWire_Batch_File_Creator
             if (wireFormVerify.Text == "Lock In")
             {
                 toggleLockAllFields(isUnlocked: false);
-                toggleAssociateWireDetail(confirmed: true);
                 wireFormVerify.Text = "Edit Wire";
                 debugTextBoxValues();
             }
             else
             {
                 toggleLockAllFields(isUnlocked: true);
-                toggleAssociateWireDetail(confirmed: false);
                 wireFormVerify.Text = "Lock In";
                 removeWireDetailForEdit();
             }
-        }
-
-        private void toggleAssociateWireDetail(bool confirmed)
-        {
-            // Will be used to Associate the current fields to the class.
         }
 
         private void allowedKeysAmtField(TextBox numberTextBox, KeyPressEventArgs e)
@@ -336,5 +355,30 @@ namespace FedWire_Batch_File_Creator
                 wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
             }
         }
+
+        private bool isNotEmptyTextBox(TextBox tbox)
+        {
+            if (String.IsNullOrEmpty(tbox.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool verifyRequiredTextBoxes()
+        {
+            if (isNotEmptyTextBox(wireAmt)
+                && isNotEmptyTextBox(dbtCustAcctNum)
+                && isNotEmptyTextBox(dbtCustName)
+                && isNotEmptyTextBox(bnfBankABA)
+                && isNotEmptyTextBox(bnfBankName)
+                && isNotEmptyTextBox(bnfCustAcctNum)
+                && isNotEmptyTextBox(bnfCustName))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
