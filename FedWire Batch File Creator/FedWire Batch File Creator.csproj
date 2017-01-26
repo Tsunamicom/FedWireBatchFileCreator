@@ -98,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FWFCdbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FWFCdbDataSetBatchFull.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCdbDataSetBatchFull.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FWFCdbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -182,6 +187,17 @@
     <None Include="FWFCdbDataSet.xss">
       <DependentUpon>FWFCdbDataSet.xsd</DependentUpon>
     </None>
+    <None Include="FWFCdbDataSetBatchFull.xsc">
+      <DependentUpon>FWFCdbDataSetBatchFull.xsd</DependentUpon>
+    </None>
+    <None Include="FWFCdbDataSetBatchFull.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FWFCdbDataSetBatchFull.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FWFCdbDataSetBatchFull.xss">
+      <DependentUpon>FWFCdbDataSetBatchFull.xsd</DependentUpon>
+    </None>
     <None Include="FWFCdbModel.edmx.diagram">
       <DependentUpon>FWFCdbModel.edmx</DependentUpon>
     </None>
@@ -216,7 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FWFCdb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FWFCdbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -230,7 +246,7 @@
     </Content>
     <Content Include="FWFCdb_log.ldf">
       <DependentUpon>FWFCdb.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

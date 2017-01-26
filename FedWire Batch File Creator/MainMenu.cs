@@ -57,5 +57,12 @@ namespace FedWire_Batch_File_Creator
                 Application.Exit();
             }
         }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'fWFCdbDataSetBatchFull.Batch' table. You can move, or remove it, as needed.
+            this.batchTableAdapter.Fill(this.fWFCdbDataSetBatchFull.Batch);
+
+        }
     }
 }
