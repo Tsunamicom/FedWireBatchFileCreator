@@ -133,7 +133,6 @@
     <Compile Include="RelatedRemitInfo.cs">
       <DependentUpon>FWFCdbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="StringExtensions.cs" />
     <Compile Include="StructRemitOnce.cs">
       <DependentUpon>FWFCdbModel.tt</DependentUpon>
     </Compile>
