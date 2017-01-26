@@ -93,6 +93,11 @@
     <Compile Include="FItoFI_Info.cs">
       <DependentUpon>FWFCdbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FWFCdbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCdbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FWFCdbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +172,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FWFCdbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="FWFCdbDataSet.xsc">
+      <DependentUpon>FWFCdbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FWFCdbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FWFCdbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FWFCdbDataSet.xss">
+      <DependentUpon>FWFCdbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="FWFCdbModel.edmx.diagram">
       <DependentUpon>FWFCdbModel.edmx</DependentUpon>
     </None>

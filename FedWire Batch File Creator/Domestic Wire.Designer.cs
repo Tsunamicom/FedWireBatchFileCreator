@@ -102,9 +102,14 @@ namespace FedWire_Batch_File_Creator
             this.obiTextFour = new System.Windows.Forms.TextBox();
             this.batchIDLabel = new System.Windows.Forms.Label();
             this.batchID = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.batchSelection = new System.Windows.Forms.ComboBox();
+            this.fWFCdbDataSet = new FedWire_Batch_File_Creator.FWFCdbDataSet();
+            this.batchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.batchTableAdapter = new FedWire_Batch_File_Creator.FWFCdbDataSetTableAdapters.BatchTableAdapter();
             this.domesticWireHeaderMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fWFCdbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FedWireDetailTitle
@@ -587,7 +592,7 @@ namespace FedWire_Batch_File_Creator
             // wireIDNum
             // 
             this.wireIDNum.AutoSize = true;
-            this.wireIDNum.Location = new System.Drawing.Point(77, 56);
+            this.wireIDNum.Location = new System.Drawing.Point(77, 65);
             this.wireIDNum.Name = "wireIDNum";
             this.wireIDNum.Size = new System.Drawing.Size(0, 13);
             this.wireIDNum.TabIndex = 69;
@@ -596,7 +601,7 @@ namespace FedWire_Batch_File_Creator
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 56);
+            this.label13.Location = new System.Drawing.Point(12, 65);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 13);
             this.label13.TabIndex = 0;
@@ -805,7 +810,7 @@ namespace FedWire_Batch_File_Creator
             // batchIDLabel
             // 
             this.batchIDLabel.AutoSize = true;
-            this.batchIDLabel.Location = new System.Drawing.Point(12, 38);
+            this.batchIDLabel.Location = new System.Drawing.Point(12, 34);
             this.batchIDLabel.Name = "batchIDLabel";
             this.batchIDLabel.Size = new System.Drawing.Size(59, 13);
             this.batchIDLabel.TabIndex = 1000000;
@@ -821,13 +826,29 @@ namespace FedWire_Batch_File_Creator
             this.batchID.TabIndex = 1000001;
             this.batchID.Tag = "0";
             // 
-            // comboBox1
+            // batchSelection
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(78, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(33, 21);
-            this.comboBox1.TabIndex = 1000002;
+            this.batchSelection.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.batchBindingSource, "BatchID", true));
+            this.batchSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchSelection.FormattingEnabled = true;
+            this.batchSelection.Location = new System.Drawing.Point(78, 29);
+            this.batchSelection.Name = "batchSelection";
+            this.batchSelection.Size = new System.Drawing.Size(41, 21);
+            this.batchSelection.TabIndex = 1000002;
+            // 
+            // fWFCdbDataSet
+            // 
+            this.fWFCdbDataSet.DataSetName = "FWFCdbDataSet";
+            this.fWFCdbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // batchBindingSource
+            // 
+            this.batchBindingSource.DataMember = "Batch";
+            this.batchBindingSource.DataSource = this.fWFCdbDataSet;
+            // 
+            // batchTableAdapter
+            // 
+            this.batchTableAdapter.ClearBeforeFill = true;
             // 
             // DomesticWireFrm
             // 
@@ -836,7 +857,7 @@ namespace FedWire_Batch_File_Creator
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(754, 618);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.batchSelection);
             this.Controls.Add(this.batchIDLabel);
             this.Controls.Add(this.batchID);
             this.Controls.Add(this.obiTextFour);
@@ -911,6 +932,8 @@ namespace FedWire_Batch_File_Creator
             this.domesticWireHeaderMenu.ResumeLayout(false);
             this.domesticWireHeaderMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fWFCdbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -989,7 +1012,10 @@ namespace FedWire_Batch_File_Creator
         private TextBox obiTextTwo;
         private Label batchIDLabel;
         private Label batchID;
-        private ComboBox comboBox1;
+        private ComboBox batchSelection;
+        private FWFCdbDataSet fWFCdbDataSet;
+        private BindingSource batchBindingSource;
+        private FWFCdbDataSetTableAdapters.BatchTableAdapter batchTableAdapter;
     }
 }
 

@@ -32,6 +32,8 @@ namespace FedWire_Batch_File_Creator
 
         private void DomesticWireForm(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'fWFCdbDataSet.Batch' table. You can move, or remove it, as needed.
+            this.batchTableAdapter.Fill(this.fWFCdbDataSet.Batch);
             System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
             associateDefaultWireValues();
             associateDefaultTextBoxes();
@@ -81,14 +83,7 @@ namespace FedWire_Batch_File_Creator
 
             using (FWFCdbEntities domesticWireStart = new FWFCdbEntities())
             {
-                //Batch newbatch = domesticWireStart.Batches.Add(
-                //    new Batch
-                //    {
-                //        Opened_Time = DateTime.Now,
-                //        Opened_User = username,
-                //        OFAC_Verified = false
-                //    });
-                Batch newbatch = domesticWireStart.Batches.Where(c => c.BatchID == 1).Single();
+                Batch newbatch = domesticWireStart.Batches.Where(c => c.BatchID.ToString() == batchSelection.Text).Single();
 
                 WireMain newwire = domesticWireStart.WireMains.Add(
                     new WireMain
