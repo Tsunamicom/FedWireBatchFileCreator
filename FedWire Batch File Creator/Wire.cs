@@ -473,8 +473,8 @@ namespace FedWire_Batch_File_Creator
 
 
         // Foreign Keys
-        //Batch BatchID { get; set; }
-        //WireTemplate TemplateID { get; set; }
+        Batch BatchID { get; set; }
+        WireTemplate TemplateID { get; set; }
     }
 }
 

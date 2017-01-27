@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f19a486a21044d51a4f0634efb963396" Name="Diagram1" ZoomLevel="48">
+        <EntityTypeShape EntityType="FWFCdbModel.Batch" Width="1.5" PointX="6.125" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.BnfInfo" Width="1.5" PointX="4.125" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.CoverPymtSeqB" Width="1.5" PointX="9" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.FedWireSVCInfo" Width="1.5" PointX="18.75" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.FItoFI_Info" Width="1.5" PointX="7.375" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.MandatoryField" Width="1.5" PointX="0.875" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.OriginatorInfo" Width="1.5" PointX="5.75" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.OtherTransferInfo" Width="1.5" PointX="2.5" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.RelatedRemitInfo" Width="1.5" PointX="12.25" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.StructRemitOnce" Width="1.5" PointX="15.5" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.StructRemitRepeat" Width="1.5" PointX="13.875" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.SVCInfo" Width="1.5" PointX="17.125" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.UnstructAddenda" Width="1.5" PointX="10.625" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.WireMain" Width="1.5" PointX="3.625" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCdbModel.WireTemplate" Width="1.5" PointX="17.375" PointY="34.625" IsExpanded="true" />
+        <AssociationConnector Association="FWFCdbModel.FK_WireMain_ToBatch" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_BnfInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_BnfInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_CoverPymtSeqB_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_CoverPymtSeqB_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_FedWireSVCInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_FedWireSVCInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_FItoFI_Info_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_FItoFI_Info_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_MandatoryFields_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_MandatoryFields_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_OriginatorInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_OriginatorInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_OtherTransferInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_OtherTransferInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_RelatedRemitInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_RelatedRemitInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_StructRemitOnce_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_StructRemitOnce_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_StructRemitRepeat_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_StructRemitRepeat_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_SVCInfo_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_SVCInfo_ToWireTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_UnstructAddenda_ToWireMain" ManuallyRouted="false" />
+        <AssociationConnector Association="FWFCdbModel.FK_UnstructAddenda_ToWireTemplate" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
