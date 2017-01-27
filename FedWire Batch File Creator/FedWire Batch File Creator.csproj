@@ -108,6 +108,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FWFCdbEFModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="IWireFields.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
