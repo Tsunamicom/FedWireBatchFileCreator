@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TsunWire Plus")]
+[assembly: AssemblyTitle("FedWire Batch File Creator")]
 [assembly: AssemblyDescription("FedWire Batch File Creator")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FedWire Batch File Creator")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("2017 Kurtis Mackey")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -14,22 +14,7 @@ namespace FedWire_Batch_File_Creator
     {
         public MainMenu()
         {
-            startNewBatch();
             InitializeComponent();
-        }
-
-        private void startNewBatch()
-        {
-            using (var currentBatch = new FWFCdbEntities())
-            {
-                Batch newbatch = currentBatch.Batches.Add(new Batch
-                {
-                    Opened_Time = DateTime.Now,
-                    Opened_User = "Test User",
-                    OFAC_Verified = false
-                });
-                currentBatch.SaveChanges();
-            }
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,8 +45,6 @@ namespace FedWire_Batch_File_Creator
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'fWFCdbDataSetBatchFull.Batch' table. You can move, or remove it, as needed.
-            this.batchTableAdapter.Fill(this.fWFCdbDataSetBatchFull.Batch);
 
         }
     }

@@ -59,15 +59,5 @@ namespace FedWire_Batch_File_Creator.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap tiny_small_green_check {
-            get {
-                object obj = ResourceManager.GetObject("tiny_small_green_check", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

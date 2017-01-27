@@ -16,24 +16,10 @@ namespace FedWire_Batch_File_Creator
     public partial class DomesticWireFrm : Form
     {
         string username;
-        int domWireIDNum;
-        int domBatchIDNum;
-        string myBankABA;
-        string myBankShortName;
-        string recBankABA;
-        string recBankShortName;
-        string defaultBusFuncCode;
-        
 
         public DomesticWireFrm()
         {
             InitializeComponent();
-        }
-
-        private void DomesticWireForm(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'fWFCdbDataSet.Batch' table. You can move, or remove it, as needed.
-            this.batchTableAdapter.Fill(this.fWFCdbDataSet.Batch);
             System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
             associateDefaultWireValues();
             associateDefaultTextBoxes();
@@ -77,169 +63,15 @@ namespace FedWire_Batch_File_Creator
         private void associateDefaultWireValues()
         {
             username = "Test User";
-            myBankABA = "12345678";
-            myBankShortName = "BANK OF TEST";
-            defaultBusFuncCode = "CTR";
-
-            using (FWFCdbEntities domesticWireStart = new FWFCdbEntities())
-            {
-                Batch newbatch = domesticWireStart.Batches.Where(c => c.BatchID.ToString() == batchSelection.Text).Single();
-
-                WireMain newwire = domesticWireStart.WireMains.Add(
-                    new WireMain
-                    {
-                        Init_DateTime = DateTime.Now,
-                        Init_UserName = username,
-                        Status = "UNVR",
-                        FK_BatchID = newbatch.BatchID
-                    });
-                domesticWireStart.SaveChanges();
-                domWireIDNum = newwire.WireID;
-                domBatchIDNum = newbatch.BatchID;
-            }
 
             initiatedTime.Text = DateTime.Now.ToString();
-            wireIDNum.Text = domWireIDNum.ToString();
             activeUser.Text = username;
-            batchID.Text = domBatchIDNum.ToString();
-        }
-
-        private void determineRecieverBankABA()
-        {
-            if (interBankABA != null)
-            {
-                recBankABA = interBankABA.Text;
-                recBankShortName = interBankName.Text;
-            }
-            else
-            {
-                recBankABA = bnfBankABA.Text;
-                recBankShortName = bnfBankName.Text;
-            }
-
-            // Truncate to 18 characters max
-            recBankShortName = recBankShortName.Substring(0, Math.Min(recBankShortName.Length, 18));
-        }
-
-        private void updateDomesticWireDetail()
-        {
-            determineRecieverBankABA();
-            using (FWFCdbEntities domesticWireUpdate = new FWFCdbEntities())
-            {
-                var thiswire = domesticWireUpdate.WireMains.Where(w => w.WireID == domWireIDNum).FirstOrDefault();
-                thiswire.Status = "SBMT";
-                thiswire.Modified_DateTime = DateTime.Now;
-                thiswire.Modified_UserName = username;
-                thiswire.Verify_DateTime = DateTime.Now;
-                thiswire.Verify_UserName = username;
-
-                domesticWireUpdate.MandatoryFields.Add(new MandatoryField
-                {
-                    // {1500} Sender Supplied Information
-                    SSI_Format = "30",  // Constant 30 (based on FedWire version)
-                    SSI_URC = myBankABA,  // Typically an ABA or other bank designation
-                    SSI_TPC = "P",  // T for Test, P for Production
-                    SSI_MDC = " ", // Space for Original, P for Resend
-
-                    // {1510} Type/SubType
-                    TypeCode = wireTypeSelect.Text.Substring(0, 2),
-                    SubType = wireTypeSelect.Text.Substring(2, 2),
-
-                    // {1520} Input Message Accountability Data (IMAD)
-                    IMAD_ICD = DateTime.Now.ToString("yyyyMMdd"),
-                    IMAD_Source = "ABCD1234", // Typically a value designated by Fed - Placeholder
-                    IMAD_Seq = getNewSeqNum(domBatchIDNum, domWireIDNum),  // Format specified by bank
-
-                    // {2000} Amount
-                    WireAmount = decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency).ToString("000000000000"),
-
-                    // {3100}
-                    SenderDI_ABA = myBankABA,
-                    SenderDI_ShortName = myBankShortName,
-
-                    // {3400}
-                    ReceiverDI_ABA = recBankABA,
-                    ReceiverDI_ShortName = recBankShortName,
-
-                    // {3600} Business Function Code
-                    BusinessFunctionCode = defaultBusFuncCode,
-
-                    // Foreign Key to link to primary wire detail
-                    FK_WireID = thiswire.WireID
-                });
-
-                domesticWireUpdate.BnfInfoes.Add(new BnfInfo
-                {
-                    // {4000} Intermediary FI
-                    InterFI_ID = "F", // B, C, D, F, U (F is Fed ABA) - Placeholder
-                    InterFI_Ident = interBankABA.Text,
-                    InterFI_Name = interBankName.Text,
-                    InterFI_Addr1 = interBankAddrOne.Text,
-                    InterFI_Addr2 = interBankAddrTwo.Text,
-                    InterFI_Addr3 = interBankAddrThree.Text,
-
-                    // {4100} Beneficiary FI
-                    BenFI_ID = "D", // B, C, D, F, U (D is DDA) - Placeholder
-                    BenFI_Ident = bnfBankABA.Text,
-                    BenFI_Name = bnfBankName.Text,
-                    BenFI_Addr1 = bnfBankAddrOne.Text,
-                    BenFI_Addr2 = bnfBankAddrTwo.Text,
-                    BenFI_Addr3 = bnfBankAddrThree.Text,
-
-                    // {4200} Beneficiary
-                    Bnf_ID = "D", // B, C, D, F, U, 1, 2, 3, 4, 5, 9  (D is Checking Acct)
-                    Bnf_Ident = bnfCustAcctNum.Text,
-                    Bnf_Name = bnfCustName.Text,
-                    Bnf_Addr1 = bnfCustAddrOne.Text,
-                    Bnf_Addr2 = bnfCustAddrTwo.Text,
-                    Bnf_Addr3 = bnfCustAddrThree.Text,
-
-                    // Foreign Key to link to primary wire detail
-                    FK_WireID = thiswire.WireID
-                });
-
-                domesticWireUpdate.OriginatorInfoes.Add(new OriginatorInfo
-                {
-                    // {5000} Originator
-                    Orig_ID = "D", // B, C, D, F, U, 1, 2, 3, 4, 5, 9  (D is Checking Acct)
-                    Orig_Ident = dbtCustAcctNum.Text,
-                    Orig_Name = dbtCustName.Text,
-                    Orig_Addr1 = dbtCustAddrOne.Text,
-                    Orig_Addr2 = dbtCustAddrTwo.Text,
-                    Orig_Addr3 = dbtCustAddrThree.Text,
-                    
-                    // {6000} Originator to Beneficiary Information
-                    OBI_L1 = obiTextOne.Text,
-                    OBI_L2 = obiTextTwo.Text,
-                    OBI_L3 = obiTextThree.Text,
-                    OBI_L4 = obiTextFour.Text,
-
-                    // Foreign Key to link to primary wire detail
-                    FK_WireID = thiswire.WireID
-                });
-
-                try
-                {
-                    domesticWireUpdate.SaveChanges();
-                }
-                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                        }
-                    }
-                }
-            }
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
             if (verifyRequiredTextBoxes())
             {
-                updateDomesticWireDetail();
                 MessageBox.Show("Wire Submitted!");
                 this.Close();
             }
@@ -264,23 +96,6 @@ namespace FedWire_Batch_File_Creator
             clearAllButton.Enabled = isUnlocked;
         }
 
-        private void removeWireDetailForEdit()
-        {
-            using (FWFCdbEntities domesticWireRemove = new FWFCdbEntities())
-            {
-                var thiswire = domesticWireRemove.WireMains.Where(w => w.WireID == domWireIDNum).FirstOrDefault();
-                thiswire.Status = "UNVR";
-                thiswire.Modified_DateTime = DateTime.Now;
-                thiswire.Modified_UserName = username;
-
-                domesticWireRemove.BnfInfoes.RemoveRange(thiswire.BnfInfoes.Where(w => w.FK_WireID == domWireIDNum));
-                domesticWireRemove.MandatoryFields.RemoveRange(thiswire.MandatoryFields.Where(w => w.FK_WireID == domWireIDNum));
-                domesticWireRemove.OriginatorInfoes.RemoveRange(thiswire.OriginatorInfoes.Where(w => w.FK_WireID == domWireIDNum));
-
-                domesticWireRemove.SaveChanges();
-            }
-        }
-
         private void wireFormVerify_Click(object sender, EventArgs e)
         {
             if (wireFormVerify.Text == "Lock In")
@@ -293,7 +108,6 @@ namespace FedWire_Batch_File_Creator
             {
                 toggleLockAllFields(isUnlocked: true);
                 wireFormVerify.Text = "Lock In";
-                removeWireDetailForEdit();
             }
         }
 
