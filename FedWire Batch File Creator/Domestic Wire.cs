@@ -15,12 +15,13 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class DomesticWireFrm : Form
     {
+        Wire currentWire = new Wire();
+
         public DomesticWireFrm()
         {
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
             AssociateDomesticWireTextBoxes();
-            Wire currentWire = new Wire();
         }
 
         private void AssociateDomesticWireTextBoxes()
@@ -179,5 +180,12 @@ namespace FedWire_Batch_File_Creator
             return false;
         }
 
+        private void DomesticWireFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (currentWire.Status == "UNVF")
+            {
+                currentWire.DestroyAllDBRef();
+            }
+        }
     }
 }

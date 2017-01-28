@@ -897,6 +897,7 @@ namespace FedWire_Batch_File_Creator
             this.Name = "DomesticWireFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FedWire File Creator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DomesticWireFrm_FormClosing);
             this.domesticWireHeaderMenu.ResumeLayout(false);
             this.domesticWireHeaderMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

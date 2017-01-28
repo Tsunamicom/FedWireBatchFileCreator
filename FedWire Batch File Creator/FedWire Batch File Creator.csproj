@@ -199,7 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FWFCdb.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FWFCdbEFModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -213,7 +213,7 @@
     </Content>
     <Content Include="FWFCdb_log.ldf">
       <DependentUpon>FWFCdb.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

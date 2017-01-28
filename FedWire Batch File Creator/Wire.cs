@@ -22,27 +22,24 @@ namespace FedWire_Batch_File_Creator
         {
             using (var context = new FWFCdbEntities())
             {
-                context.BnfInfoes.RemoveRange(context.BnfInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.CoverPymtSeqBs.RemoveRange(context.CoverPymtSeqBs.Where(c => c.FK_WireID == _wireID.WireID));
-                context.FedWireSVCInfoes.RemoveRange(context.FedWireSVCInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.FItoFI_Info.RemoveRange(context.FItoFI_Info.Where(c => c.FK_WireID == _wireID.WireID));
-                context.MandatoryFields.RemoveRange(context.MandatoryFields.Where(c => c.FK_WireID == _wireID.WireID));
-                context.OriginatorInfoes.RemoveRange(context.OriginatorInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.OtherTransferInfoes.RemoveRange(context.OtherTransferInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.RelatedRemitInfoes.RemoveRange(context.RelatedRemitInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.StructRemitOnces.RemoveRange(context.StructRemitOnces.Where(c => c.FK_WireID == _wireID.WireID));
-                context.StructRemitRepeats.RemoveRange(context.StructRemitRepeats.Where(c => c.FK_WireID == _wireID.WireID));
-                context.SVCInfoes.RemoveRange(context.SVCInfoes.Where(c => c.FK_WireID == _wireID.WireID));
-                context.UnstructAddendas.RemoveRange(context.UnstructAddendas.Where(c => c.FK_WireID == _wireID.WireID));
-                context.WireMains.RemoveRange(context.WireMains.Where(c => c.WireID == _wireID.WireID));
-            }
-        }
+                var thiswire = context.WireMains.Where(c => c.WireID == _wireID.WireID).Single();
 
-        ~Wire()
-        {
-            if (Status == "UNVF")
-            {
-                DestroyAllDBRef();
+                context.BnfInfoes.RemoveRange(context.BnfInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.CoverPymtSeqBs.RemoveRange(context.CoverPymtSeqBs.Where(c => c.FK_WireID == thiswire.WireID));
+                context.FedWireSVCInfoes.RemoveRange(context.FedWireSVCInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.FItoFI_Info.RemoveRange(context.FItoFI_Info.Where(c => c.FK_WireID == thiswire.WireID));
+                context.MandatoryFields.RemoveRange(context.MandatoryFields.Where(c => c.FK_WireID == thiswire.WireID));
+                context.OriginatorInfoes.RemoveRange(context.OriginatorInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.OtherTransferInfoes.RemoveRange(context.OtherTransferInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.RelatedRemitInfoes.RemoveRange(context.RelatedRemitInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.StructRemitOnces.RemoveRange(context.StructRemitOnces.Where(c => c.FK_WireID == thiswire.WireID));
+                context.StructRemitRepeats.RemoveRange(context.StructRemitRepeats.Where(c => c.FK_WireID == thiswire.WireID));
+                context.SVCInfoes.RemoveRange(context.SVCInfoes.Where(c => c.FK_WireID == thiswire.WireID));
+                context.UnstructAddendas.RemoveRange(context.UnstructAddendas.Where(c => c.FK_WireID == thiswire.WireID));
+                context.WireMains.Remove(thiswire);
+
+                Debug.WriteLine("Removing Wire: " + thiswire.WireID.ToString());
+                context.SaveChanges();
             }
         }
 
