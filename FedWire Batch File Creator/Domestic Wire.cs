@@ -63,6 +63,7 @@ namespace FedWire_Batch_File_Creator
         {
             if (verifyRequiredTextBoxes())
             {
+                currentWire.UpdateWireDB();
                 MessageBox.Show("Wire Submitted!");
                 this.Close();
             }
@@ -91,12 +92,14 @@ namespace FedWire_Batch_File_Creator
         {
             if (wireFormVerify.Text == "Lock In")
             {
+                currentWire.Status = "VERF";
                 toggleLockAllFields(isUnlocked: false);
                 wireFormVerify.Text = "Edit Wire";
                 debugTextBoxValues();
             }
             else
             {
+                currentWire.Status = "UNVF";
                 toggleLockAllFields(isUnlocked: true);
                 wireFormVerify.Text = "Lock In";
             }
@@ -182,7 +185,7 @@ namespace FedWire_Batch_File_Creator
 
         private void DomesticWireFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (currentWire.Status == "UNVF")
+            if (currentWire.Status == "UNVF") 
             {
                 currentWire.DestroyAllDBRef();
             }

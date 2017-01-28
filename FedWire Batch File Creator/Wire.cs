@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Data.Entity.Migrations;
 
 namespace FedWire_Batch_File_Creator
 {
     class Wire: IWireFields
     {
         private WireMain _wireID;
-        
 
         public Wire()
         {
@@ -71,6 +71,50 @@ namespace FedWire_Batch_File_Creator
             Debug.WriteLine("Creating New Wire ID: " + _wireID.WireID.ToString());
         }
 
+        public void UpdateWireDB()
+        {
+            using (var context = new FWFCdbEntities())
+            {
+                var updateContext = context.WireMains.Where(c => c.WireID == _wireID.WireID).First();
+                updateContext.Modified_UserName = "Test User 01";
+                updateContext.Modified_DateTime = DateTime.Now;
+                updateContext.BnfInfoes.Add(GetAllBnfInfo(updateContext));
+                context.SaveChanges();
+            }
+        }
+
+        public BnfInfo GetAllBnfInfo(WireMain thiswire)
+        {
+            return new BnfInfo
+            {
+                AcctDbtDraw_Addr1 = AcctDbtDraw_Addr1,
+                AcctDbtDraw_Addr2 = AcctDbtDraw_Addr2,
+                AcctDbtDraw_Addr3 = AcctDbtDraw_Addr3,
+                AcctDbtDraw_ID = AcctDbtDraw_ID,
+                AcctDbtDraw_Ident = AcctDbtDraw_Ident,
+                AcctDbtDraw_Name = AcctDbtDraw_Name,
+                Bnf_ID = Bnf_ID,
+                BnfRef = BnfRef,
+                Bnf_Addr1 = Bnf_Addr1,
+                Bnf_Addr2 = Bnf_Addr2,
+                Bnf_Addr3 = Bnf_Addr3,
+                Bnf_Ident = Bnf_Ident,
+                Bnf_Name = Bnf_Name,
+                BenFI_ID = BenFI_ID,
+                BenFI_Addr1 = BenFI_Addr1,
+                BenFI_Addr2 = BenFI_Addr2,
+                BenFI_Addr3 = BenFI_Addr3,
+                BenFI_Ident = BenFI_Ident,
+                BenFI_Name = BenFI_Name,
+                InterFI_ID = InterFI_ID,
+                InterFI_Name = InterFI_Name,
+                InterFI_Addr1 = InterFI_Addr1,
+                InterFI_Addr2 = InterFI_Addr2,
+                InterFI_Addr3 = InterFI_Addr3,
+                InterFI_Ident = InterFI_Ident,
+                FK_WireID = thiswire.WireID
+            };
+        }
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public string InitiatedByUser { get; set; }
