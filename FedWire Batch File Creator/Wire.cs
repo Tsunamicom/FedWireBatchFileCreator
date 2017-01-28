@@ -3,11 +3,88 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace FedWire_Batch_File_Creator
 {
     class Wire: IWireFields
     {
+        private WireMain _wireID;
+        
+
+        public Wire()
+        {
+            AssignDefaultWireValues();
+            AssignNewWireID();
+        }
+
+        public void DestroyAllDBRef()
+        {
+            using (var context = new FWFCdbEntities())
+            {
+                context.BnfInfoes.RemoveRange(context.BnfInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.CoverPymtSeqBs.RemoveRange(context.CoverPymtSeqBs.Where(c => c.FK_WireID == _wireID.WireID));
+                context.FedWireSVCInfoes.RemoveRange(context.FedWireSVCInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.FItoFI_Info.RemoveRange(context.FItoFI_Info.Where(c => c.FK_WireID == _wireID.WireID));
+                context.MandatoryFields.RemoveRange(context.MandatoryFields.Where(c => c.FK_WireID == _wireID.WireID));
+                context.OriginatorInfoes.RemoveRange(context.OriginatorInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.OtherTransferInfoes.RemoveRange(context.OtherTransferInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.RelatedRemitInfoes.RemoveRange(context.RelatedRemitInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.StructRemitOnces.RemoveRange(context.StructRemitOnces.Where(c => c.FK_WireID == _wireID.WireID));
+                context.StructRemitRepeats.RemoveRange(context.StructRemitRepeats.Where(c => c.FK_WireID == _wireID.WireID));
+                context.SVCInfoes.RemoveRange(context.SVCInfoes.Where(c => c.FK_WireID == _wireID.WireID));
+                context.UnstructAddendas.RemoveRange(context.UnstructAddendas.Where(c => c.FK_WireID == _wireID.WireID));
+                context.WireMains.RemoveRange(context.WireMains.Where(c => c.WireID == _wireID.WireID));
+            }
+        }
+
+        ~Wire()
+        {
+            if (Status == "UNVF")
+            {
+                DestroyAllDBRef();
+            }
+        }
+
+        private void AssignDefaultWireValues()
+        {
+            Status = "UNVF";
+            InitiatedByUser = "Test User 01";  // Placeholder
+            InitiatedByDateTime = DateTime.Now;
+            ModifiedByUser = "Test User 01";  // Placeholder
+            ModifiedByDateTime = DateTime.Now;
+            SSI_Format = "30";
+        }
+
+        private void AssignNewWireID()
+        {
+            using (var context = new FWFCdbEntities())
+            {
+                _wireID = new WireMain
+                {
+                    Init_DateTime = InitiatedByDateTime,
+                    Init_UserName = InitiatedByUser,
+                    Modified_DateTime = ModifiedByDateTime,
+                    Modified_UserName = ModifiedByUser,
+                    Status = Status
+                };
+                context.WireMains.Add(_wireID);
+                context.SaveChanges();
+            }
+            Debug.WriteLine("Creating New Wire ID: " + _wireID.WireID.ToString());
+        }
+
+
+        // **** USER, CREATION, AND MODIFICATION INFORMATION ****
+        public string InitiatedByUser { get; set; }
+        public DateTime InitiatedByDateTime { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTime ModifiedByDateTime { get; set; }
+        public string VerifiedByUser { get; set; }
+        public DateTime VerifiedByTime { get; set; }
+        public string Status { get; set; }
+
+
         // **** MANDATORY TAGS FOR ALL TRANSFERS ****
         // {1500} Sender Supplied Information
         public string SSI_Format { get; set; }

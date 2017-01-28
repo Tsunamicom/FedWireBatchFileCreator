@@ -15,17 +15,15 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class DomesticWireFrm : Form
     {
-        string username;
-
         public DomesticWireFrm()
         {
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
-            associateDefaultWireValues();
-            associateDefaultTextBoxes();
+            AssociateDomesticWireTextBoxes();
+            Wire currentWire = new Wire();
         }
 
-        private void associateDefaultTextBoxes()
+        private void AssociateDomesticWireTextBoxes()
         {
             textBoxList.Add(wireAmt);
             textBoxList.Add(dbtCustAcctNum);
@@ -58,14 +56,6 @@ namespace FedWire_Batch_File_Creator
         private string getNewSeqNum(int batchid, int wireid)
         {
             return batchid.ToString("000") + wireid.ToString("000");
-        }
-
-        private void associateDefaultWireValues()
-        {
-            username = "Test User";
-
-            initiatedTime.Text = DateTime.Now.ToString();
-            activeUser.Text = username;
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
