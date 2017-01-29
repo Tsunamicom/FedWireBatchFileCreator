@@ -81,6 +81,7 @@ namespace FedWire_Batch_File_Creator
                 context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
                 context.MandatoryFields.Add(GetAllMandatoryField(updateContext));
                 context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(updateContext));
+                context.OriginatorInfoes.Add(GetAllOriginatorInfo(updateContext));
                 context.SaveChanges();
             }
         }
@@ -90,31 +91,36 @@ namespace FedWire_Batch_File_Creator
             Debug.WriteLine("Writing new BnfInfo entry to DB.");
             return new BnfInfo
             {
-                AcctDbtDraw_Addr1 = this.AcctDbtDraw_Addr1,
-                AcctDbtDraw_Addr2 = this.AcctDbtDraw_Addr2,
-                AcctDbtDraw_Addr3 = this.AcctDbtDraw_Addr3,
-                AcctDbtDraw_ID = this.AcctDbtDraw_ID,
-                AcctDbtDraw_Ident = this.AcctDbtDraw_Ident,
-                AcctDbtDraw_Name = this.AcctDbtDraw_Name,
-                Bnf_ID = this.Bnf_ID,
-                BnfRef = this.BnfRef,
-                Bnf_Addr1 = this.Bnf_Addr1,
-                Bnf_Addr2 = this.Bnf_Addr2,
-                Bnf_Addr3 = this.Bnf_Addr3,
-                Bnf_Ident = this.Bnf_Ident,
-                Bnf_Name = this.Bnf_Name,
-                BenFI_ID = this.BenFI_ID,
-                BenFI_Addr1 = this.BenFI_Addr1,
-                BenFI_Addr2 = this.BenFI_Addr2,
-                BenFI_Addr3 = this.BenFI_Addr3,
-                BenFI_Ident = this.BenFI_Ident,
-                BenFI_Name = this.BenFI_Name,
                 InterFI_ID = this.InterFI_ID,
                 InterFI_Name = this.InterFI_Name,
                 InterFI_Addr1 = this.InterFI_Addr1,
                 InterFI_Addr2 = this.InterFI_Addr2,
                 InterFI_Addr3 = this.InterFI_Addr3,
                 InterFI_Ident = this.InterFI_Ident,
+
+                BenFI_ID = this.BenFI_ID,
+                BenFI_Addr1 = this.BenFI_Addr1,
+                BenFI_Addr2 = this.BenFI_Addr2,
+                BenFI_Addr3 = this.BenFI_Addr3,
+                BenFI_Ident = this.BenFI_Ident,
+                BenFI_Name = this.BenFI_Name,
+
+                Bnf_ID = this.Bnf_ID,
+                Bnf_Ident = this.Bnf_Ident,
+                Bnf_Name = this.Bnf_Name,
+                Bnf_Addr1 = this.Bnf_Addr1,
+                Bnf_Addr2 = this.Bnf_Addr2,
+                Bnf_Addr3 = this.Bnf_Addr3,
+
+                BnfRef = this.BnfRef,
+
+                AcctDbtDraw_Addr1 = this.AcctDbtDraw_Addr1,
+                AcctDbtDraw_Addr2 = this.AcctDbtDraw_Addr2,
+                AcctDbtDraw_Addr3 = this.AcctDbtDraw_Addr3,
+                AcctDbtDraw_ID = this.AcctDbtDraw_ID,
+                AcctDbtDraw_Ident = this.AcctDbtDraw_Ident,
+                AcctDbtDraw_Name = this.AcctDbtDraw_Name,
+
                 FK_WireID = thiswire.WireID
             };
         }
@@ -128,18 +134,25 @@ namespace FedWire_Batch_File_Creator
                 SSI_MDC = this.SSI_MDC,
                 SSI_TPC = this.SSI_TPC,
                 SSI_URC = this.SSI_URC,
+
                 TypeCode = this.TypeCode,
                 SubType = this.SubType,
+
                 IMAD_ICD = this.IMAD_ICD,
                 IMAD_Seq = this.IMAD_Seq,
                 IMAD_Source = this.IMAD_Source,
+
                 WireAmount = this.WireAmount,
+
                 SenderDI_ABA = this.SenderDI_ABA,
                 SenderDI_ShortName = this.SenderDI_ShortName,
+
                 ReceiverDI_ABA = this.ReceiverDI_ShortName,
                 ReceiverDI_ShortName = this.ReceiverDI_ShortName,
+
                 BusinessFunctionCode = this.BusinessFunctionCode,
                 TransactionTypeCode = this.TransactionTypeCode,
+
                 FK_WireID = thiswire.WireID
             };
         }
@@ -151,8 +164,10 @@ namespace FedWire_Batch_File_Creator
             {
                 SenderRef = this.SenderRef,
                 PrevMsgID = this.PrevMsgID,
+
                 Local_Code = this.Local_Code,
                 Local_PropCode = this.Local_Code,
+
                 Pymt_Notification_ID = this.Pymt_Notification_ID,
                 Pymt_ContactFaxNum = this.Pymt_ContactFaxNum,
                 Pymt_ContactMobileNum = this.Pymt_ContactMobile,
@@ -160,14 +175,61 @@ namespace FedWire_Batch_File_Creator
                 Pymt_ContactPhoneNum = this.Pymt_ContactPhoneNum,
                 Pymt_Electronic_Addr = this.Pymt_Electronic_Addr,
                 Pymt_EndNotification = this.Pymt_EndNotification,
+
                 Charges_Details = this.Charges_Details,
                 Charges_SendersF1 = this.Charges_SendersF1,
                 Charges_SendersF2 = this.Charges_SendersF2,
                 Charges_SendersF3 = this.Charges_SendersF3,
                 Charges_SendersF4 = this.Charges_SendersF4,
+
                 InstructedAmt_Code = this.InstructedAmtCode,
                 InstructedAmt_Amt = this.InstructedAmt_Amt,
+
                 ExchangeRate = this.ExchangeRate,
+
+                FK_WireID = thiswire.WireID
+            };
+        }
+
+        private OriginatorInfo GetAllOriginatorInfo(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new OriginatorInfo entry to DB.");
+            return new OriginatorInfo
+            {
+                Orig_ID = this.Orig_ID,
+                Orig_Name = this.Orig_Name,
+                Orig_Ident = this.Orig_Ident,
+                Orig_Addr1 = this.Orig_Addr1,
+                Orig_Addr2 = this.Orig_Addr2,
+                Orig_Addr3 = this.Orig_Addr3,
+
+                OrigOptF_ID = this.OrigOptF_ID,
+                OrigOptF_Name = this.OrigOptF_Name,
+                OrigOptF_L1 = this.OrigOptF_L1,
+                OrigOptF_L2 = this.OrigOptF_L2,
+                OrigOptF_L3 = this.OrigOptF_L3,
+
+                OrigFI_ID = this.OrigFI_ID,
+                OrigFI_Name = this.OrigFI_Name,
+                OrigFI_Ident = this.OrigFI_Ident,
+                OrigFI_Addr1= this.OrigFI_Addr1,
+                OrigFI_Addr2 = this.OrigFI_Addr2,
+                OrigFI_Addr3 = this.OrigFI_Addr3,
+                
+                InstructFI_ID = this.InstructFI_ID,
+                InstructFI_Name = this.InstructFI_Name,
+                InstructFI_Ident = this.InstructFI_Ident,
+                InstructFI_Addr1 = this.InstructFI_Addr1,
+                InstructFI_Addr2 = this.InstructFI_Addr2,
+                InstructFI_Addr3 = this.InstructFI_Addr3,
+
+                AcctCredDrawDown = this.AcctCredDrawDown,
+                
+                OBI_L1 = this.OBI_L1,
+                OBI_L2 = this.OBI_L2,
+                OBI_L3 = this.OBI_L3,
+                OBI_L4 = this.OBI_L4,
+
                 FK_WireID = thiswire.WireID
             };
         }
