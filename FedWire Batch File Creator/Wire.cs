@@ -92,6 +92,7 @@ namespace FedWire_Batch_File_Creator
                 context.StructRemitOnces.Add(GetAllStructRemitOnce(thiswire: updateContext));
                 context.StructRemitRepeats.Add(GetAllStructRemitRepeat(thiswire: updateContext)); // Note: StructRemitRepeat requires loop logic
                 context.SVCInfoes.Add(GetAllSVCInfo(thiswire: updateContext));
+                context.FedWireSVCInfoes.Add(GetAllFedWireSVCInfo(thiswire: updateContext));
 
                 context.SaveChanges();
             }
@@ -556,6 +557,35 @@ namespace FedWire_Batch_File_Creator
                 SVCInfo_L10 = this.SVCInfo_L10,
                 SVCInfo_L11 = this.SVCInfo_L11,
                 SVCInfo_L12 = this.SVCInfo_L12,
+
+                FK_WireID = thiswire.WireID
+            };
+        }
+
+        private FedWireSVCInfo GetAllFedWireSVCInfo(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new FedWireSVFInfo to the DB.");
+            return new FedWireSVCInfo
+            {
+                MsgDisposition_Version = this.MsgDisp_Version,
+                MsgDisp_ProdCode = this.MsgDisp_ProdCode,
+                MsgDisp_DupCode = this.MsgDisp_DupCode,
+                MsgDisp_Status = this.MsgDisp_Status,
+
+                RcptTimeStamp_Date = this.RcptTimeStamp_Date,
+                RcptTimeStamp_Time = this.RcptTimeStamp_Time,
+                Rcpt_AppID = this.Rcpt_AppID,
+
+                OMAD_CycleDate = this.OMAD_CycleDate,
+                OMAD_DestID = this.OMAD_DestID,
+                OMAD_SeqNum = this.OMAD_SeqNum,
+                OMAD_Date = this.OMAD_Date,
+                OMAD_Time = this.OMAD_Time,
+                OMAD_FRBID = this.OMAD_FRBID,
+
+                Error_Category = this.Error_Category,
+                Error_Code = this.Error_Code,
+                Error_Desc = this.Error_Desc,
 
                 FK_WireID = thiswire.WireID
             };
