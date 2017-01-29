@@ -80,11 +80,12 @@ namespace FedWire_Batch_File_Creator
                 updateContext.Modified_DateTime = DateTime.Now;
                 context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
                 context.MandatoryFields.Add(GetAllMandatoryField(updateContext));
+                context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(updateContext));
                 context.SaveChanges();
             }
         }
 
-        public BnfInfo GetAllBnfInfo(WireMain thiswire)
+        private BnfInfo GetAllBnfInfo(WireMain thiswire)
         {
             Debug.WriteLine("Writing new BnfInfo entry to DB.");
             return new BnfInfo
@@ -118,7 +119,7 @@ namespace FedWire_Batch_File_Creator
             };
         }
 
-        public MandatoryField GetAllMandatoryField(WireMain thiswire)
+        private MandatoryField GetAllMandatoryField(WireMain thiswire)
         {
             Debug.WriteLine("Writing new MandatoryField entry to DB.");
             return new MandatoryField
@@ -143,6 +144,33 @@ namespace FedWire_Batch_File_Creator
             };
         }
 
+        private OtherTransferInfo GetAllOtherTransferInfo(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new OtherTransferInfo entry to DB.");
+            return new OtherTransferInfo
+            {
+                SenderRef = this.SenderRef,
+                PrevMsgID = this.PrevMsgID,
+                Local_Code = this.Local_Code,
+                Local_PropCode = this.Local_Code,
+                Pymt_Notification_ID = this.Pymt_Notification_ID,
+                Pymt_ContactFaxNum = this.Pymt_ContactFaxNum,
+                Pymt_ContactMobileNum = this.Pymt_ContactMobile,
+                Pymt_ContactName = this.Pymt_ContactName,
+                Pymt_ContactPhoneNum = this.Pymt_ContactPhoneNum,
+                Pymt_Electronic_Addr = this.Pymt_Electronic_Addr,
+                Pymt_EndNotification = this.Pymt_EndNotification,
+                Charges_Details = this.Charges_Details,
+                Charges_SendersF1 = this.Charges_SendersF1,
+                Charges_SendersF2 = this.Charges_SendersF2,
+                Charges_SendersF3 = this.Charges_SendersF3,
+                Charges_SendersF4 = this.Charges_SendersF4,
+                InstructedAmt_Code = this.InstructedAmtCode,
+                InstructedAmt_Amt = this.InstructedAmt_Amt,
+                ExchangeRate = this.ExchangeRate,
+                FK_WireID = thiswire.WireID
+            };
+        }
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public string InitiatedByUser { get; set; }
