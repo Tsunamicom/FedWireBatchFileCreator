@@ -87,6 +87,7 @@ namespace FedWire_Batch_File_Creator
                 context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(thiswire: updateContext));
                 context.OriginatorInfoes.Add(GetAllOriginatorInfo(thiswire: updateContext));
                 context.FItoFI_Info.Add(GetAllFItoFI_Info(thiswire: updateContext));
+                context.CoverPymtSeqBs.Add(GetAllCoverPymtSeqB(thiswire: updateContext));
 
                 context.SaveChanges();
             }
@@ -319,6 +320,67 @@ namespace FedWire_Batch_File_Creator
             };
         }
 
+        private CoverPymtSeqB GetAllCoverPymtSeqB(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new CoverPymtSeqB to the DB.");
+            return new CoverPymtSeqB
+            {
+                B33B_SWIFT = this.B33B_SWIFT,
+                B33B_Amt = this.B33B_Amt,
+
+                B50A_SWIFT = this.B50A_SWIFT,
+                B50A_L1 = this.B50A_L1,
+                B50A_L2 = this.B50A_L2,
+                B50A_L3 = this.B50A_L3,
+                B50A_L4 = this.B50A_L4,
+                B50A_L5 = this.B50A_L5,
+                
+                B52A_SWIFT = this.B52A_SWIFT,
+                B52A_L1 = this.B52A_L1,
+                B52A_L2 = this.B52A_L2, 
+                B52A_L3 = this.B52A_L3,
+                B52A_L4 = this.B52A_L4,
+                B52A_L5 = this.B52A_L5,
+
+                B56A_SWIFT = this.B56A_SWIFT,
+                B56A_L1 = this.B56A_L1,
+                B56A_L2 = this.B56A_L2,
+                B56A_L3 = this.B56A_L3,
+                B56A_L4 = this.B56A_L4,
+                B56A_L5 = this.B56A_L5,
+
+                B57A_SWIFT = this.B57A_SWIFT,
+                B57A_L1 = this.B57A_L1,
+                B57A_L2 = this.B57A_L2,
+                B57A_L3 = this.B57A_L3,
+                B57A_L4 = this.B57A_L4,
+                B57A_L5 = this.B57A_L5,
+
+                B59A_SWIFT = this.B59A_SWIFT,
+                B59A_L1 = this.B59A_L1,
+                B59A_L2 = this.B59A_L2,
+                B59A_L3 = this.B59A_L3,
+                B59A_L4 = this.B59A_L4,
+                B59A_L5 = this.B59A_L5,
+
+                B70_SWIFT = this.B70_SWIFT,
+                B70_L1 = this.B70_L1,
+                B70_L2 = this.B70_L2,
+                B70_L3 = this.B70_L3,
+                B70_L4 = this.B70_L4,
+
+                B72_SWIFT = this.B72_SWIFT,
+                B72_L1 = this.B72_L1,
+                B72_L2 = this.B72_L2,
+                B72_L3 = this.B72_L3,
+                B72_L4 = this.B72_L4,
+                B72_L5 = this.B72_L5,
+                B72_L6 = this.B72_L6,
+
+                CoverPymt_ID = thiswire.WireID
+            };
+        }
+
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public string InitiatedByUser { get; set; }
         public DateTime InitiatedByDateTime { get; set; }
@@ -395,6 +457,7 @@ namespace FedWire_Batch_File_Creator
         // {3720} Exchange Rate
         public string ExchangeRate { get; set; }
 
+
         // **** BENEFICIARY INFORMATION ****
         // {4000} Intermediary FI
         public string InterFI_ID { get; set; }
@@ -430,6 +493,7 @@ namespace FedWire_Batch_File_Creator
         public string AcctDbtDraw_Addr1 { get; set; }
         public string AcctDbtDraw_Addr2 { get; set; }
         public string AcctDbtDraw_Addr3 { get; set; }
+
 
         // **** ORIGINATOR INFORMATION ****
         // {5000} Originator
@@ -471,6 +535,7 @@ namespace FedWire_Batch_File_Creator
         public string OBI_L2 { get; set; }
         public string OBI_L3 { get; set; }
         public string OBI_L4 { get; set; }
+
 
         // **** FINANCIAL INSTITUTION TO FINANCIAL INSTITUTION INFORMATION ****
         // {6100} Receiver FI Information
