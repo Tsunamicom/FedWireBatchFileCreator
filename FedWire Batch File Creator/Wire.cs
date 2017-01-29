@@ -88,6 +88,8 @@ namespace FedWire_Batch_File_Creator
                 context.OriginatorInfoes.Add(GetAllOriginatorInfo(thiswire: updateContext));
                 context.FItoFI_Info.Add(GetAllFItoFI_Info(thiswire: updateContext));
                 context.CoverPymtSeqBs.Add(GetAllCoverPymtSeqB(thiswire: updateContext));
+                context.UnstructAddendas.Add(GetAllUnstructAddenda(thiswire: updateContext));
+                context.RelatedRemitInfoes.Add(GetAllRelatedRemitInfo(thiswire: updateContext));
 
                 context.SaveChanges();
             }
@@ -378,6 +380,56 @@ namespace FedWire_Batch_File_Creator
                 B72_L6 = this.B72_L6,
 
                 CoverPymt_ID = thiswire.WireID
+            };
+        }
+
+        private UnstructAddenda GetAllUnstructAddenda(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new UnstructAddenda to the DB.");
+            return new UnstructAddenda
+            {
+                UA_Length = this.UA_Length,
+                UA_Info1 = this.UA_Info1,
+                UA_Info2 = this.UA_Info2,
+                UA_Info3 = this.UA_Info3,
+                UA_Info4 = this.UA_Info4,
+                UA_Info5 = this.UA_Info5,
+                UA_Info6 = this.UA_Info6,
+                UA_Info7 = this.UA_Info7,
+                UA_Info8 = this.UA_Info8,
+                UA_Info9 = this.UA_Info9,
+                
+                FK_WireID = thiswire.WireID
+            };
+        }
+
+        private RelatedRemitInfo GetAllRelatedRemitInfo(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new UnstructAddenda to the DB.");
+            return new RelatedRemitInfo
+            {
+                RelRemit_ID = this.RelRemit_ID,
+                RelRemit_Loc = this.RelRemit_Loc,
+                RemitLoc_ElecAddr = this.RelRemit_ElecAddr, // Note: EF entity (and related DB table entity) RemitLoc_ElecAddr reqs rename to RelRemit_ElecAddr
+                RelRemit_Name = this.RelRemit_Name,
+                RelRemit_AddrType = this.RelRemit_AddrType,
+                RelRemit_Dept = this.RelRemit_Dept,
+                RelRemit_SubDept = this.RelRemit_SubDept,
+                RelRemit_StrName = this.RelRemit_StrName,
+                RelRemit_BldgNum = this.RelRemit_BldgNum,
+                RelRemit_PostCode = this.RelRemit_PostCode,
+                RelRemit_TownName = this.RelRemit_TownName,
+                RelRemit_CountrySubDiv = this.RelRemit_CountrySubDiv,
+                RelRemit_Country = this.RelRemit_Country,
+                RelRemit_Addr1 = this.RelRemit_Addr1,
+                RelRemit_Addr2 = this.RelRemit_Addr2,
+                RelRemit_Addr3 = this.RelRemit_Addr3,
+                RelRemit_Addr4 = this.RelRemit_Addr4,
+                RelRemit_Addr5 = this.RelRemit_Addr5,
+                RelRemit_Addr6 = this.RelRemit_Addr6,
+                RelRemit_Addr7 = this.RelRemit_Addr7,
+
+                FK_WireID = thiswire.WireID
             };
         }
 
