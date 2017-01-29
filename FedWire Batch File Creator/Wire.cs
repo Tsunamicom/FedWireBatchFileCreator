@@ -80,7 +80,7 @@ namespace FedWire_Batch_File_Creator
                 updateContext.Modified_DateTime = DateTime.Now;
 
 
-                // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID data.
+                // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID mapping to FK.
                 // Future update:  Needs logic to determine whether context.<SomeField>.Add() is necessary.
                 context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
                 context.MandatoryFields.Add(GetAllMandatoryField(thiswire: updateContext));
@@ -90,6 +90,7 @@ namespace FedWire_Batch_File_Creator
                 context.CoverPymtSeqBs.Add(GetAllCoverPymtSeqB(thiswire: updateContext));
                 context.UnstructAddendas.Add(GetAllUnstructAddenda(thiswire: updateContext));
                 context.RelatedRemitInfoes.Add(GetAllRelatedRemitInfo(thiswire: updateContext));
+                context.StructRemitOnces.Add(GetAllStructRemitOnce(thiswire: updateContext));
 
                 context.SaveChanges();
             }
@@ -405,7 +406,7 @@ namespace FedWire_Batch_File_Creator
 
         private RelatedRemitInfo GetAllRelatedRemitInfo(WireMain thiswire)
         {
-            Debug.WriteLine("Writing new UnstructAddenda to the DB.");
+            Debug.WriteLine("Writing new RelatedRemitInfo to the DB.");
             return new RelatedRemitInfo
             {
                 RelRemit_ID = this.RelRemit_ID,
@@ -429,6 +430,69 @@ namespace FedWire_Batch_File_Creator
                 RelRemit_Addr6 = this.RelRemit_Addr6,
                 RelRemit_Addr7 = this.RelRemit_Addr7,
 
+                FK_WireID = thiswire.WireID
+            };
+        }
+
+        private StructRemitOnce GetAllStructRemitOnce(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new StructRemitOnce to the DB.");
+            return new StructRemitOnce
+            {
+                RemitOrig_Type = this.RemitOrig_Type,
+                RemitOrig_Code = this.RemitOrig_Code,
+                RemitOrig_Name = this.RemitOrig_Name,
+                RemitOrig_IDNum = this.RemitOrig_IDNum,
+                RemitOrig_IDNumIss = this.RemitOrig_IDNumIss,
+                RemitOrig_Birth = this.RemitOrig_Birth,
+                RemitOrig_AddrType = this.RemitOrig_AddrType,
+                RemitOrig_Dept = this.RemitOrig_Dept,
+                RemitOrig_SubDept = this.RemitOrig_SubDept,
+                RemitOrig_StreetName = this.RemitOrig_StreetName,
+                RemitOrig_BldgNum = this.RemitOrig_BldgNum,
+                RemitOrig_PostCode = this.RemitOrig_PostCode,
+                RemitOrig_TownName = this.RemitOrig_TownName,
+                RemitOrig_CountrySub = this.RemitOrig_CountrySub,
+                RemitOrig_Country = this.RemitOrig_Country,
+                RemitOrig_Addr1 = this.RemitOrig_Addr1,
+                RemitOrig_Addr2 = this.RemitOrig_Addr2,
+                RemitOrig_Addr3 = this.RemitOrig_Addr3,
+                RemitOrig_Addr4 = this.RemitOrig_Addr4,
+                RemitOrig_Addr5 = this.RemitOrig_Addr5,
+                RemitOrig_Addr6 = this.RemitOrig_Addr6,
+                RemitOrig_Addr7 = this.RemitOrig_Addr7,
+                RemitOrig_CountryRes = this.RemitOrig_CountryRes,
+                RemitOrig_ContactName = this.RemitOrig_ContactName,
+                RemitOrig_PhoneNum = this.RemitOrig_PhoneNum,
+                RemitOrig_MobileNum = this.RemitOrig_MobileNum,
+                RemitOrig_FaxNum = this.RemitOrig_FaxNum,
+                RemitOrig_ContactElec = this.RemitOrig_ContactElec,
+                RemitOrig_ContactOther = this.RemitOrig_ContactOther,
+
+                RemitBnf_Name = this.RemitBnf_Name,
+                RemitBnf_Type = this.RemitBnf_Type,
+                RemitBnf_Code = this.RemitBnf_Code,
+                RemitBnf_IDNum = this.RemitBnf_IDNum,
+                RemitBnf_IDNumIss = this.RemitBnf_IDNumIss,
+                RemitBnf_Birth = this.RemitBnf_Birth,
+                RemitBnf_AddrType = this.RemitBnf_AddrType,
+                RemitBnf_Dept = this.RemitBnf_Dept,
+                RemitBnf_SubDept = this.RemitBnf_SubDept,
+                RemitBnf_StreetName = this.RemitBnf_StreetName,
+                RemitBnf_BldgNum = this.RemitBnf_BldgNum,
+                RemitBnf_PostCode = this.RemitBnf_PostCode,
+                RemitBnf_TownName = this.RemitBnf_TownName,
+                RemitBnf_CountrySub = this.RemitBnf_CountrySub,
+                RemitBnf_Country = this.RemitBnf_Country,
+                RemitBnf_Addr1 = this.RemitBnf_Addr1,
+                RemitBnf_Addr2 = this.RemitBnf_Addr2,
+                RemitBnf_Addr3 = this.RemitBnf_Addr3,
+                RemitBnf_Addr4 = this.RemitBnf_Addr4,
+                RemitBnf_Addr5 = this.RemitBnf_Addr5,
+                RemitBnf_Addr6 = this.RemitBnf_Addr6,
+                RemitBnf_Addr7 = this.RemitBnf_Addr7,
+                RemitBnf_CountryRes = this.RemitBnf_CountryRes,
+                
                 FK_WireID = thiswire.WireID
             };
         }
