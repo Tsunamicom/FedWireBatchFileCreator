@@ -13,14 +13,14 @@ using System.Diagnostics;
 
 namespace FedWire_Batch_File_Creator
 {
-    public partial class DomesticWireFrm : Form
+    public partial class DomesticWireForm : Form
     {
         Wire currentWire = new Wire();
 
-        public DomesticWireFrm()
+        public DomesticWireForm()
         {
             InitializeComponent();
-            Debug.WriteLine("Opening DomesticWireFrm");
+            Debug.WriteLine("Opening DomesticWireForm");
             AssociateDomesticWireTextBoxes();
         }
 
@@ -54,33 +54,34 @@ namespace FedWire_Batch_File_Creator
             System.Diagnostics.Debug.WriteLine("Finished Writing {0} TextBoxes to textBoxList", textBoxList.Count);
         }
 
-        private string GetRcvrABA()
-        {
-            if (interBankABA.Text != null)
-            {
-                return interBankABA.Text.Substring(0, 9);
-            }
-            return bnfBankABA.Text.Substring(0, 9);
-        }
-
-        private string GetRcvrName()
-        {
-            if (interBankName.Text != null)
-            {
-                return interBankName.Text.Substring(0, 9);
-            }
-            return bnfBankName.Text.Substring(0, 9);
-        }
-
         private void RelateTextBoxInfo(Wire wire)
         {
             // Mandatory Info
             wire.TypeCode = wireTypeSelect.Text.Substring(0, 2);
             wire.SubType = wireTypeSelect.Text.Substring(2, 2);
             wire.WireAmount = decimal.Parse(string.Join("", wireAmt.Text.Where(char.IsDigit))).ToString("000000000000").Substring(0,12);
-            wire.RecieverDI_ABA = GetRcvrABA();
-            wire.ReceiverDI_ShortName = GetRcvrName();
             wire.BusinessFunctionCode = "CTR";
+
+            // Debit Customer
+            wire.Orig_ID = "D"; // "D" for DDA Account (default for this form)
+            wire.Orig_Ident = dbtCustAcctNum.Text;
+            wire.Orig_Name = dbtCustName.Text;
+            wire.Orig_Addr1 = dbtCustAddrOne.Text;
+            wire.Orig_Addr2 = dbtCustAddrTwo.Text;
+            wire.Orig_Addr3 = dbtCustAddrThree.Text;
+
+            // Intermediary Bank Detail (NOT Required)
+            if (interBankABA.Text != null)
+            {
+                wire.InterFI_ID = "F"; // "F" for Fed Routing Number (default for this form)
+                wire.InterFI_Ident = interBankABA.Text;
+                wire.InterFI_Name = interBankName.Text;
+                wire.InterFI_Addr1 = interBankAddrOne.Text;
+                wire.InterFI_Addr2 = interBankAddrTwo.Text;
+                wire.InterFI_Addr3 = interBankAddrThree.Text;
+            }
+
+
 
 
         }
@@ -207,7 +208,7 @@ namespace FedWire_Batch_File_Creator
             return false;
         }
 
-        private void DomesticWireFrm_FormClosing(object sender, FormClosingEventArgs e)
+        private void DomesticWireForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (currentWire.Status == "UNVF") 
             {

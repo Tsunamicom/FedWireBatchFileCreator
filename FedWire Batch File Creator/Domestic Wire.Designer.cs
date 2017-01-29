@@ -2,7 +2,7 @@
 
 namespace FedWire_Batch_File_Creator
 {
-    partial class DomesticWireFrm
+    partial class DomesticWireForm
     {
         /// <summary>
         /// Required designer variable.
@@ -820,7 +820,7 @@ namespace FedWire_Batch_File_Creator
             this.batchID.TabIndex = 1000001;
             this.batchID.Tag = "0";
             // 
-            // DomesticWireFrm
+            // DomesticWireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -894,10 +894,10 @@ namespace FedWire_Batch_File_Creator
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.domesticWireHeaderMenu;
-            this.Name = "DomesticWireFrm";
+            this.Name = "DomesticWireForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FedWire File Creator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DomesticWireFrm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DomesticWireForm_FormClosing);
             this.domesticWireHeaderMenu.ResumeLayout(false);
             this.domesticWireHeaderMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

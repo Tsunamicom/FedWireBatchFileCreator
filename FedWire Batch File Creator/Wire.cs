@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 
 namespace FedWire_Batch_File_Creator
 {
@@ -50,10 +51,16 @@ namespace FedWire_Batch_File_Creator
             InitiatedByDateTime = DateTime.Now;
             ModifiedByUser = "Test User 01";  // Placeholder - based on User Profile
             ModifiedByDateTime = DateTime.Now;
+
             SSI_Format = "30";
+            SSI_URC = "99999999"; // Placeholder - Based on Institution Profile
+            SSI_TPC = "T"; // "T" for Test, "P" for Production
+            SSI_MDC = " "; // " " for 'original message', "P" for 'resend'
+
             IMAD_ICD = DateTime.Now.ToString("yyyyMMdd");
             IMAD_Source = "QMGFT001"; // Placeholder - based on Sending Institution Profile
-            IMAD_Seq = BatchID.BatchID.ToString("000") + _wireID.WireID.ToString("000");
+            IMAD_Seq = "000" + "000"; // Placeholder - Sequence number will be calculated field.
+
             SenderDI_ABA = "999999999"; // Placeholder - based on Sending Institution Profile
             SenderDI_ShortName = "THE BANK OF TEST"; // Placeholder - based on Sending Institution Profile
         }
@@ -99,7 +106,21 @@ namespace FedWire_Batch_File_Creator
                 context.SVCInfoes.Add(GetAllSVCInfo(thiswire: updateContext));
                 context.FedWireSVCInfoes.Add(GetAllFedWireSVCInfo(thiswire: updateContext));
 
+                try
+                { 
                 context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }
+
             }
         }
 
@@ -569,7 +590,7 @@ namespace FedWire_Batch_File_Creator
 
         private FedWireSVCInfo GetAllFedWireSVCInfo(WireMain thiswire)
         {
-            Debug.WriteLine("Writing new FedWireSVFInfo to the DB.");
+            Debug.WriteLine("Writing new FedWireSVCInfo to the DB.");
             return new FedWireSVCInfo
             {
                 MsgDisposition_Version = this.MsgDisp_Version,
