@@ -91,6 +91,7 @@ namespace FedWire_Batch_File_Creator
                 context.UnstructAddendas.Add(GetAllUnstructAddenda(thiswire: updateContext));
                 context.RelatedRemitInfoes.Add(GetAllRelatedRemitInfo(thiswire: updateContext));
                 context.StructRemitOnces.Add(GetAllStructRemitOnce(thiswire: updateContext));
+                context.StructRemitRepeats.Add(GetAllStructRemitRepeat(thiswire: updateContext)); // Note: StructRemitRepeat requires loop logic
 
                 context.SaveChanges();
             }
@@ -494,6 +495,47 @@ namespace FedWire_Batch_File_Creator
                 RemitBnf_CountryRes = this.RemitBnf_CountryRes,
                 
                 FK_WireID = thiswire.WireID
+            };
+        }
+
+        private StructRemitRepeat GetAllStructRemitRepeat(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new StructRemitRepeat to the DB.");
+            return new StructRemitRepeat
+            {
+                PrimRemit_DocType = this.PrimRemit_DocType,
+                PrimRemit_PropDocType = this.PrimRemit_PropDocType,
+                PrimRemit_DocID = this.PrimRemit_DocID,
+                PrimRemit_Issuer = this.PrimRemit_Issuer,
+
+                AmtPaid_CurrCode = this.AmtPaid_CurrCode,
+                AmtPaid_Amount = this.AmtPaid_Amount,
+
+                GrossAmtRemit_CurrCode = this.GrossAmtRemit_CurrCode,
+                GrossAmtRemit_Amount = this.GrossAmtRemit_Amount,
+
+                AmtNegDisc_CurrCode = this.AmtNegDisc_CurrCode,
+                AmtNegDisc_Amount = this.AmtNegDisc_Amount,
+
+                AdjustInfo_RsnCode = this.AdjustInfo_RsnCode,
+                AdjustInfo_Indicator = this.AdjustInfo_Indicator,
+                AdjustInfo_CurrCode = this.AdjustInfo_CurrCode,
+                AdjustInfo_Amount = this.AdjustInfo_Amount,
+                AdjustInfo_Info = this.AdjustInfo_Info,
+
+                DateOfRemitDoc = this.DateOfRemitDoc,
+
+                SecRemit_Type = this.SecRemit_Type,
+                SecRemit_PropDocType = this.SecRemit_PropDocType,
+                SecRemit_Issuer = this.SecRemit_Issuer,
+                SecRemit_DocID = this.SecRemit_DocID,
+
+                Remit_FreeText1 = this.Remit_FreeText1,
+                Remit_FreeText2 = this.Remit_FreeText2,
+                Remit_FreeText3 = this.Remit_FreeText3,
+                
+                FK_WireID = thiswire.WireID
+
             };
         }
 
@@ -917,6 +959,7 @@ namespace FedWire_Batch_File_Creator
         public string AdjustInfo_Indicator { get; set; }
         public string AdjustInfo_CurrCode { get; set; }
         public string AdjustInfo_Amount { get; set; }
+        public string AdjustInfo_Info { get; set; }
 
         // {8650} Date of Remittance Document
         public string DateOfRemitDoc { get; set; }
