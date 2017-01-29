@@ -79,7 +79,6 @@ namespace FedWire_Batch_File_Creator
                 updateContext.Modified_UserName = "Test User 01";
                 updateContext.Modified_DateTime = DateTime.Now;
 
-
                 // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID mapping to FK.
                 // Future update:  Needs logic to determine whether context.<SomeField>.Add() is necessary.
                 context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
@@ -92,6 +91,7 @@ namespace FedWire_Batch_File_Creator
                 context.RelatedRemitInfoes.Add(GetAllRelatedRemitInfo(thiswire: updateContext));
                 context.StructRemitOnces.Add(GetAllStructRemitOnce(thiswire: updateContext));
                 context.StructRemitRepeats.Add(GetAllStructRemitRepeat(thiswire: updateContext)); // Note: StructRemitRepeat requires loop logic
+                context.SVCInfoes.Add(GetAllSVCInfo(thiswire: updateContext));
 
                 context.SaveChanges();
             }
@@ -536,6 +536,28 @@ namespace FedWire_Batch_File_Creator
                 
                 FK_WireID = thiswire.WireID
 
+            };
+        }
+
+        private SVCInfo GetAllSVCInfo(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new SVCInfo to the DB.");
+            return new SVCInfo
+            {
+                SVCInfo_L1 = this.SVCInfo_L1,
+                SVCInfo_L2 = this.SVCInfo_L2,
+                SVCInfo_L3 = this.SVCInfo_L3,
+                SVCInfo_L4 = this.SVCInfo_L4,
+                SVCInfo_L5 = this.SVCInfo_L5,
+                SVCInfo_L6 = this.SVCInfo_L6,
+                SVCInfo_L7 = this.SVCInfo_L7,
+                SVCInfo_L8 = this.SVCInfo_L8,
+                SVCInfo_L9 = this.SVCInfo_L9,
+                SVCInfo_L10 = this.SVCInfo_L10,
+                SVCInfo_L11 = this.SVCInfo_L11,
+                SVCInfo_L12 = this.SVCInfo_L12,
+
+                FK_WireID = thiswire.WireID
             };
         }
 
