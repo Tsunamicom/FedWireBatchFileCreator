@@ -46,11 +46,16 @@ namespace FedWire_Batch_File_Creator
         private void AssignDefaultWireValues()
         {
             Status = "UNVF";
-            InitiatedByUser = "Test User 01";  // Placeholder
+            InitiatedByUser = "Test User 01";  // Placeholder - based on User Profile
             InitiatedByDateTime = DateTime.Now;
-            ModifiedByUser = "Test User 01";  // Placeholder
+            ModifiedByUser = "Test User 01";  // Placeholder - based on User Profile
             ModifiedByDateTime = DateTime.Now;
             SSI_Format = "30";
+            IMAD_ICD = DateTime.Now.ToString("yyyyMMdd");
+            IMAD_Source = "QMGFT001"; // Placeholder - based on Sending Institution Profile
+            IMAD_Seq = BatchID.BatchID.ToString("000") + _wireID.WireID.ToString("000");
+            SenderDI_ABA = "999999999"; // Placeholder - based on Sending Institution Profile
+            SenderDI_ShortName = "THE BANK OF TEST"; // Placeholder - based on Sending Institution Profile
         }
 
         private void AssignNewWireID()
@@ -59,11 +64,11 @@ namespace FedWire_Batch_File_Creator
             {
                 _wireID = new WireMain
                 {
-                    Init_DateTime = InitiatedByDateTime,
-                    Init_UserName = InitiatedByUser,
-                    Modified_DateTime = ModifiedByDateTime,
-                    Modified_UserName = ModifiedByUser,
-                    Status = Status
+                    Init_DateTime = this.InitiatedByDateTime,
+                    Init_UserName = this.InitiatedByUser,
+                    Modified_DateTime = this.ModifiedByDateTime,
+                    Modified_UserName = this.ModifiedByUser,
+                    Status = this.Status
                 };
                 context.WireMains.Add(_wireID);
                 context.SaveChanges();
@@ -590,6 +595,7 @@ namespace FedWire_Batch_File_Creator
                 FK_WireID = thiswire.WireID
             };
         }
+
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public string InitiatedByUser { get; set; }

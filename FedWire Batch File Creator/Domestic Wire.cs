@@ -20,7 +20,7 @@ namespace FedWire_Batch_File_Creator
         public DomesticWireFrm()
         {
             InitializeComponent();
-            System.Diagnostics.Debug.WriteLine("Opening DomesticWireFrm");
+            Debug.WriteLine("Opening DomesticWireFrm");
             AssociateDomesticWireTextBoxes();
         }
 
@@ -54,15 +54,42 @@ namespace FedWire_Batch_File_Creator
             System.Diagnostics.Debug.WriteLine("Finished Writing {0} TextBoxes to textBoxList", textBoxList.Count);
         }
 
-        private string getNewSeqNum(int batchid, int wireid)
+        private string GetRcvrABA()
         {
-            return batchid.ToString("000") + wireid.ToString("000");
+            if (interBankABA.Text != null)
+            {
+                return interBankABA.Text.Substring(0, 9);
+            }
+            return bnfBankABA.Text.Substring(0, 9);
+        }
+
+        private string GetRcvrName()
+        {
+            if (interBankName.Text != null)
+            {
+                return interBankName.Text.Substring(0, 9);
+            }
+            return bnfBankName.Text.Substring(0, 9);
+        }
+
+        private void RelateTextBoxInfo(Wire wire)
+        {
+            // Mandatory Info
+            wire.TypeCode = wireTypeSelect.Text.Substring(0, 2);
+            wire.SubType = wireTypeSelect.Text.Substring(2, 2);
+            wire.WireAmount = decimal.Parse(string.Join("", wireAmt.Text.Where(char.IsDigit))).ToString("000000000000").Substring(0,12);
+            wire.RecieverDI_ABA = GetRcvrABA();
+            wire.ReceiverDI_ShortName = GetRcvrName();
+            wire.BusinessFunctionCode = "CTR";
+
+
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
         {
             if (verifyRequiredTextBoxes())
             {
+                RelateTextBoxInfo(currentWire);
                 currentWire.UpdateWireDB();
                 MessageBox.Show("Wire Submitted!");
                 this.Close();
@@ -105,18 +132,13 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
-        private void allowedKeysAmtField(TextBox numberTextBox, KeyPressEventArgs e)
+        private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int periodIndex = numberTextBox.Text.IndexOf('.');
+            int periodIndex = wireAmt.Text.IndexOf('.');
             e.Handled = !(char.IsNumber(e.KeyChar)
             || (e.KeyChar == '.' && periodIndex == -1)
             || e.KeyChar == ','
             || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void wireAmt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            allowedKeysAmtField(wireAmt, e);
         }
 
         private void closeWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,6 +177,8 @@ namespace FedWire_Batch_File_Creator
         {
             if (wireAmt.Text != "")
             {
+                wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
+                wireAmt.Text = decimal.Parse(string.Join("", wireAmt.Text.Where(char.IsDigit))).ToString("000000000000").Substring(0, 12).Insert(10,".");
                 wireAmt.Text = string.Format("{0:C2}", decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency));
             }
         }
