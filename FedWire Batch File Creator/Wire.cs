@@ -78,10 +78,16 @@ namespace FedWire_Batch_File_Creator
                 var updateContext = context.WireMains.Where(c => c.WireID == _wireID.WireID).First();
                 updateContext.Modified_UserName = "Test User 01";
                 updateContext.Modified_DateTime = DateTime.Now;
+
+
+                // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID data.
+                // Future update:  Needs logic to determine whether context.<SomeField>.Add() is necessary.
                 context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
-                context.MandatoryFields.Add(GetAllMandatoryField(updateContext));
-                context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(updateContext));
-                context.OriginatorInfoes.Add(GetAllOriginatorInfo(updateContext));
+                context.MandatoryFields.Add(GetAllMandatoryField(thiswire: updateContext));
+                context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(thiswire: updateContext));
+                context.OriginatorInfoes.Add(GetAllOriginatorInfo(thiswire: updateContext));
+                context.FItoFI_Info.Add(GetAllFItoFI_Info(thiswire: updateContext));
+
                 context.SaveChanges();
             }
         }
@@ -229,6 +235,85 @@ namespace FedWire_Batch_File_Creator
                 OBI_L2 = this.OBI_L2,
                 OBI_L3 = this.OBI_L3,
                 OBI_L4 = this.OBI_L4,
+
+                FK_WireID = thiswire.WireID
+            };
+        }
+
+        private FItoFI_Info GetAllFItoFI_Info(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new FItoFI_Info to the DB.");
+            return new FItoFI_Info
+            {
+                FIFI_RecInfo1 = this.FIFI_RecInfo1,
+                FIFI_RecInfo2 = this.FIFI_RecInfo2,
+                FIFI_RecInfo3 = this.FIFI_RecInfo3,
+                FIFI_RecInfo4 = this.FIFI_RecInfo4,
+                FIFI_RecInfo5 = this.FIFI_RecInfo5,
+                FIFI_RecInfo6 = this.FIFI_RecInfo6,
+
+                DrawDbtAdv_Code = this.DrawDbtAdv_Code,
+                DrawDbtAdv_Info1 = this.DrawDbtAdv_Info1,
+                DrawDbtAdv_Info2 = this.DrawDbtAdv_Info2,
+                DrawDbtAdv_Info3 = this.DrawDbtAdv_Info3,
+                DrawDbtAdv_Info4 = this.DrawDbtAdv_Info4,
+                DrawDbtAdv_Info5 = this.DrawDbtAdv_Info5,
+                DrawDbtAdv_Info6 = this.DrawDbtAdv_Info6,
+
+                InterFI_Info1 = this.InterFI_Info1,
+                InterFI_Info2 = this.InterFI_Info2,
+                InterFI_Info3 = this.InterFI_Info3,
+                InterFI_Info4 = this.InterFI_Info4,
+                InterFI_Info5 = this.InterFI_Info5,
+                InterFI_Info6 = this.InterFI_Info6,
+
+                InterFIAdv_Code = this.InterFIAdv_Code,
+                InterFIAdv_Info1 = this.InterFIAdv_Info1,
+                InterFIAdv_Info2 = this.InterFIAdv_Info2,
+                InterFIAdv_Info3 = this.InterFIAdv_Info3,
+                InterFIAdv_Info4 = this.InterFIAdv_Info4,
+                InterFIAdv_Info5 = this.InterFIAdv_Info5,
+                InterFIAdv_Info6 = this.InterFIAdv_Info6,
+
+                BnfFI_Info1 = this.BnfFI_Info1,
+                BnfFI_Info2 = this.BnfFI_Info2,
+                BnfFI_Info3 = this.BnfFI_Info3,
+                BnfFI_Info4 = this.BnfFI_Info4,
+                BnfFI_Info5 = this.BnfFI_Info5,
+                BnfFI_Info6 = this.BnfFI_Info6,
+
+                BnfFIAdv_Code = this.BnfFIAdv_Code,
+                BnfFIAdv_Info1 = this.BnfFIAdv_Info1,
+                BnfFIAdv_Info2 = this.BnfFIAdv_Info2,
+                BnfFIAdv_Info3 = this.BnfFIAdv_Info3,
+                BnfFIAdv_Info4 = this.BnfFIAdv_Info4,
+                BnfFIAdv_Info5 = this.BnfFIAdv_Info5,
+                BnfFIAdv_Info6 = this.BnfFIAdv_Info6,
+
+                Bnf_Info1 = this.Bnf_Info1,
+                Bnf_Info2 = this.Bnf_Info2,
+                Bnf_Info3 = this.Bnf_Info3,
+                Bnf_Info4 = this.Bnf_Info4,
+                Bnf_Info5 = this.Bnf_Info5,
+                Bnf_Info6 = this.Bnf_Info6,
+
+                BnfAdv_Code = this.BnfAdv_Code,
+                BnfAdv_Info1 = this.BnfAdv_Info1,
+                BnfAdv_Info2 = this.BnfAdv_Info2,
+                BnfAdv_Info3 = this.BnfAdv_Info3,
+                BnfAdv_Info4 = this.BnfAdv_Info4,
+                BnfAdv_Info5 = this.BnfAdv_Info5,
+                BnfAdv_Info6 = this.BnfAdv_Info6,
+
+                MethodPmtBnf_Info = this.MethodPmtBnf_Info,
+                MethodPmtBnf_Method = this.MethodPmtBnf_Method,
+
+                FI_to_FI_Info1 = this.FI_to_FI_Info1,
+                FI_to_FI_Info2 = this.FI_to_FI_Info2,
+                FI_to_FI_Info3 = this.FI_to_FI_Info3,
+                FI_to_FI_Info4 = this.FI_to_FI_Info4,
+                FI_to_FI_Info5 = this.FI_to_FI_Info5,
+                FI_to_FI_Info6 = this.FI_to_FI_Info6,
 
                 FK_WireID = thiswire.WireID
             };
@@ -414,6 +499,7 @@ namespace FedWire_Batch_File_Creator
         public string InterFI_Info6 { get; set; }
 
         // {6210} Intermediary FI Advice Information
+        public string InterFIAdv_Code { get; set; }
         public string InterFIAdv_Info1 { get; set; }
         public string InterFIAdv_Info2 { get; set; }
         public string InterFIAdv_Info3 { get; set; }
