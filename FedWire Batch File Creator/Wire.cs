@@ -78,43 +78,71 @@ namespace FedWire_Batch_File_Creator
                 var updateContext = context.WireMains.Where(c => c.WireID == _wireID.WireID).First();
                 updateContext.Modified_UserName = "Test User 01";
                 updateContext.Modified_DateTime = DateTime.Now;
-                updateContext.BnfInfoes.Add(GetAllBnfInfo(updateContext));
+                context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
+                context.MandatoryFields.Add(GetAllMandatoryField(updateContext));
                 context.SaveChanges();
             }
         }
 
         public BnfInfo GetAllBnfInfo(WireMain thiswire)
         {
+            Debug.WriteLine("Writing new BnfInfo entry to DB.");
             return new BnfInfo
             {
-                AcctDbtDraw_Addr1 = AcctDbtDraw_Addr1,
-                AcctDbtDraw_Addr2 = AcctDbtDraw_Addr2,
-                AcctDbtDraw_Addr3 = AcctDbtDraw_Addr3,
-                AcctDbtDraw_ID = AcctDbtDraw_ID,
-                AcctDbtDraw_Ident = AcctDbtDraw_Ident,
-                AcctDbtDraw_Name = AcctDbtDraw_Name,
-                Bnf_ID = Bnf_ID,
-                BnfRef = BnfRef,
-                Bnf_Addr1 = Bnf_Addr1,
-                Bnf_Addr2 = Bnf_Addr2,
-                Bnf_Addr3 = Bnf_Addr3,
-                Bnf_Ident = Bnf_Ident,
-                Bnf_Name = Bnf_Name,
-                BenFI_ID = BenFI_ID,
-                BenFI_Addr1 = BenFI_Addr1,
-                BenFI_Addr2 = BenFI_Addr2,
-                BenFI_Addr3 = BenFI_Addr3,
-                BenFI_Ident = BenFI_Ident,
-                BenFI_Name = BenFI_Name,
-                InterFI_ID = InterFI_ID,
-                InterFI_Name = InterFI_Name,
-                InterFI_Addr1 = InterFI_Addr1,
-                InterFI_Addr2 = InterFI_Addr2,
-                InterFI_Addr3 = InterFI_Addr3,
-                InterFI_Ident = InterFI_Ident,
+                AcctDbtDraw_Addr1 = this.AcctDbtDraw_Addr1,
+                AcctDbtDraw_Addr2 = this.AcctDbtDraw_Addr2,
+                AcctDbtDraw_Addr3 = this.AcctDbtDraw_Addr3,
+                AcctDbtDraw_ID = this.AcctDbtDraw_ID,
+                AcctDbtDraw_Ident = this.AcctDbtDraw_Ident,
+                AcctDbtDraw_Name = this.AcctDbtDraw_Name,
+                Bnf_ID = this.Bnf_ID,
+                BnfRef = this.BnfRef,
+                Bnf_Addr1 = this.Bnf_Addr1,
+                Bnf_Addr2 = this.Bnf_Addr2,
+                Bnf_Addr3 = this.Bnf_Addr3,
+                Bnf_Ident = this.Bnf_Ident,
+                Bnf_Name = this.Bnf_Name,
+                BenFI_ID = this.BenFI_ID,
+                BenFI_Addr1 = this.BenFI_Addr1,
+                BenFI_Addr2 = this.BenFI_Addr2,
+                BenFI_Addr3 = this.BenFI_Addr3,
+                BenFI_Ident = this.BenFI_Ident,
+                BenFI_Name = this.BenFI_Name,
+                InterFI_ID = this.InterFI_ID,
+                InterFI_Name = this.InterFI_Name,
+                InterFI_Addr1 = this.InterFI_Addr1,
+                InterFI_Addr2 = this.InterFI_Addr2,
+                InterFI_Addr3 = this.InterFI_Addr3,
+                InterFI_Ident = this.InterFI_Ident,
                 FK_WireID = thiswire.WireID
             };
         }
+
+        public MandatoryField GetAllMandatoryField(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new MandatoryField entry to DB.");
+            return new MandatoryField
+            {
+                SSI_Format = this.SSI_Format,
+                SSI_MDC = this.SSI_MDC,
+                SSI_TPC = this.SSI_TPC,
+                SSI_URC = this.SSI_URC,
+                TypeCode = this.TypeCode,
+                SubType = this.SubType,
+                IMAD_ICD = this.IMAD_ICD,
+                IMAD_Seq = this.IMAD_Seq,
+                IMAD_Source = this.IMAD_Source,
+                WireAmount = this.WireAmount,
+                SenderDI_ABA = this.SenderDI_ABA,
+                SenderDI_ShortName = this.SenderDI_ShortName,
+                ReceiverDI_ABA = this.ReceiverDI_ShortName,
+                ReceiverDI_ShortName = this.ReceiverDI_ShortName,
+                BusinessFunctionCode = this.BusinessFunctionCode,
+                TransactionTypeCode = this.TransactionTypeCode,
+                FK_WireID = thiswire.WireID
+            };
+        }
+
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public string InitiatedByUser { get; set; }
