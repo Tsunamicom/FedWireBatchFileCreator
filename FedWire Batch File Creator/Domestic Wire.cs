@@ -81,9 +81,27 @@ namespace FedWire_Batch_File_Creator
                 wire.InterFI_Addr3 = interBankAddrThree.Text;
             }
 
+            // Beneficiary Party
+            wire.Bnf_ID = "D"; // "D" is for DDA Account (default for this form)
+            wire.Bnf_Ident = bnfCustAcctNum.Text;
+            wire.Bnf_Name = bnfCustName.Text;
+            wire.Bnf_Addr1 = bnfCustAddrOne.Text;
+            wire.Bnf_Addr2 = bnfCustAddrTwo.Text;
+            wire.Bnf_Addr3 = bnfCustAddrThree.Text;
 
+            // Beneficiary Bank Detail
+            wire.BenFI_ID = "F"; // "F" is for Fed Routing Number (default for this form)
+            wire.BenFI_Ident = bnfBankABA.Text;
+            wire.BenFI_Name = bnfBankName.Text;
+            wire.BenFI_Addr1 = bnfBankAddrOne.Text;
+            wire.BenFI_Addr2 = bnfBankAddrTwo.Text;
+            wire.BenFI_Addr3 = bnfBankAddrThree.Text;
 
-
+            // Originator to Beneficiary Infomation (OBI)
+            wire.OBI_L1 = obiTextOne.Text;
+            wire.OBI_L2 = obiTextTwo.Text;
+            wire.OBI_L3 = obiTextThree.Text;
+            wire.OBI_L4 = obiTextFour.Text;
         }
 
         private void wireFormSubmit_Click(object sender, EventArgs e)
