@@ -233,6 +233,13 @@
       <DependentUpon>FWFCdb.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="FWFCUsersdb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FWFCUsersdb_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>FWFCUsersdb.mdf</DependentUpon>
+    </Content>
     <None Include="Resources\key-512.png" />
     <None Include="Resources\login_key.png" />
     <None Include="Resources\user-login-icon-14.png" />
