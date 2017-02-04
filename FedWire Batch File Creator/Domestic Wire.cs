@@ -31,7 +31,7 @@ namespace FedWire_Batch_File_Creator
             initiatedTime.Text = currentWire.InitiatedByDateTime.ToString();
             wireIDNum.Text = currentWire.WireID.ToString();
             activeUser.Text = currentWire.InitiatedByUser;
-
+            wireTypeSelect.SelectedIndex = 0;
         }
 
         private void AssociateDomesticWireTextBoxes()

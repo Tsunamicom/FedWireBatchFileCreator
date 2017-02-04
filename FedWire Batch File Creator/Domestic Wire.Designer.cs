@@ -656,6 +656,7 @@ namespace FedWire_Batch_File_Creator
             // 
             // wireTypeSelect
             // 
+            this.wireTypeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.wireTypeSelect.DropDownWidth = 450;
             this.wireTypeSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wireTypeSelect.FormatString = "N0";
@@ -696,7 +697,6 @@ namespace FedWire_Batch_File_Creator
             this.wireTypeSelect.Size = new System.Drawing.Size(400, 21);
             this.wireTypeSelect.TabIndex = 0;
             this.wireTypeSelect.TabStop = false;
-            this.wireTypeSelect.Text = "1000 - Funds Transfer Basic";
             // 
             // domesticWireHeaderMenu
             // 

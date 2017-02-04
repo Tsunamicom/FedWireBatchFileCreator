@@ -93,8 +93,8 @@ namespace FedWire_Batch_File_Creator
 
                 // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID mapping to FK.
                 // Future update:  Needs logic to determine whether context.<SomeField>.Add() is necessary.
-                context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
                 context.MandatoryFields.Add(GetAllMandatoryField(thiswire: updateContext));
+                context.BnfInfoes.Add(GetAllBnfInfo(updateContext));
                 context.OtherTransferInfoes.Add(GetAllOtherTransferInfo(thiswire: updateContext));
                 context.OriginatorInfoes.Add(GetAllOriginatorInfo(thiswire: updateContext));
                 context.FItoFI_Info.Add(GetAllFItoFI_Info(thiswire: updateContext));
@@ -122,6 +122,38 @@ namespace FedWire_Batch_File_Creator
                 }
 
             }
+        }
+
+        private MandatoryField GetAllMandatoryField(WireMain thiswire)
+        {
+            Debug.WriteLine("Writing new MandatoryField entry to DB.");
+            return new MandatoryField
+            {
+                SSI_Format = this.SSI_Format,
+                SSI_MDC = this.SSI_MDC,
+                SSI_TPC = this.SSI_TPC,
+                SSI_URC = this.SSI_URC,
+
+                TypeCode = this.TypeCode,
+                SubType = this.SubType,
+
+                IMAD_ICD = this.IMAD_ICD,
+                IMAD_Seq = this.IMAD_Seq,
+                IMAD_Source = this.IMAD_Source,
+
+                WireAmount = this.WireAmount,
+
+                SenderDI_ABA = this.SenderDI_ABA,
+                SenderDI_ShortName = this.SenderDI_ShortName,
+
+                ReceiverDI_ABA = this.ReceiverDI_ShortName,
+                ReceiverDI_ShortName = this.ReceiverDI_ShortName,
+
+                BusinessFunctionCode = this.BusinessFunctionCode,
+                TransactionTypeCode = this.TransactionTypeCode,
+
+                FK_WireID = thiswire.WireID
+            };
         }
 
         private BnfInfo GetAllBnfInfo(WireMain thiswire)
@@ -158,38 +190,6 @@ namespace FedWire_Batch_File_Creator
                 AcctDbtDraw_ID = this.AcctDbtDraw_ID,
                 AcctDbtDraw_Ident = this.AcctDbtDraw_Ident,
                 AcctDbtDraw_Name = this.AcctDbtDraw_Name,
-
-                FK_WireID = thiswire.WireID
-            };
-        }
-
-        private MandatoryField GetAllMandatoryField(WireMain thiswire)
-        {
-            Debug.WriteLine("Writing new MandatoryField entry to DB.");
-            return new MandatoryField
-            {
-                SSI_Format = this.SSI_Format,
-                SSI_MDC = this.SSI_MDC,
-                SSI_TPC = this.SSI_TPC,
-                SSI_URC = this.SSI_URC,
-
-                TypeCode = this.TypeCode,
-                SubType = this.SubType,
-
-                IMAD_ICD = this.IMAD_ICD,
-                IMAD_Seq = this.IMAD_Seq,
-                IMAD_Source = this.IMAD_Source,
-
-                WireAmount = this.WireAmount,
-
-                SenderDI_ABA = this.SenderDI_ABA,
-                SenderDI_ShortName = this.SenderDI_ShortName,
-
-                ReceiverDI_ABA = this.ReceiverDI_ShortName,
-                ReceiverDI_ShortName = this.ReceiverDI_ShortName,
-
-                BusinessFunctionCode = this.BusinessFunctionCode,
-                TransactionTypeCode = this.TransactionTypeCode,
 
                 FK_WireID = thiswire.WireID
             };
@@ -627,6 +627,8 @@ namespace FedWire_Batch_File_Creator
         public string VerifiedByUser { get; set; }
         public DateTime VerifiedByTime { get; set; }
         public string Status { get; set; }
+
+
 
 
         // **** MANDATORY TAGS FOR ALL TRANSFERS ****
