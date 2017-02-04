@@ -11,8 +11,6 @@ namespace FedWire_Batch_File_Creator
 {
     class Wire: IWireFields
     {
-        private WireMain _wireID;
-
         public Wire()
         {
             AssignDefaultWireValues();
@@ -23,7 +21,7 @@ namespace FedWire_Batch_File_Creator
         {
             using (var context = new FWFCdbEntities())
             {
-                var thiswire = context.WireMains.Where(c => c.WireID == _wireID.WireID).Single();
+                var thiswire = context.WireMains.Where(c => c.WireID == this.WireID).Single();
 
                 context.BnfInfoes.RemoveRange(context.BnfInfoes.Where(c => c.FK_WireID == thiswire.WireID));
                 context.CoverPymtSeqBs.RemoveRange(context.CoverPymtSeqBs.Where(c => c.FK_WireID == thiswire.WireID));
@@ -67,6 +65,8 @@ namespace FedWire_Batch_File_Creator
 
         private void AssignNewWireID()
         {
+            WireMain _wireID = new WireMain();
+
             using (var context = new FWFCdbEntities())
             {
                 _wireID = new WireMain
@@ -80,14 +80,14 @@ namespace FedWire_Batch_File_Creator
                 context.WireMains.Add(_wireID);
                 context.SaveChanges();
             }
-            Debug.WriteLine("Creating New Wire ID: " + _wireID.WireID.ToString());
+            this.WireID = _wireID.WireID;
         }
 
         public void UpdateWireDB()
         {
             using (var context = new FWFCdbEntities())
             {
-                var updateContext = context.WireMains.Where(c => c.WireID == _wireID.WireID).First();
+                var updateContext = context.WireMains.Where(c => c.WireID == this.WireID).First();
                 updateContext.Modified_UserName = "Test User 01";
                 updateContext.Modified_DateTime = DateTime.Now;
 
@@ -619,6 +619,7 @@ namespace FedWire_Batch_File_Creator
 
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
+        public int WireID { get; set; }
         public string InitiatedByUser { get; set; }
         public DateTime InitiatedByDateTime { get; set; }
         public string ModifiedByUser { get; set; }

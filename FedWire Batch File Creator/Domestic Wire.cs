@@ -22,6 +22,16 @@ namespace FedWire_Batch_File_Creator
             InitializeComponent();
             Debug.WriteLine("Opening DomesticWireForm");
             AssociateDomesticWireTextBoxes();
+            DisplayDefaultWireInfo();
+            
+        }
+
+        private void DisplayDefaultWireInfo()
+        {
+            initiatedTime.Text = currentWire.InitiatedByDateTime.ToString();
+            wireIDNum.Text = currentWire.WireID.ToString();
+            activeUser.Text = currentWire.InitiatedByUser;
+
         }
 
         private void AssociateDomesticWireTextBoxes()
