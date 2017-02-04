@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FedWire_Batch_File_Creator
 {
@@ -67,25 +68,17 @@ namespace FedWire_Batch_File_Creator
         {
             if (passwordTextBox.Text != "Password" && userNameTextBox.Text != "User Name")
             {
-
                 currentUserSession.thisUser.UserName = userNameTextBox.Text;
                 currentUserSession.thisUser.Password = passwordTextBox.Text;
-                using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+                currentUserSession.NewUserSession();
+                
+                if (currentUserSession.thisUser.UserStatus == "LOGGEDIN")
                 {
-                    if (context.Users.Any(c => c.UserName == currentUserSession.thisUser.UserName))
-                    {
-                        var thisUser = context.Users.Where(c => c.UserName == currentUserSession.thisUser.UserName).FirstOrDefault();
-
-                        if (thisUser.Password == currentUserSession.thisUser.Password)
-                        {
-                            thisUser.UserStatus = "LOGGEDIN";
-                            thisUser.LastAccessDateTime = DateTime.Now;
-                            currentUserSession.thisUser.First_Name = thisUser.First_Name;
-                            currentUserSession.thisUser.Last_Name = thisUser.Last_Name;
-                        }
-                        context.SaveChanges();
-                        MessageBox.Show($"User Logging In!\n{currentUserSession.thisUser.First_Name}\n{currentUserSession.thisUser.Last_Name}");
-                    }
+                    Debug.WriteLine(currentUserSession.thisUser.First_Name);
+                }
+                else
+                {
+                    Debug.WriteLine("ERROR!  INVALID USERNAME OR PASSWORD!");
                 }
             }
         }

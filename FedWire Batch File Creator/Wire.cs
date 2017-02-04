@@ -108,7 +108,7 @@ namespace FedWire_Batch_File_Creator
 
                 try
                 { 
-                context.SaveChanges();
+                    context.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
                 {
