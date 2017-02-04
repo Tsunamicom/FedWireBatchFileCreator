@@ -108,6 +108,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FWFCdbEFModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FWFCUsersdbEFModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCUsersdbEFModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FWFCUsersdbEFModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FWFCUsersdbEFModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCUsersdbEFModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="IWireFields.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
@@ -129,6 +144,9 @@
     <Compile Include="RelatedRemitInfo.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="StructRemitOnce.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
@@ -146,6 +164,9 @@
     </Compile>
     <Compile Include="UnstructAddenda.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserLogin.cs">
       <SubType>Form</SubType>
@@ -188,6 +209,13 @@
     </EntityDeploy>
     <None Include="FWFCdbEFModel.edmx.diagram">
       <DependentUpon>FWFCdbEFModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="FWFCUsersdbEFModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FWFCUsersdbEFModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FWFCUsersdbEFModel.edmx.diagram">
+      <DependentUpon>FWFCUsersdbEFModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -235,6 +263,16 @@
     </Content>
     <Content Include="FWFCUsersdb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FWFCUsersdbEFModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FWFCUsersdbEFModel.edmx</DependentUpon>
+      <LastGenOutput>FWFCUsersdbEFModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FWFCUsersdbEFModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FWFCUsersdbEFModel.edmx</DependentUpon>
+      <LastGenOutput>FWFCUsersdbEFModel.cs</LastGenOutput>
     </Content>
     <Content Include="FWFCUsersdb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
