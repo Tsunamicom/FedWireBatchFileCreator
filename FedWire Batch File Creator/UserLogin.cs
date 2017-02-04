@@ -12,6 +12,8 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class UserLogin : Form
     {
+        public UserAccess currentUserSession = new UserAccess();
+
         public UserLogin()
         {
             InitializeComponent();
@@ -65,8 +67,26 @@ namespace FedWire_Batch_File_Creator
         {
             if (passwordTextBox.Text != "Password" && userNameTextBox.Text != "User Name")
             {
-                // Placeholder for SQL User verification and assign currentUser.
-                MessageBox.Show($"User Logging In!\n{userNameTextBox.Text}\n{passwordTextBox.Text}");
+
+                currentUserSession.thisUser.UserName = userNameTextBox.Text;
+                currentUserSession.thisUser.Password = passwordTextBox.Text;
+                using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+                {
+                    if (context.Users.Any(c => c.UserName == currentUserSession.thisUser.UserName))
+                    {
+                        var thisUser = context.Users.Where(c => c.UserName == currentUserSession.thisUser.UserName).FirstOrDefault();
+
+                        if (thisUser.Password == currentUserSession.thisUser.Password)
+                        {
+                            thisUser.UserStatus = "LOGGEDIN";
+                            thisUser.LastAccessDateTime = DateTime.Now;
+                            currentUserSession.thisUser.First_Name = thisUser.First_Name;
+                            currentUserSession.thisUser.Last_Name = thisUser.Last_Name;
+                        }
+                        context.SaveChanges();
+                        MessageBox.Show($"User Logging In!\n{currentUserSession.thisUser.First_Name}\n{currentUserSession.thisUser.Last_Name}");
+                    }
+                }
             }
         }
     }

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FWFCUsersdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FWFCUsersdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CreateNewBatch" Type="bit" Nullable="false" />
           <Property Name="VerifyBatch" Type="bit" Nullable="false" />
           <Property Name="ExportBatch" Type="bit" Nullable="false" />
@@ -29,7 +29,7 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="First Name" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -60,16 +60,14 @@
             <End Role="Role" EntitySet="Role" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FWFCUsersdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreateNewBatch" Type="Boolean" Nullable="false" />
           <Property Name="VerifyBatch" Type="Boolean" Nullable="false" />
           <Property Name="ExportBatch" Type="Boolean" Nullable="false" />
@@ -85,6 +83,7 @@
           <Property Name="DeleteTemplate" Type="Boolean" Nullable="false" />
           <Property Name="FK_UserID" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Role_ToUser" FromRole="Role" ToRole="User" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -131,7 +130,7 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="FWFCUsersdbModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="CreateNewBatch" ColumnName="CreateNewBatch" />
                 <ScalarProperty Name="VerifyBatch" ColumnName="VerifyBatch" />
                 <ScalarProperty Name="ExportBatch" ColumnName="ExportBatch" />

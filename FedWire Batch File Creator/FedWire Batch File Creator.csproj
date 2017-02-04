@@ -168,6 +168,7 @@
     <Compile Include="User.cs">
       <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserAccess.cs" />
     <Compile Include="UserLogin.cs">
       <SubType>Form</SubType>
     </Compile>

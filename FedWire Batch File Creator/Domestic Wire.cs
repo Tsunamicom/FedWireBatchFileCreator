@@ -16,6 +16,7 @@ namespace FedWire_Batch_File_Creator
     public partial class DomesticWireForm : Form
     {
         Wire currentWire = new Wire();
+        
 
         public DomesticWireForm()
         {
@@ -25,13 +26,14 @@ namespace FedWire_Batch_File_Creator
             DisplayDefaultWireInfo();
             
         }
-
+        
         private void DisplayDefaultWireInfo()
         {
             initiatedTime.Text = currentWire.InitiatedByDateTime.ToString();
             wireIDNum.Text = currentWire.WireID.ToString();
             activeUser.Text = currentWire.InitiatedByUser;
             wireTypeSelect.SelectedIndex = 0;
+            
         }
 
         private void AssociateDomesticWireTextBoxes()
