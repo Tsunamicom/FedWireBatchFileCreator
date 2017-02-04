@@ -16,7 +16,7 @@ namespace FedWire_Batch_File_Creator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu());
+            Application.Run(new Test_Start());
         }
     }
 }
