@@ -43,8 +43,10 @@ namespace FedWire_Batch_File_Creator
 
         private void CreateNewFedWireBasic()
         {
-            DomesticWireForm newDomesticWire = new DomesticWireForm();
+            DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession);
             newDomesticWire.ShowDialog();
+            
+
         }
 
         private void openNewDomesticWireButton_Click(object sender, EventArgs e)

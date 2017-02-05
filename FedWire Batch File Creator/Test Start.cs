@@ -22,7 +22,7 @@ namespace FedWire_Batch_File_Creator
 
         private void tsDomesticWireForm_Click(object sender, EventArgs e)
         {
-            DomesticWireForm tsDWForm = new DomesticWireForm();
+            DomesticWireForm tsDWForm = new DomesticWireForm(UserSession);
             tsDWForm.ShowDialog();
         }
 

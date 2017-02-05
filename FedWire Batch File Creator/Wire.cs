@@ -45,9 +45,9 @@ namespace FedWire_Batch_File_Creator
         private void AssignDefaultWireValues()
         {
             Status = "UNVF";
-            InitiatedByUser = "Test User 01";  // Placeholder - based on User Profile
+            InitiatedByUser = "DefaultUser";  // Placeholder - based on User Profile
             InitiatedByDateTime = DateTime.Now;
-            ModifiedByUser = "Test User 01";  // Placeholder - based on User Profile
+            ModifiedByUser = "DefaultUser";  // Placeholder - based on User Profile
             ModifiedByDateTime = DateTime.Now;
 
             SSI_Format = "30";
@@ -88,7 +88,7 @@ namespace FedWire_Batch_File_Creator
             using (var context = new FWFCdbEntities())
             {
                 var updateContext = context.WireMains.Where(c => c.WireID == this.WireID).First();
-                updateContext.Modified_UserName = "Test User 01";
+                updateContext.Modified_UserName = this.ModifiedByUser;
                 updateContext.Modified_DateTime = DateTime.Now;
 
                 // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID mapping to FK.

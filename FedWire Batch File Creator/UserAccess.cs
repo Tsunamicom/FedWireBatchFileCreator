@@ -35,7 +35,6 @@ namespace FedWire_Batch_File_Creator
                     this.thisUser.UserStatus = currentUser.UserStatus;
                 }
                 else { Debug.WriteLine("User Not Found!"); }
-                
 
                 // Associate User Roles
                 var currentUserRole = context.Roles.Where(c => c.FK_UserID == currentUser.UserID).FirstOrDefault();
@@ -57,7 +56,6 @@ namespace FedWire_Batch_File_Creator
                     this.thisUserRole.VerifyWire = currentUserRole.VerifyWire;
                 }
                 else { Debug.WriteLine("No User Roles Found!"); }
-                
 
                 // Associate User Security
                 var currentUserSecurity = context.Securities.Where(c => c.FK_UserID == currentUser.UserID).FirstOrDefault();
@@ -77,7 +75,6 @@ namespace FedWire_Batch_File_Creator
                     this.thisUserSecurity.SecurityPIN = currentUserSecurity.SecurityPIN;
                 }
                 else { Debug.WriteLine("No Security Info Found!"); }
-
             }
         }
 

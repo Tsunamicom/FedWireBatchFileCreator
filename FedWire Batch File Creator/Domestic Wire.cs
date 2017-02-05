@@ -15,25 +15,32 @@ namespace FedWire_Batch_File_Creator
 {
     public partial class DomesticWireForm : Form
     {
-        Wire currentWire = new Wire();
+        public UserAccess CurrentUser = new UserAccess();
+        Wire CurrentWire = new Wire();
         
 
-        public DomesticWireForm()
+        public DomesticWireForm(UserAccess activeUser)
         {
+            CurrentUser = activeUser;
             InitializeComponent();
             Debug.WriteLine("Opening DomesticWireForm");
             AssociateDomesticWireTextBoxes();
+            AssignDefaultWireInfo();
             DisplayDefaultWireInfo();
-            
         }
         
         private void DisplayDefaultWireInfo()
         {
-            initiatedTime.Text = currentWire.InitiatedByDateTime.ToString();
-            wireIDNum.Text = currentWire.WireID.ToString();
-            activeUser.Text = currentWire.InitiatedByUser;
+            initiatedTime.Text = CurrentWire.InitiatedByDateTime.ToString();
+            wireIDNum.Text = CurrentWire.WireID.ToString();
+            activeUser.Text = CurrentUser.thisUser.First_Name + " " + CurrentUser.thisUser.Last_Name;
             wireTypeSelect.SelectedIndex = 0;
-            
+        }
+
+        private void AssignDefaultWireInfo()
+        {
+            CurrentWire.InitiatedByUser = CurrentUser.thisUser.UserName;
+            CurrentWire.ModifiedByUser = CurrentUser.thisUser.UserName;
         }
 
         private void AssociateDomesticWireTextBoxes()
@@ -120,8 +127,8 @@ namespace FedWire_Batch_File_Creator
         {
             if (verifyRequiredTextBoxes())
             {
-                RelateTextBoxInfo(currentWire);
-                currentWire.UpdateWireDB();
+                RelateTextBoxInfo(CurrentWire);
+                CurrentWire.UpdateWireDB();
                 MessageBox.Show("Wire Submitted!");
                 this.Close();
             }
@@ -150,14 +157,14 @@ namespace FedWire_Batch_File_Creator
         {
             if (wireFormVerify.Text == "Lock In")
             {
-                currentWire.Status = "VERF";
+                CurrentWire.Status = "VERF";
                 toggleLockAllFields(isUnlocked: false);
                 wireFormVerify.Text = "Edit Wire";
                 debugTextBoxValues();
             }
             else
             {
-                currentWire.Status = "UNVF";
+                CurrentWire.Status = "UNVF";
                 toggleLockAllFields(isUnlocked: true);
                 wireFormVerify.Text = "Lock In";
             }
@@ -240,9 +247,9 @@ namespace FedWire_Batch_File_Creator
 
         private void DomesticWireForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (currentWire.Status == "UNVF") 
+            if (CurrentWire.Status == "UNVF") 
             {
-                currentWire.DestroyAllDBRef();
+                CurrentWire.DestroyAllDBRef();
             }
         }
     }
