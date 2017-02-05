@@ -7,19 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FedWire_Batch_File_Creator
 {
     public partial class MainMenu : Form
     {
+        public UserAccess CurrentUserSession = new UserAccess();
+
         public MainMenu()
         {
+            ForceUserLogin();
             InitializeComponent();
+            ShowCurrentUserNamesLabel();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowCurrentUserNamesLabel()
         {
+            if (CurrentUserSession.thisUser.UserName != null)
+            {
+                labelCurrentUserFNLN.Text = "Current User: " + CurrentUserSession.thisUser.First_Name + " " + CurrentUserSession.thisUser.Last_Name;
+            }
+        }
 
+        private void ForceUserLogin()
+        {
+            if (CurrentUserSession.thisUser.UserName == null)
+            {
+                UserLogin tsULForm = new UserLogin();
+                tsULForm.ShowDialog();
+                CurrentUserSession = tsULForm.currentUserSession;
+            }
         }
 
         private void openNewDomesticWireButton_Click(object sender, EventArgs e)

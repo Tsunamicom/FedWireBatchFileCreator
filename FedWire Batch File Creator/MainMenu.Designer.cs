@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +54,7 @@
             this.openNewInternationalWireButton = new System.Windows.Forms.Button();
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
+            this.labelCurrentUserFNLN = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +93,6 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.newToolStripMenuItem.Text = "&New Wire";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // domesticWireToolStripMenuItem
             // 
@@ -122,13 +119,13 @@
             // internationalWireToolStripMenuItem1
             // 
             this.internationalWireToolStripMenuItem1.Name = "internationalWireToolStripMenuItem1";
-            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.internationalWireToolStripMenuItem1.Text = "&New";
             // 
             // domesticWireToolStripMenuItem1
             // 
             this.domesticWireToolStripMenuItem1.Name = "domesticWireToolStripMenuItem1";
-            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.domesticWireToolStripMenuItem1.Text = "&Open";
             // 
             // importBatchToolStripMenuItem
@@ -168,13 +165,13 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.reportsToolStripMenuItem.Text = "&Reports";
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.historyToolStripMenuItem.Text = "&History";
             // 
             // userOptionsToolStripMenuItem
@@ -230,7 +227,7 @@
             // 
             this.openNewDomesticWireButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openNewDomesticWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.openNewDomesticWireButton.Location = new System.Drawing.Point(12, 39);
+            this.openNewDomesticWireButton.Location = new System.Drawing.Point(12, 47);
             this.openNewDomesticWireButton.Name = "openNewDomesticWireButton";
             this.openNewDomesticWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewDomesticWireButton.TabIndex = 1;
@@ -244,7 +241,7 @@
             this.openNewInternationalWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.openNewInternationalWireButton.Enabled = false;
             this.openNewInternationalWireButton.FlatAppearance.BorderSize = 5;
-            this.openNewInternationalWireButton.Location = new System.Drawing.Point(187, 39);
+            this.openNewInternationalWireButton.Location = new System.Drawing.Point(187, 47);
             this.openNewInternationalWireButton.Name = "openNewInternationalWireButton";
             this.openNewInternationalWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewInternationalWireButton.TabIndex = 2;
@@ -255,7 +252,7 @@
             // 
             this.openReportsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openReportsButton.Enabled = false;
-            this.openReportsButton.Location = new System.Drawing.Point(362, 39);
+            this.openReportsButton.Location = new System.Drawing.Point(362, 47);
             this.openReportsButton.Name = "openReportsButton";
             this.openReportsButton.Size = new System.Drawing.Size(150, 100);
             this.openReportsButton.TabIndex = 3;
@@ -266,18 +263,27 @@
             // 
             this.openTemplateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openTemplateButton.Enabled = false;
-            this.openTemplateButton.Location = new System.Drawing.Point(541, 39);
+            this.openTemplateButton.Location = new System.Drawing.Point(541, 47);
             this.openTemplateButton.Name = "openTemplateButton";
             this.openTemplateButton.Size = new System.Drawing.Size(150, 100);
             this.openTemplateButton.TabIndex = 4;
             this.openTemplateButton.Text = "HISTORY (TBD)";
             this.openTemplateButton.UseVisualStyleBackColor = true;
             // 
+            // labelCurrentUserFNLN
+            // 
+            this.labelCurrentUserFNLN.AutoSize = true;
+            this.labelCurrentUserFNLN.Location = new System.Drawing.Point(12, 31);
+            this.labelCurrentUserFNLN.Name = "labelCurrentUserFNLN";
+            this.labelCurrentUserFNLN.Size = new System.Drawing.Size(0, 13);
+            this.labelCurrentUserFNLN.TabIndex = 5;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 315);
+            this.Controls.Add(this.labelCurrentUserFNLN);
             this.Controls.Add(this.openTemplateButton);
             this.Controls.Add(this.openReportsButton);
             this.Controls.Add(this.openNewInternationalWireButton);
@@ -323,5 +329,6 @@
         private System.Windows.Forms.Button openNewInternationalWireButton;
         private System.Windows.Forms.Button openReportsButton;
         private System.Windows.Forms.Button openTemplateButton;
+        private System.Windows.Forms.Label labelCurrentUserFNLN;
     }
 }

@@ -26,6 +26,10 @@ namespace FedWire_Batch_File_Creator
             {
                 userNameTextBox.Text = null;
             }
+            else
+            {
+                userNameTextBox.SelectAll();
+            }
         }
 
         private void userNameTextBox_Leave(object sender, EventArgs e)
@@ -53,6 +57,10 @@ namespace FedWire_Batch_File_Creator
             {
                 passwordTextBox.Text = null;
             }
+            else
+            {
+                passwordTextBox.SelectAll();
+            }
         }
 
         private void passwordTextBox_Leave(object sender, EventArgs e)
@@ -75,12 +83,23 @@ namespace FedWire_Batch_File_Creator
                 if (currentUserSession.thisUser.UserStatus == "LOGGEDIN")
                 {
                     Debug.WriteLine(currentUserSession.thisUser.First_Name);
+                    this.Close();
                 }
                 else
                 {
+                    MessageBox.Show("ERROR!  INVALID USERNAME OR PASSWORD!");
                     Debug.WriteLine("ERROR!  INVALID USERNAME OR PASSWORD!");
                 }
             }
+        }
+
+        private void UserLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (currentUserSession.thisUser.UserName == null)
+            {
+                Application.Exit();
+            }
+
         }
     }
 }
