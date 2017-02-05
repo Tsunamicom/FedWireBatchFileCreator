@@ -4,11 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a2f5d6982ce46789126c5177d6a9ad7" Name="Diagram1">
-        <EntityTypeShape EntityType="FWFCUsersdbModel.Role" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FWFCUsersdbModel.User" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+      <Diagram DiagramId="3a2f5d6982ce46789126c5177d6a9ad7" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="FWFCUsersdbModel.Role" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FWFCUsersdbModel.User" Width="1.5" PointX="0.875" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="FWFCUsersdbModel.FK_Role_ToUser" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="FWFCUsersdbModel.Security" Width="1.5" PointX="5.375" PointY="1.75" />
+        <AssociationConnector Association="FWFCUsersdbModel.FK_Table_ToUser" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -14,7 +14,6 @@ namespace FedWire_Batch_File_Creator
     
     public partial class Role
     {
-        public int RoleID { get; set; }
         public bool CreateNewBatch { get; set; }
         public bool VerifyBatch { get; set; }
         public bool ExportBatch { get; set; }
@@ -29,6 +28,7 @@ namespace FedWire_Batch_File_Creator
         public bool ModifyTemplate { get; set; }
         public bool DeleteTemplate { get; set; }
         public Nullable<int> FK_UserID { get; set; }
+        public int RoleID { get; set; }
     
         public virtual User User { get; set; }
     }

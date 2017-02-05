@@ -25,6 +25,24 @@
           <Property Name="DeleteTemplate" Type="bit" Nullable="false" />
           <Property Name="FK_UserID" Type="int" />
         </EntityType>
+        <EntityType Name="Security">
+          <Key>
+            <PropertyRef Name="SecurityID" />
+          </Key>
+          <Property Name="SecurityID" Type="int" Nullable="false" />
+          <Property Name="Question1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Answer1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Question2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Answer2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Question3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Answer3" Type="nvarchar" MaxLength="20" />
+          <Property Name="Question4" Type="nvarchar" MaxLength="100" />
+          <Property Name="Answer4" Type="nvarchar" MaxLength="20" />
+          <Property Name="Question5" Type="nvarchar" MaxLength="100" />
+          <Property Name="Answer5" Type="nvarchar" MaxLength="20" />
+          <Property Name="SecurityPIN" Type="nchar" MaxLength="6" />
+          <Property Name="FK_UserID" Type="int" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -52,12 +70,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Table_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Security" Type="Self.Security" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Security">
+              <PropertyRef Name="FK_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FWFCUsersdbModelStoreContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security" EntityType="Self.Security" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Role_ToUser" Association="Self.FK_Role_ToUser">
             <End Role="User" EntitySet="User" />
             <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToUser" Association="Self.FK_Table_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Security" EntitySet="Security" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -100,6 +135,7 @@
           <Property Name="LastAccessDateTime" Type="DateTime" Precision="3" />
           <Property Name="UserStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Role_ToUser" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Securities" Relationship="FWFCUsersdbModel.FK_Table_ToUser" FromRole="User" ToRole="Security" />
         </EntityType>
         <Association Name="FK_Role_ToUser">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -120,7 +156,43 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Role" EntitySet="Roles" />
           </AssociationSet>
+          <EntitySet Name="Securities" EntityType="FWFCUsersdbModel.Security" />
+          <AssociationSet Name="FK_Table_ToUser" Association="FWFCUsersdbModel.FK_Table_ToUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Security" EntitySet="Securities" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Security">
+          <Key>
+            <PropertyRef Name="SecurityID" />
+          </Key>
+          <Property Name="SecurityID" Type="Int32" Nullable="false" />
+          <Property Name="Question1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Answer1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Question2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Answer2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Question3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Answer3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Question4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Answer4" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Question5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Answer5" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityPIN" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="FK_UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="FWFCUsersdbModel.FK_Table_ToUser" FromRole="Security" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Table_ToUser">
+          <End Type="FWFCUsersdbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FWFCUsersdbModel.Security" Role="Security" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Security">
+              <PropertyRef Name="FK_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -161,6 +233,25 @@
                 <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
                 <ScalarProperty Name="LastAccessDateTime" ColumnName="LastAccessDateTime" />
                 <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Securities">
+            <EntityTypeMapping TypeName="FWFCUsersdbModel.Security">
+              <MappingFragment StoreEntitySet="Security">
+                <ScalarProperty Name="FK_UserID" ColumnName="FK_UserID" />
+                <ScalarProperty Name="SecurityPIN" ColumnName="SecurityPIN" />
+                <ScalarProperty Name="Answer5" ColumnName="Answer5" />
+                <ScalarProperty Name="Question5" ColumnName="Question5" />
+                <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+                <ScalarProperty Name="Question4" ColumnName="Question4" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="Question3" ColumnName="Question3" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="Question2" ColumnName="Question2" />
+                <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+                <ScalarProperty Name="Question1" ColumnName="Question1" />
+                <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

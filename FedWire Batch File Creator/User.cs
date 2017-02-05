@@ -18,6 +18,7 @@ namespace FedWire_Batch_File_Creator
         public User()
         {
             this.Roles = new HashSet<Role>();
+            this.Securities = new HashSet<Security>();
         }
     
         public int UserID { get; set; }
@@ -33,5 +34,7 @@ namespace FedWire_Batch_File_Creator
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Security> Securities { get; set; }
     }
 }

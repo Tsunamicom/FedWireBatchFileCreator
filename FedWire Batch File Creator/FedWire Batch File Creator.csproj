@@ -147,6 +147,9 @@
     <Compile Include="Role.cs">
       <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Security.cs">
+      <DependentUpon>FWFCUsersdbEFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="StructRemitOnce.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
