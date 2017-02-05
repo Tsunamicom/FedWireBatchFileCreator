@@ -11,9 +11,9 @@ namespace FedWire_Batch_File_Creator
 {
     class Wire: IWireFields
     {
-        public Wire()
+        public Wire(UserAccess currentUser)
         {
-            AssignDefaultWireValues();
+            AssignDefaultWireValues(currentUser);
             AssignNewWireID();
         }
 
@@ -42,12 +42,12 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
-        private void AssignDefaultWireValues()
+        private void AssignDefaultWireValues(UserAccess currentUser)
         {
             Status = "UNVF";
-            InitiatedByUser = "DefaultUser";  // Placeholder - based on User Profile
+            InitiatedByUser = currentUser.thisUser.UserName;
             InitiatedByDateTime = DateTime.Now;
-            ModifiedByUser = "DefaultUser";  // Placeholder - based on User Profile
+            ModifiedByUser = currentUser.thisUser.UserName;
             ModifiedByDateTime = DateTime.Now;
 
             SSI_Format = "30";
@@ -90,6 +90,7 @@ namespace FedWire_Batch_File_Creator
                 var updateContext = context.WireMains.Where(c => c.WireID == this.WireID).First();
                 updateContext.Modified_UserName = this.ModifiedByUser;
                 updateContext.Modified_DateTime = DateTime.Now;
+                updateContext.Status = this.Status;
 
                 // Note:  Currently will add context fields even if no relevant data is present due to updateContext WireID mapping to FK.
                 // Future update:  Needs logic to determine whether context.<SomeField>.Add() is necessary.

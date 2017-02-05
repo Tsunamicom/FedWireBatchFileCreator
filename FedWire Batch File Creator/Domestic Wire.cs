@@ -16,12 +16,12 @@ namespace FedWire_Batch_File_Creator
     public partial class DomesticWireForm : Form
     {
         public UserAccess CurrentUser = new UserAccess();
-        Wire CurrentWire = new Wire();
-        
+        Wire CurrentWire { get; set; }
 
         public DomesticWireForm(UserAccess activeUser)
         {
             CurrentUser = activeUser;
+            CurrentWire = new Wire(activeUser);
             InitializeComponent();
             Debug.WriteLine("Opening DomesticWireForm");
             AssociateDomesticWireTextBoxes();
@@ -128,6 +128,7 @@ namespace FedWire_Batch_File_Creator
             if (verifyRequiredTextBoxes())
             {
                 RelateTextBoxInfo(CurrentWire);
+                CurrentWire.Status = "SBMT";
                 CurrentWire.UpdateWireDB();
                 MessageBox.Show("Wire Submitted!");
                 this.Close();
