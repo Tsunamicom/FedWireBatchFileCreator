@@ -88,7 +88,6 @@ namespace FedWire_Batch_File_Creator
                 else
                 {
                     MessageBox.Show("ERROR!  INVALID USERNAME OR PASSWORD!");
-                    Debug.WriteLine("ERROR!  INVALID USERNAME OR PASSWORD!");
                 }
             }
         }

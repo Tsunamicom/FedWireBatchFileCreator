@@ -31,8 +31,8 @@
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.domesticWireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.internationalWireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fedWireBasicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fedWireComplexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFromTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.internationalWireToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.domesticWireToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,10 +51,10 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutFWFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNewDomesticWireButton = new System.Windows.Forms.Button();
-            this.openNewInternationalWireButton = new System.Windows.Forms.Button();
+            this.openNewComplexFedWireButton = new System.Windows.Forms.Button();
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
-            this.labelCurrentUserFNLN = new System.Windows.Forms.Label();
+            this.labelFNLNShow = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,30 +88,31 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.domesticWireToolStripMenuItem,
-            this.internationalWireToolStripMenuItem});
+            this.fedWireBasicToolStripMenuItem,
+            this.fedWireComplexToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.newToolStripMenuItem.Text = "&New Wire";
             // 
-            // domesticWireToolStripMenuItem
+            // fedWireBasicToolStripMenuItem
             // 
-            this.domesticWireToolStripMenuItem.Name = "domesticWireToolStripMenuItem";
-            this.domesticWireToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.domesticWireToolStripMenuItem.Text = "Domestic Wire";
-            this.domesticWireToolStripMenuItem.Click += new System.EventHandler(this.domesticWireToolStripMenuItem_Click);
+            this.fedWireBasicToolStripMenuItem.Name = "fedWireBasicToolStripMenuItem";
+            this.fedWireBasicToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.fedWireBasicToolStripMenuItem.Text = "FedWire (Basic)";
+            this.fedWireBasicToolStripMenuItem.Click += new System.EventHandler(this.domesticWireToolStripMenuItem_Click);
             // 
-            // internationalWireToolStripMenuItem
+            // fedWireComplexToolStripMenuItem
             // 
-            this.internationalWireToolStripMenuItem.Name = "internationalWireToolStripMenuItem";
-            this.internationalWireToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.internationalWireToolStripMenuItem.Text = "International Wire";
+            this.fedWireComplexToolStripMenuItem.Name = "fedWireComplexToolStripMenuItem";
+            this.fedWireComplexToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.fedWireComplexToolStripMenuItem.Text = "FedWire (Complex)";
             // 
             // newFromTemplateToolStripMenuItem
             // 
             this.newFromTemplateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.internationalWireToolStripMenuItem1,
             this.domesticWireToolStripMenuItem1});
+            this.newFromTemplateToolStripMenuItem.Enabled = false;
             this.newFromTemplateToolStripMenuItem.Name = "newFromTemplateToolStripMenuItem";
             this.newFromTemplateToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.newFromTemplateToolStripMenuItem.Text = "&Templates";
@@ -119,29 +120,32 @@
             // internationalWireToolStripMenuItem1
             // 
             this.internationalWireToolStripMenuItem1.Name = "internationalWireToolStripMenuItem1";
-            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.internationalWireToolStripMenuItem1.Text = "&New";
             // 
             // domesticWireToolStripMenuItem1
             // 
             this.domesticWireToolStripMenuItem1.Name = "domesticWireToolStripMenuItem1";
-            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.domesticWireToolStripMenuItem1.Text = "&Open";
             // 
             // importBatchToolStripMenuItem
             // 
+            this.importBatchToolStripMenuItem.Enabled = false;
             this.importBatchToolStripMenuItem.Name = "importBatchToolStripMenuItem";
             this.importBatchToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.importBatchToolStripMenuItem.Text = "&Import Batch";
             // 
             // exportBatchToolStripMenuItem
             // 
+            this.exportBatchToolStripMenuItem.Enabled = false;
             this.exportBatchToolStripMenuItem.Name = "exportBatchToolStripMenuItem";
             this.exportBatchToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.exportBatchToolStripMenuItem.Text = "&Export Batch";
             // 
             // oFACCheckToolStripMenuItem
             // 
+            this.oFACCheckToolStripMenuItem.Enabled = false;
             this.oFACCheckToolStripMenuItem.Name = "oFACCheckToolStripMenuItem";
             this.oFACCheckToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.oFACCheckToolStripMenuItem.Text = "&OFAC Verification";
@@ -158,6 +162,7 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reportsToolStripMenuItem,
             this.historyToolStripMenuItem});
+            this.viewToolStripMenuItem.Enabled = false;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "&View";
@@ -165,13 +170,13 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reportsToolStripMenuItem.Text = "&Reports";
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.historyToolStripMenuItem.Text = "&History";
             // 
             // userOptionsToolStripMenuItem
@@ -186,12 +191,14 @@
             // 
             // changePasswordToolStripMenuItem
             // 
+            this.changePasswordToolStripMenuItem.Enabled = false;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.changePasswordToolStripMenuItem.Text = "&Change Password";
             // 
             // securityQuestionsToolStripMenuItem
             // 
+            this.securityQuestionsToolStripMenuItem.Enabled = false;
             this.securityQuestionsToolStripMenuItem.Name = "securityQuestionsToolStripMenuItem";
             this.securityQuestionsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.securityQuestionsToolStripMenuItem.Text = "Update &Security Questions";
@@ -201,12 +208,14 @@
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
             this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(213, 22);
             this.logoutToolStripMenuItem1.Text = "&Logout";
+            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
             this.aboutFWFCToolStripMenuItem});
+            this.helpToolStripMenuItem.Enabled = false;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -214,13 +223,13 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&View Help";
             // 
             // aboutFWFCToolStripMenuItem
             // 
             this.aboutFWFCToolStripMenuItem.Name = "aboutFWFCToolStripMenuItem";
-            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutFWFCToolStripMenuItem.Text = "&About FWFC";
             // 
             // openNewDomesticWireButton
@@ -231,22 +240,22 @@
             this.openNewDomesticWireButton.Name = "openNewDomesticWireButton";
             this.openNewDomesticWireButton.Size = new System.Drawing.Size(150, 100);
             this.openNewDomesticWireButton.TabIndex = 1;
-            this.openNewDomesticWireButton.Text = "DOMESTIC WIRE (BASIC)";
+            this.openNewDomesticWireButton.Text = "NEW FEDWIRE (BASIC)";
             this.openNewDomesticWireButton.UseVisualStyleBackColor = true;
             this.openNewDomesticWireButton.Click += new System.EventHandler(this.openNewDomesticWireButton_Click);
             // 
-            // openNewInternationalWireButton
+            // openNewComplexFedWireButton
             // 
-            this.openNewInternationalWireButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.openNewInternationalWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.openNewInternationalWireButton.Enabled = false;
-            this.openNewInternationalWireButton.FlatAppearance.BorderSize = 5;
-            this.openNewInternationalWireButton.Location = new System.Drawing.Point(187, 47);
-            this.openNewInternationalWireButton.Name = "openNewInternationalWireButton";
-            this.openNewInternationalWireButton.Size = new System.Drawing.Size(150, 100);
-            this.openNewInternationalWireButton.TabIndex = 2;
-            this.openNewInternationalWireButton.Text = "INTERNATIONAL WIRE (BASIC - TBD)";
-            this.openNewInternationalWireButton.UseVisualStyleBackColor = true;
+            this.openNewComplexFedWireButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.openNewComplexFedWireButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.openNewComplexFedWireButton.Enabled = false;
+            this.openNewComplexFedWireButton.FlatAppearance.BorderSize = 5;
+            this.openNewComplexFedWireButton.Location = new System.Drawing.Point(187, 47);
+            this.openNewComplexFedWireButton.Name = "openNewComplexFedWireButton";
+            this.openNewComplexFedWireButton.Size = new System.Drawing.Size(150, 100);
+            this.openNewComplexFedWireButton.TabIndex = 2;
+            this.openNewComplexFedWireButton.Text = "NEW FEDWIRE (COMPLEX)";
+            this.openNewComplexFedWireButton.UseVisualStyleBackColor = true;
             // 
             // openReportsButton
             // 
@@ -256,7 +265,7 @@
             this.openReportsButton.Name = "openReportsButton";
             this.openReportsButton.Size = new System.Drawing.Size(150, 100);
             this.openReportsButton.TabIndex = 3;
-            this.openReportsButton.Text = "REPORTS (TBD)";
+            this.openReportsButton.Text = "REPORTS";
             this.openReportsButton.UseVisualStyleBackColor = true;
             // 
             // openTemplateButton
@@ -267,33 +276,33 @@
             this.openTemplateButton.Name = "openTemplateButton";
             this.openTemplateButton.Size = new System.Drawing.Size(150, 100);
             this.openTemplateButton.TabIndex = 4;
-            this.openTemplateButton.Text = "HISTORY (TBD)";
+            this.openTemplateButton.Text = "HISTORY";
             this.openTemplateButton.UseVisualStyleBackColor = true;
             // 
-            // labelCurrentUserFNLN
+            // labelFNLNShow
             // 
-            this.labelCurrentUserFNLN.AutoSize = true;
-            this.labelCurrentUserFNLN.Location = new System.Drawing.Point(12, 31);
-            this.labelCurrentUserFNLN.Name = "labelCurrentUserFNLN";
-            this.labelCurrentUserFNLN.Size = new System.Drawing.Size(0, 13);
-            this.labelCurrentUserFNLN.TabIndex = 5;
+            this.labelFNLNShow.AutoSize = true;
+            this.labelFNLNShow.Location = new System.Drawing.Point(12, 31);
+            this.labelFNLNShow.Name = "labelFNLNShow";
+            this.labelFNLNShow.Size = new System.Drawing.Size(86, 13);
+            this.labelFNLNShow.TabIndex = 5;
+            this.labelFNLNShow.Text = "Current User: ";
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 315);
-            this.Controls.Add(this.labelCurrentUserFNLN);
+            this.Controls.Add(this.labelFNLNShow);
             this.Controls.Add(this.openTemplateButton);
             this.Controls.Add(this.openReportsButton);
-            this.Controls.Add(this.openNewInternationalWireButton);
+            this.Controls.Add(this.openNewComplexFedWireButton);
             this.Controls.Add(this.openNewDomesticWireButton);
             this.Controls.Add(this.mainMenuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainMenu";
             this.Text = "(FWFC) FedWire File Creator";
-            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -306,8 +315,8 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem domesticWireToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem internationalWireToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fedWireBasicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fedWireComplexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newFromTemplateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem domesticWireToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem internationalWireToolStripMenuItem1;
@@ -326,9 +335,9 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutFWFCToolStripMenuItem;
         private System.Windows.Forms.Button openNewDomesticWireButton;
-        private System.Windows.Forms.Button openNewInternationalWireButton;
+        private System.Windows.Forms.Button openNewComplexFedWireButton;
         private System.Windows.Forms.Button openReportsButton;
         private System.Windows.Forms.Button openTemplateButton;
-        private System.Windows.Forms.Label labelCurrentUserFNLN;
+        private System.Windows.Forms.Label labelFNLNShow;
     }
 }

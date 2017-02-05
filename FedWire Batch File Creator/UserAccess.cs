@@ -39,10 +39,11 @@ namespace FedWire_Batch_File_Creator
                 
                 if (!(logoutUser == null))
                 {
-                    Debug.WriteLine("Attempting to Log OutL " + logoutUser.UserName);
+                    Debug.WriteLine("Attempting to Log Out " + logoutUser.UserName);
                     logoutUser.UserStatus = "LOGOUT";
                 } 
                 context.SaveChanges();
+                ClearAllDBRelation();
             }
         }
 

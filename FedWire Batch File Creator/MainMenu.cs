@@ -17,17 +17,17 @@ namespace FedWire_Batch_File_Creator
 
         public MainMenu()
         {
-            ForceUserLogin();
             InitializeComponent();
-            ShowCurrentUserNamesLabel();
+            ForceUserLogin();
         }
 
-        private void ShowCurrentUserNamesLabel()
+        private void SetCurrentUserNamesLabel()
         {
-            if (CurrentUserSession.thisUser.UserName != null)
+            if (labelFNLNShow.Text != null)
             {
-                labelCurrentUserFNLN.Text = "Current User: " + CurrentUserSession.thisUser.First_Name + " " + CurrentUserSession.thisUser.Last_Name;
+                labelFNLNShow.Text = "Current User: " + CurrentUserSession.thisUser.First_Name + " " + CurrentUserSession.thisUser.Last_Name;
             }
+            Debug.WriteLine("Current User: " + CurrentUserSession.thisUser.First_Name + " " + CurrentUserSession.thisUser.Last_Name);
         }
 
         private void ForceUserLogin()
@@ -37,19 +37,24 @@ namespace FedWire_Batch_File_Creator
                 UserLogin tsULForm = new UserLogin();
                 tsULForm.ShowDialog();
                 CurrentUserSession = tsULForm.currentUserSession;
+                SetCurrentUserNamesLabel();
             }
+        }
+
+        private void CreateNewFedWireBasic()
+        {
+            DomesticWireForm newDomesticWire = new DomesticWireForm();
+            newDomesticWire.ShowDialog();
         }
 
         private void openNewDomesticWireButton_Click(object sender, EventArgs e)
         {
-            Form newDomesticWire = new DomesticWireForm();
-            newDomesticWire.ShowDialog();
+            CreateNewFedWireBasic();
         }
 
         private void domesticWireToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form newDomesticWire = new DomesticWireForm();
-            newDomesticWire.ShowDialog();
+            CreateNewFedWireBasic();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,9 +66,14 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
-        private void MainMenu_Load(object sender, EventArgs e)
+        private void logoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            DialogResult confirmLogOut = MessageBox.Show("Are you sure you want to Log Out?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (confirmLogOut.Equals(DialogResult.OK))
+            {
+                CurrentUserSession.LogOut();
+                ForceUserLogin();
+            }
         }
     }
 }
