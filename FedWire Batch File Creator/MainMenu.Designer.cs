@@ -55,6 +55,7 @@
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
             this.labelFNLNShow = new System.Windows.Forms.Label();
+            this.createEditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,13 +121,13 @@
             // internationalWireToolStripMenuItem1
             // 
             this.internationalWireToolStripMenuItem1.Name = "internationalWireToolStripMenuItem1";
-            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.internationalWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.internationalWireToolStripMenuItem1.Text = "&New";
             // 
             // domesticWireToolStripMenuItem1
             // 
             this.domesticWireToolStripMenuItem1.Name = "domesticWireToolStripMenuItem1";
-            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.domesticWireToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.domesticWireToolStripMenuItem1.Text = "&Open";
             // 
             // importBatchToolStripMenuItem
@@ -170,13 +171,13 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.reportsToolStripMenuItem.Text = "&Reports";
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.historyToolStripMenuItem.Text = "&History";
             // 
             // userOptionsToolStripMenuItem
@@ -184,6 +185,7 @@
             this.userOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
             this.securityQuestionsToolStripMenuItem,
+            this.createEditUserToolStripMenuItem,
             this.logoutToolStripMenuItem1});
             this.userOptionsToolStripMenuItem.Name = "userOptionsToolStripMenuItem";
             this.userOptionsToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
@@ -223,13 +225,13 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.aboutToolStripMenuItem.Text = "&View Help";
             // 
             // aboutFWFCToolStripMenuItem
             // 
             this.aboutFWFCToolStripMenuItem.Name = "aboutFWFCToolStripMenuItem";
-            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutFWFCToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.aboutFWFCToolStripMenuItem.Text = "&About FWFC";
             // 
             // openNewDomesticWireButton
@@ -288,6 +290,13 @@
             this.labelFNLNShow.TabIndex = 5;
             this.labelFNLNShow.Text = "Current User: ";
             // 
+            // createEditUserToolStripMenuItem
+            // 
+            this.createEditUserToolStripMenuItem.Name = "createEditUserToolStripMenuItem";
+            this.createEditUserToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.createEditUserToolStripMenuItem.Text = "Create/Edit User";
+            this.createEditUserToolStripMenuItem.Visible = false;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -339,5 +348,6 @@
         private System.Windows.Forms.Button openReportsButton;
         private System.Windows.Forms.Button openTemplateButton;
         private System.Windows.Forms.Label labelFNLNShow;
+        private System.Windows.Forms.ToolStripMenuItem createEditUserToolStripMenuItem;
     }
 }

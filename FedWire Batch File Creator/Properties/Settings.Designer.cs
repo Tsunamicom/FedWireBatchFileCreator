@@ -33,5 +33,16 @@ namespace FedWire_Batch_File_Creator.Properties {
                 return ((string)(this["FWFCdbConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\FWFCUsersdb.m" +
+            "df;Integrated Security=True")]
+        public string FWFCUsersdbConnectionStringUserEdit {
+            get {
+                return ((string)(this["FWFCUsersdbConnectionStringUserEdit"]));
+            }
+        }
     }
 }
