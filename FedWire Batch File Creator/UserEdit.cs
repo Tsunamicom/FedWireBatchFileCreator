@@ -41,6 +41,7 @@ namespace FedWire_Batch_File_Creator
 
         private void ClearAllBoxes()
         {
+            Debug.WriteLine("Clearing Form Data");
             textBoxFirstName.Text = null;
             textBoxLastName.Text = null;
             textBoxUserName.Text = null;
@@ -64,14 +65,6 @@ namespace FedWire_Batch_File_Creator
             checkBoxModifyTemplate.Checked = false;
             checkBoxVerifyTemplate.Checked = false;
             checkBoxDeleteTemplate.Checked = false;
-            
-            
-
-            
-            
-            
-
-            ;
         }
 
         private void userListComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -82,11 +75,15 @@ namespace FedWire_Batch_File_Creator
                 buttonEditUser.Enabled = true;
                 ClearAllBoxes();
                 GetTextBoxValuesSelectedUser();
+                ToggleUnLockAllFields(false);
             }
             else
             {
+                Debug.WriteLine(">>New User<< Selected");
                 buttonCreateNew.Enabled = true;
                 buttonEditUser.Enabled = false;
+                ClearAllBoxes();
+                ToggleUnLockAllFields(true);
             }
         }
 
@@ -145,6 +142,23 @@ namespace FedWire_Batch_File_Creator
                     Debug.WriteLine("User Not Found!");
                 }
             }
+        }
+
+        private void ToggleUnLockAllFields(bool isUnlocked)
+        {
+            groupBoxPermissions.Enabled = isUnlocked;
+            textBoxUserName.Enabled = isUnlocked;
+            textBoxFirstName.Enabled = isUnlocked;
+            textBoxLastName.Enabled = isUnlocked;
+            buttonChangePassword.Enabled = isUnlocked;
+            labelFirstName.Enabled = isUnlocked;
+            labelLastName.Enabled = isUnlocked;
+            labelUserName.Enabled = isUnlocked;
+        }
+
+        private void buttonEditUser_Click(object sender, EventArgs e)
+        {
+            ToggleUnLockAllFields(true);
         }
     }
 }
