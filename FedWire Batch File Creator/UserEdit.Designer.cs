@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.userListComboBox = new System.Windows.Forms.ComboBox();
             this.groupBoxUserDetails = new System.Windows.Forms.GroupBox();
             this.pictureBoxUserImage = new System.Windows.Forms.PictureBox();
@@ -57,6 +58,7 @@
             this.checkBoxVerifyBatch = new System.Windows.Forms.CheckBox();
             this.checkBoxCreateNewBatch = new System.Windows.Forms.CheckBox();
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
+            this.toolTipTextBoxes = new System.Windows.Forms.ToolTip(this.components);
             this.groupBoxUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserImage)).BeginInit();
             this.groupBoxPermissions.SuspendLayout();
@@ -96,6 +98,7 @@
             // 
             // pictureBoxUserImage
             // 
+            this.pictureBoxUserImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBoxUserImage.Image = global::FedWire_Batch_File_Creator.Properties.Resources.user_login_icon_14;
             this.pictureBoxUserImage.Location = new System.Drawing.Point(21, 60);
             this.pictureBoxUserImage.Name = "pictureBoxUserImage";
@@ -129,7 +132,7 @@
             this.buttonUserModifyMain.Name = "buttonUserModifyMain";
             this.buttonUserModifyMain.Size = new System.Drawing.Size(124, 41);
             this.buttonUserModifyMain.TabIndex = 1;
-            this.buttonUserModifyMain.Text = "Edit User";
+            this.buttonUserModifyMain.Text = "Save New User";
             this.buttonUserModifyMain.UseVisualStyleBackColor = true;
             this.buttonUserModifyMain.Click += new System.EventHandler(this.buttonUserModifyMain_Click);
             // 
@@ -381,6 +384,11 @@
             this.checkBoxAdmin.TabIndex = 0;
             this.checkBoxAdmin.Text = "ADMIN";
             this.checkBoxAdmin.UseVisualStyleBackColor = true;
+            this.checkBoxAdmin.CheckedChanged += new System.EventHandler(this.checkBoxAdmin_CheckedChanged);
+            // 
+            // toolTipTextBoxes
+            // 
+            this.toolTipTextBoxes.IsBalloon = true;
             // 
             // UserEdit
             // 
@@ -432,5 +440,6 @@
         private System.Windows.Forms.CheckBox checkBoxVerifyBatch;
         private System.Windows.Forms.CheckBox checkBoxCreateNewBatch;
         private System.Windows.Forms.CheckBox checkBoxAdmin;
+        private System.Windows.Forms.ToolTip toolTipTextBoxes;
     }
 }

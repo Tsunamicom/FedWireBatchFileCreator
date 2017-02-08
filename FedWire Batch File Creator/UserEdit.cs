@@ -52,21 +52,9 @@ namespace FedWire_Batch_File_Creator
 
             checkBoxAdmin.Checked = false;
 
-            checkBoxCreateNewBatch.Checked = false;
-            checkBoxModifyBatch.Checked = false;
-            checkBoxVerifyBatch.Checked = false;
-            checkBoxDeleteBatch.Checked = false;
-            checkBoxExportBatch.Checked = false;
-
-            checkBoxCreateNewWire.Checked = false;
-            checkBoxModifyWire.Checked = false;
-            checkBoxVerifyWire.Checked = false;
-            checkBoxDeleteWire.Checked = false;
-
-            checkBoxNewTemplate.Checked = false;
-            checkBoxModifyTemplate.Checked = false;
-            checkBoxVerifyTemplate.Checked = false;
-            checkBoxDeleteTemplate.Checked = false;
+            ToggleEnableBatchCheckBoxes(false);
+            ToggleEnableWireCheckBoxes(false);
+            ToggleEnableTemplateCheckBoxes(false);
         }
 
         private void AllowEditExistingUser(bool canEdit)
@@ -78,27 +66,36 @@ namespace FedWire_Batch_File_Creator
 
         private void userListComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (buttonUserModifyMain.Text != "Edit User")
-            {
-                buttonUserModifyMain.Text = "Edit User";
-            }
-
+            
             if (userListComboBox.SelectedValue.ToString() == ">>New User<<")
             {
+                if (buttonUserModifyMain.Text != "Save New User")
+                {
+                    buttonUserModifyMain.Text = "Save New User";
+                }
+
                 Debug.WriteLine(">>New User<< Selected");
 
                 buttonUserModifyMain.Enabled = false;
                 AllowEditExistingUser(false);
+
                 textBoxUserName.Enabled = true;
                 labelUserName.Enabled = true;
             }
             else
             {
+                if (buttonUserModifyMain.Text != "Edit User")
+                {
+                    buttonUserModifyMain.Text = "Edit User";
+                }
+
                 buttonUserModifyMain.Enabled = true;
                 AllowEditExistingUser(true);
+
+                GetTextBoxValuesSelectedUser();
+                
                 textBoxUserName.Enabled = false;
                 labelUserName.Enabled = false;
-                GetTextBoxValuesSelectedUser();
             }
         }
 
@@ -213,6 +210,41 @@ namespace FedWire_Batch_File_Creator
             ExistingUserFocus.thisUserRole.ModifyWire = checkBoxVerifyWire.Checked;
             ExistingUserFocus.thisUserRole.VerifyWire = checkBoxVerifyWire.Checked;
             ExistingUserFocus.thisUserRole.DeleteWire = checkBoxDeleteWire.Checked;
+        }
+
+        private void ToggleEnableBatchCheckBoxes(bool isEnabled)
+        {
+            checkBoxCreateNewBatch.Checked = isEnabled;
+            checkBoxModifyBatch.Checked = isEnabled;
+            checkBoxVerifyBatch.Checked = isEnabled;
+            checkBoxDeleteBatch.Checked = isEnabled;
+            checkBoxExportBatch.Checked = isEnabled;
+        }
+
+        private void ToggleEnableWireCheckBoxes(bool isEnabled)
+        {
+            checkBoxCreateNewWire.Checked = isEnabled;
+            checkBoxModifyWire.Checked = isEnabled;
+            checkBoxVerifyWire.Checked = isEnabled;
+            checkBoxDeleteWire.Checked = isEnabled;
+        }
+
+        private void ToggleEnableTemplateCheckBoxes(bool isEnabled)
+        {
+            checkBoxNewTemplate.Checked = isEnabled;
+            checkBoxModifyTemplate.Checked = isEnabled;
+            checkBoxVerifyTemplate.Checked = isEnabled;
+            checkBoxDeleteTemplate.Checked = isEnabled;
+        }
+
+        private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAdmin.Checked == true)
+            {
+                ToggleEnableBatchCheckBoxes(true);
+                ToggleEnableWireCheckBoxes(true);
+                ToggleEnableTemplateCheckBoxes(true);
+            }
         }
     }
 }

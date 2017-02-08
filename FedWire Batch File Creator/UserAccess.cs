@@ -130,7 +130,20 @@ namespace FedWire_Batch_File_Creator
 
         public void UpdatePassword()
         {
-            // TBD
+            using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+            {
+                var updatePasswordFocusUser = context.Users.Where(c => c.UserID == thisUser.UserID).SingleOrDefault();
+                if (updatePasswordFocusUser != null)
+                {
+                    Debug.WriteLine("User Found!  Updating Password.");
+                    updatePasswordFocusUser.Password = thisUser.Password;
+                }
+                else
+                {
+                    Debug.WriteLine("User Not Found in DB!  Unable to update Password.");
+                }
+                context.SaveChanges();
+            }
         }
 
         public void LogOut()
