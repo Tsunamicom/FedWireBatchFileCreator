@@ -78,6 +78,61 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
+        private void AssociateRoleInfo(Role currentRole)
+        {
+            Debug.WriteLine("User Roles Found:  Updating DB with New Roles");
+            currentRole.CreateNewBatch = thisUserRole.CreateNewBatch;
+            currentRole.ModifyBatch = thisUserRole.ModifyBatch;
+            currentRole.VerifyBatch = thisUserRole.VerifyBatch;
+            currentRole.DeleteBatch = thisUserRole.DeleteBatch;
+            currentRole.ExportBatch = thisUserRole.ExportBatch;
+
+            currentRole.CreateNewTemplate = thisUserRole.CreateNewTemplate;
+            currentRole.ModifyTemplate = thisUserRole.ModifyTemplate;
+            currentRole.VerifyTemplate = thisUserRole.VerifyTemplate;
+            currentRole.DeleteTemplate = thisUserRole.DeleteTemplate;
+
+            currentRole.CreateNewWire = thisUserRole.CreateNewWire;
+            currentRole.ModifyWire = thisUserRole.ModifyWire;
+            currentRole.VerifyWire = thisUserRole.VerifyWire;
+            currentRole.DeleteWire = thisUserRole.DeleteWire;
+        }
+
+        public void UpdateUserInfo()
+        {
+            using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+            {
+                User updatingUser = context.Users.Where(c => c.UserID == thisUser.UserID).SingleOrDefault();
+                if (updatingUser != null)
+                {
+                    Debug.WriteLine("User Found:  Updating DB with Basic Info");
+                    updatingUser.ModifiedDateTime = DateTime.Now;
+                    updatingUser.UserName = thisUser.UserName;
+                    updatingUser.First_Name = thisUser.First_Name;
+                    updatingUser.Last_Name = thisUser.Last_Name;
+                    updatingUser.isAdmin = thisUser.isAdmin;
+
+                    Role updatingUserRole = context.Roles.Where(c => c.FK_UserID == updatingUser.UserID).SingleOrDefault();
+                    if (updatingUserRole != null)
+                    {
+                        AssociateRoleInfo(updatingUserRole);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("No Existing Roles Found!  Creating New Role record in DB.");
+                        context.Roles.Add(thisUserRole);
+                    }
+
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdatePassword()
+        {
+            // TBD
+        }
+
         public void LogOut()
         {
             Debug.WriteLine("LogOut called.");

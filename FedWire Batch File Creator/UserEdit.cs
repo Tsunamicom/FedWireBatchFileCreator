@@ -14,6 +14,8 @@ namespace FedWire_Batch_File_Creator
     public partial class UserEdit : Form
     {
         List<string> UserList = new List<string>();
+        private bool CanEditExistingUser;
+        private UserAccess ExistingUserFocus = new UserAccess();
 
         public UserEdit()
         {
@@ -67,23 +69,36 @@ namespace FedWire_Batch_File_Creator
             checkBoxDeleteTemplate.Checked = false;
         }
 
+        private void AllowEditExistingUser(bool canEdit)
+        {
+            ClearAllBoxes();
+            ToggleUnLockAllFields(!canEdit);
+            CanEditExistingUser = canEdit;
+        }
+
         private void userListComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (userListComboBox.SelectedValue.ToString() != ">>New User<<")
+            if (buttonUserModifyMain.Text != "Edit User")
             {
-                buttonCreateNew.Enabled = false;
-                buttonEditUser.Enabled = true;
-                ClearAllBoxes();
-                GetTextBoxValuesSelectedUser();
-                ToggleUnLockAllFields(false);
+                buttonUserModifyMain.Text = "Edit User";
+            }
+
+            if (userListComboBox.SelectedValue.ToString() == ">>New User<<")
+            {
+                Debug.WriteLine(">>New User<< Selected");
+
+                buttonUserModifyMain.Enabled = false;
+                AllowEditExistingUser(false);
+                textBoxUserName.Enabled = true;
+                labelUserName.Enabled = true;
             }
             else
             {
-                Debug.WriteLine(">>New User<< Selected");
-                buttonCreateNew.Enabled = true;
-                buttonEditUser.Enabled = false;
-                ClearAllBoxes();
-                ToggleUnLockAllFields(true);
+                buttonUserModifyMain.Enabled = true;
+                AllowEditExistingUser(true);
+                textBoxUserName.Enabled = false;
+                labelUserName.Enabled = false;
+                GetTextBoxValuesSelectedUser();
             }
         }
 
@@ -120,17 +135,19 @@ namespace FedWire_Batch_File_Creator
             Debug.WriteLine("Looking up User in DB: " + userName);
             using(FWFCUsersdbEntities context = new FWFCUsersdbEntities())
             {
-                var selectedUser = context.Users.Where(c => (c.First_Name + " " + c.Last_Name) == userName).FirstOrDefault();
+                var selectedUser = context.Users.Where(c => (c.First_Name + " " + c.Last_Name) == userName).SingleOrDefault();
                 if (selectedUser != null)
                 {
                     Debug.WriteLine("User Found!");
                     AssociateSelectedUserMain(selectedUser);
+                    ExistingUserFocus.thisUser = selectedUser;
 
-                    var selectedUserRoles = context.Roles.Where(c => c.FK_UserID == selectedUser.UserID).FirstOrDefault();
+                    var selectedUserRoles = context.Roles.Where(c => c.FK_UserID == selectedUser.UserID).SingleOrDefault();
                     if (selectedUserRoles != null)
                     {
                         Debug.WriteLine("User Roles Found!");
                         AssociateSelectedUserRole(selectedUserRoles);
+                        ExistingUserFocus.thisUserRole = selectedUserRoles;
                     }
                     else
                     {
@@ -147,18 +164,55 @@ namespace FedWire_Batch_File_Creator
         private void ToggleUnLockAllFields(bool isUnlocked)
         {
             groupBoxPermissions.Enabled = isUnlocked;
-            textBoxUserName.Enabled = isUnlocked;
             textBoxFirstName.Enabled = isUnlocked;
             textBoxLastName.Enabled = isUnlocked;
             buttonChangePassword.Enabled = isUnlocked;
             labelFirstName.Enabled = isUnlocked;
             labelLastName.Enabled = isUnlocked;
-            labelUserName.Enabled = isUnlocked;
         }
 
-        private void buttonEditUser_Click(object sender, EventArgs e)
+        private void buttonUserModifyMain_Click(object sender, EventArgs e)
         {
-            ToggleUnLockAllFields(true);
+            if (buttonUserModifyMain.Text == "Save")
+            {
+                AssociateFieldsExistingUserFocus();
+                ExistingUserFocus.UpdateUserInfo();
+                userListComboBox.DataSource = GetUserNamesForCB();
+            }
+            if (CanEditExistingUser == true)
+            {
+                ToggleUnLockAllFields(true);
+                buttonUserModifyMain.Text = "Save";
+            }
+            else if (CanEditExistingUser == false)
+            {
+                
+            }
+            
+        }
+
+        private void AssociateFieldsExistingUserFocus()
+        {
+            ExistingUserFocus.thisUser.First_Name = textBoxFirstName.Text;
+            ExistingUserFocus.thisUser.Last_Name = textBoxLastName.Text;
+
+            ExistingUserFocus.thisUser.isAdmin = checkBoxAdmin.Checked;
+
+            ExistingUserFocus.thisUserRole.CreateNewBatch = checkBoxCreateNewBatch.Checked;
+            ExistingUserFocus.thisUserRole.ModifyBatch = checkBoxModifyBatch.Checked;
+            ExistingUserFocus.thisUserRole.VerifyBatch = checkBoxVerifyBatch.Checked;
+            ExistingUserFocus.thisUserRole.DeleteBatch = checkBoxDeleteBatch.Checked;
+            ExistingUserFocus.thisUserRole.ExportBatch = checkBoxExportBatch.Checked;
+
+            ExistingUserFocus.thisUserRole.CreateNewTemplate = checkBoxNewTemplate.Checked;
+            ExistingUserFocus.thisUserRole.ModifyTemplate = checkBoxVerifyTemplate.Checked;
+            ExistingUserFocus.thisUserRole.VerifyTemplate = checkBoxVerifyTemplate.Checked;
+            ExistingUserFocus.thisUserRole.DeleteTemplate = checkBoxDeleteTemplate.Checked;
+
+            ExistingUserFocus.thisUserRole.CreateNewWire = checkBoxCreateNewWire.Checked;
+            ExistingUserFocus.thisUserRole.ModifyWire = checkBoxVerifyWire.Checked;
+            ExistingUserFocus.thisUserRole.VerifyWire = checkBoxVerifyWire.Checked;
+            ExistingUserFocus.thisUserRole.DeleteWire = checkBoxDeleteWire.Checked;
         }
     }
 }

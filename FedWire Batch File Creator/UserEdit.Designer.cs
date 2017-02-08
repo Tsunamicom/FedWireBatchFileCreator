@@ -33,8 +33,7 @@
             this.pictureBoxUserImage = new System.Windows.Forms.PictureBox();
             this.labelPasswordChangeInstruct = new System.Windows.Forms.Label();
             this.buttonChangePassword = new System.Windows.Forms.Button();
-            this.buttonCreateNew = new System.Windows.Forms.Button();
-            this.buttonEditUser = new System.Windows.Forms.Button();
+            this.buttonUserModifyMain = new System.Windows.Forms.Button();
             this.textBoxPassword2 = new System.Windows.Forms.TextBox();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.labelUserName = new System.Windows.Forms.Label();
@@ -78,8 +77,7 @@
             this.groupBoxUserDetails.Controls.Add(this.pictureBoxUserImage);
             this.groupBoxUserDetails.Controls.Add(this.labelPasswordChangeInstruct);
             this.groupBoxUserDetails.Controls.Add(this.buttonChangePassword);
-            this.groupBoxUserDetails.Controls.Add(this.buttonCreateNew);
-            this.groupBoxUserDetails.Controls.Add(this.buttonEditUser);
+            this.groupBoxUserDetails.Controls.Add(this.buttonUserModifyMain);
             this.groupBoxUserDetails.Controls.Add(this.textBoxPassword2);
             this.groupBoxUserDetails.Controls.Add(this.textBoxUserName);
             this.groupBoxUserDetails.Controls.Add(this.labelUserName);
@@ -117,37 +115,28 @@
             // buttonChangePassword
             // 
             this.buttonChangePassword.Enabled = false;
-            this.buttonChangePassword.Location = new System.Drawing.Point(235, 228);
+            this.buttonChangePassword.Location = new System.Drawing.Point(235, 178);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.Size = new System.Drawing.Size(100, 42);
             this.buttonChangePassword.TabIndex = 6;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
             // 
-            // buttonCreateNew
+            // buttonUserModifyMain
             // 
-            this.buttonCreateNew.Location = new System.Drawing.Point(390, 19);
-            this.buttonCreateNew.Name = "buttonCreateNew";
-            this.buttonCreateNew.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreateNew.TabIndex = 2;
-            this.buttonCreateNew.Text = "Create New";
-            this.buttonCreateNew.UseVisualStyleBackColor = true;
-            // 
-            // buttonEditUser
-            // 
-            this.buttonEditUser.Enabled = false;
-            this.buttonEditUser.Location = new System.Drawing.Point(284, 19);
-            this.buttonEditUser.Name = "buttonEditUser";
-            this.buttonEditUser.Size = new System.Drawing.Size(75, 23);
-            this.buttonEditUser.TabIndex = 1;
-            this.buttonEditUser.Text = "Edit User";
-            this.buttonEditUser.UseVisualStyleBackColor = true;
-            this.buttonEditUser.Click += new System.EventHandler(this.buttonEditUser_Click);
+            this.buttonUserModifyMain.Enabled = false;
+            this.buttonUserModifyMain.Location = new System.Drawing.Point(341, 19);
+            this.buttonUserModifyMain.Name = "buttonUserModifyMain";
+            this.buttonUserModifyMain.Size = new System.Drawing.Size(124, 41);
+            this.buttonUserModifyMain.TabIndex = 1;
+            this.buttonUserModifyMain.Text = "Edit User";
+            this.buttonUserModifyMain.UseVisualStyleBackColor = true;
+            this.buttonUserModifyMain.Click += new System.EventHandler(this.buttonUserModifyMain_Click);
             // 
             // textBoxPassword2
             // 
             this.textBoxPassword2.Enabled = false;
-            this.textBoxPassword2.Location = new System.Drawing.Point(341, 251);
+            this.textBoxPassword2.Location = new System.Drawing.Point(341, 201);
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword2.TabIndex = 8;
@@ -173,7 +162,7 @@
             // textBoxPassword1
             // 
             this.textBoxPassword1.Enabled = false;
-            this.textBoxPassword1.Location = new System.Drawing.Point(341, 225);
+            this.textBoxPassword1.Location = new System.Drawing.Point(341, 175);
             this.textBoxPassword1.Name = "textBoxPassword1";
             this.textBoxPassword1.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword1.TabIndex = 7;
@@ -181,7 +170,7 @@
             // textBoxLastName
             // 
             this.textBoxLastName.Enabled = false;
-            this.textBoxLastName.Location = new System.Drawing.Point(341, 165);
+            this.textBoxLastName.Location = new System.Drawing.Point(341, 133);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(124, 20);
             this.textBoxLastName.TabIndex = 5;
@@ -190,7 +179,7 @@
             // 
             this.labelLastName.AutoSize = true;
             this.labelLastName.Enabled = false;
-            this.labelLastName.Location = new System.Drawing.Point(275, 168);
+            this.labelLastName.Location = new System.Drawing.Point(275, 136);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(61, 13);
             this.labelLastName.TabIndex = 3;
@@ -199,7 +188,7 @@
             // textBoxFirstName
             // 
             this.textBoxFirstName.Enabled = false;
-            this.textBoxFirstName.Location = new System.Drawing.Point(341, 139);
+            this.textBoxFirstName.Location = new System.Drawing.Point(341, 107);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(124, 20);
             this.textBoxFirstName.TabIndex = 4;
@@ -208,7 +197,7 @@
             // 
             this.labelFirstName.AutoSize = true;
             this.labelFirstName.Enabled = false;
-            this.labelFirstName.Location = new System.Drawing.Point(275, 142);
+            this.labelFirstName.Location = new System.Drawing.Point(275, 110);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(60, 13);
             this.labelFirstName.TabIndex = 1;
@@ -426,8 +415,7 @@
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Button buttonChangePassword;
-        private System.Windows.Forms.Button buttonCreateNew;
-        private System.Windows.Forms.Button buttonEditUser;
+        private System.Windows.Forms.Button buttonUserModifyMain;
         private System.Windows.Forms.Label labelPasswordChangeInstruct;
         private System.Windows.Forms.PictureBox pictureBoxUserImage;
         private System.Windows.Forms.CheckBox checkBoxDeleteTemplate;
