@@ -212,6 +212,13 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
+        private bool ValidatePasswordRequirements(string password)
+        {
+            bool isValid = false;
+            // Logic will be entered here to validate password requirements (length, characters, etc).
+            return isValid;
+        }
+
         private bool VerifyTextBoxesAreNotEmpty()
         {
             bool emptyBoxesFound = false;
@@ -241,6 +248,7 @@ namespace FedWire_Batch_File_Creator
                 textBoxPassword1.Enabled = true;
                 textBoxPassword2.Enabled = true;
                 buttonChangePassword.Text = "Save";
+                buttonUserModifyMain.Enabled = false;
             }
             else
             {
@@ -253,6 +261,7 @@ namespace FedWire_Batch_File_Creator
                         buttonChangePassword.Text = "Change Password";
                         textBoxPassword1.Enabled = false;
                         textBoxPassword2.Enabled = false;
+                        TryEnableUserModifyMainButton();
                     }
                     else
                     {
@@ -278,6 +287,7 @@ namespace FedWire_Batch_File_Creator
                 UserFocus.UpdateUserInfo();
                 ResetUserListComboBoxData();
             }
+
             if (CanEditExistingUser == true)
             {
                 ToggleUnLockAllFields(true);
@@ -286,16 +296,21 @@ namespace FedWire_Batch_File_Creator
             }
             else if (CanEditExistingUser == false)
             {
-                //ResetUserListComboBoxData();
-                if (textBoxUserName.Text != "" &&
-                    textBoxFirstName.Text != "" &&
-                    textBoxLastName.Text != "" &&
+                if (VerifyTextBoxesAreNotEmpty() &&
                     userListComboBox.SelectedValue.ToString() == ">>New User<<")
                 {
-                    Debug.WriteLine("FORM:  Saving New User to DB");
-                    AssociateFieldsUserFocus();
-                    UserFocus.SaveNewUserAccessToDB();
-                    ResetUserListComboBoxData();
+                    var result = MessageBox.Show("Add " + textBoxUserName.Text + " to Users?", "Confirm Add User", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        Debug.WriteLine("FORM:  Saving New User to DB");
+                        AssociateFieldsUserFocus();
+                        UserFocus.SaveNewUserAccessToDB();
+                        ResetUserListComboBoxData();
+                    }
+                    else
+                    {
+                        textBoxUserName.Focus();
+                    }
                 }
                 else
                 {
@@ -353,16 +368,6 @@ namespace FedWire_Batch_File_Creator
         }
 
         private void textBoxLastName_Leave(object sender, EventArgs e)
-        {
-            TryEnableUserModifyMainButton();
-        }
-
-        private void textBoxPassword1_Leave(object sender, EventArgs e)
-        {
-            TryEnableUserModifyMainButton();
-        }
-
-        private void textBoxPassword2_Leave(object sender, EventArgs e)
         {
             TryEnableUserModifyMainButton();
         }

@@ -145,7 +145,6 @@
             this.textBoxPassword2.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword2.TabIndex = 8;
             this.textBoxPassword2.UseSystemPasswordChar = true;
-            this.textBoxPassword2.Leave += new System.EventHandler(this.textBoxPassword2_Leave);
             // 
             // textBoxUserName
             // 
@@ -174,7 +173,6 @@
             this.textBoxPassword1.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword1.TabIndex = 7;
             this.textBoxPassword1.UseSystemPasswordChar = true;
-            this.textBoxPassword1.Leave += new System.EventHandler(this.textBoxPassword1_Leave);
             // 
             // textBoxLastName
             // 
