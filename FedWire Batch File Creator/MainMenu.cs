@@ -69,11 +69,7 @@ namespace FedWire_Batch_File_Creator
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Confirm Exit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if(confirmExit.Equals(DialogResult.OK))
-            {
-                Application.Exit();
-            }
+            Application.Exit();
         }
 
         private void logoutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -90,6 +86,19 @@ namespace FedWire_Batch_File_Creator
         {
             UserEdit newUserEdit = new UserEdit();
             newUserEdit.ShowDialog();
+        }
+
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to Exit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (confirmExit.Equals(DialogResult.OK))
+            {
+                CurrentUserSession.LogOut();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

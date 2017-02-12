@@ -322,6 +322,7 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainMenu";
             this.Text = "(FWFC) FedWire File Creator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
