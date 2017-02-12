@@ -124,6 +124,7 @@
             this.buttonChangePassword.TabIndex = 6;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
+            this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
             // 
             // buttonUserModifyMain
             // 
@@ -143,6 +144,8 @@
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword2.TabIndex = 8;
+            this.textBoxPassword2.UseSystemPasswordChar = true;
+            this.textBoxPassword2.Leave += new System.EventHandler(this.textBoxPassword2_Leave);
             // 
             // textBoxUserName
             // 
@@ -151,6 +154,7 @@
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(124, 20);
             this.textBoxUserName.TabIndex = 3;
+            this.textBoxUserName.Leave += new System.EventHandler(this.textBoxUserName_Leave);
             // 
             // labelUserName
             // 
@@ -169,6 +173,8 @@
             this.textBoxPassword1.Name = "textBoxPassword1";
             this.textBoxPassword1.Size = new System.Drawing.Size(124, 20);
             this.textBoxPassword1.TabIndex = 7;
+            this.textBoxPassword1.UseSystemPasswordChar = true;
+            this.textBoxPassword1.Leave += new System.EventHandler(this.textBoxPassword1_Leave);
             // 
             // textBoxLastName
             // 
@@ -177,6 +183,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(124, 20);
             this.textBoxLastName.TabIndex = 5;
+            this.textBoxLastName.Leave += new System.EventHandler(this.textBoxLastName_Leave);
             // 
             // labelLastName
             // 
@@ -195,6 +202,7 @@
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(124, 20);
             this.textBoxFirstName.TabIndex = 4;
+            this.textBoxFirstName.Leave += new System.EventHandler(this.textBoxFirstName_Leave);
             // 
             // labelFirstName
             // 

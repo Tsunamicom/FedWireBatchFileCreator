@@ -15,37 +15,15 @@ namespace FedWire_Batch_File_Creator
     {
         List<string> UserList = new List<string>();
         private bool CanEditExistingUser;
-        private UserAccess ExistingUserFocus = new UserAccess();
+        private UserAccess UserFocus = new UserAccess();
 
         public UserEdit()
         {
             InitializeComponent();
-            userListComboBox.DataSource = GetUserNamesForCB(ExistingUserFocus);
+            ResetUserListComboBoxData();
         }
 
-        private List<string> GetUserNamesForCB(UserAccess existingUserFocus)
-        {
-            List<string> applicableUserNames = new List<string>();
-            applicableUserNames.Add(">>New User<<");
-            applicableUserNames.AddRange(existingUserFocus.GetUserNames());
-            return applicableUserNames;
-        }
-
-        private void ClearAllBoxes()
-        {
-            Debug.WriteLine("Clearing Form Data");
-            textBoxFirstName.Text = null;
-            textBoxLastName.Text = null;
-            textBoxUserName.Text = null;
-            textBoxPassword1.Text = null;
-            textBoxPassword2.Text = null;
-
-            checkBoxAdmin.Checked = false;
-
-            ToggleEnableBatchCheckBoxes(false);
-            ToggleEnableWireCheckBoxes(false);
-            ToggleEnableTemplateCheckBoxes(false);
-        }
+        // ************************ START - HELPER METHODS ************************
 
         private void AllowEditExistingUser(bool canEdit)
         {
@@ -54,39 +32,43 @@ namespace FedWire_Batch_File_Creator
             CanEditExistingUser = canEdit;
         }
 
-        private void userListComboBox_SelectedValueChanged(object sender, EventArgs e)
+        private void AssociateFieldsUserFocus()
         {
-            
-            if (userListComboBox.SelectedValue.ToString() == ">>New User<<")
-            {
-                if (buttonUserModifyMain.Text != "Save New User")
-                {
-                    buttonUserModifyMain.Text = "Save New User";
-                }
+            UserFocus.thisUser.UserName = textBoxUserName.Text;
+            UserFocus.thisUser.First_Name = textBoxFirstName.Text;
+            UserFocus.thisUser.Last_Name = textBoxLastName.Text;
 
-                Debug.WriteLine(">>New User<< Selected");
+            UserFocus.thisUser.Password = textBoxPassword1.Text;
 
-                buttonUserModifyMain.Enabled = false;
-                AllowEditExistingUser(false);
+            UserFocus.thisUser.isAdmin = checkBoxAdmin.Checked;
 
-                textBoxUserName.Enabled = true;
-                labelUserName.Enabled = true;
-            }
-            else
-            {
-                if (buttonUserModifyMain.Text != "Edit User")
-                {
-                    buttonUserModifyMain.Text = "Edit User";
-                }
+            UserFocus.thisUserRole.CreateNewBatch = checkBoxCreateNewBatch.Checked;
+            UserFocus.thisUserRole.ModifyBatch = checkBoxModifyBatch.Checked;
+            UserFocus.thisUserRole.VerifyBatch = checkBoxVerifyBatch.Checked;
+            UserFocus.thisUserRole.DeleteBatch = checkBoxDeleteBatch.Checked;
+            UserFocus.thisUserRole.ExportBatch = checkBoxExportBatch.Checked;
 
-                buttonUserModifyMain.Enabled = true;
-                AllowEditExistingUser(true);
+            UserFocus.thisUserRole.CreateNewTemplate = checkBoxNewTemplate.Checked;
+            UserFocus.thisUserRole.ModifyTemplate = checkBoxVerifyTemplate.Checked;
+            UserFocus.thisUserRole.VerifyTemplate = checkBoxVerifyTemplate.Checked;
+            UserFocus.thisUserRole.DeleteTemplate = checkBoxDeleteTemplate.Checked;
 
-                GetTextBoxValuesSelectedUser();
-                
-                textBoxUserName.Enabled = false;
-                labelUserName.Enabled = false;
-            }
+            UserFocus.thisUserRole.CreateNewWire = checkBoxCreateNewWire.Checked;
+            UserFocus.thisUserRole.ModifyWire = checkBoxVerifyWire.Checked;
+            UserFocus.thisUserRole.VerifyWire = checkBoxVerifyWire.Checked;
+            UserFocus.thisUserRole.DeleteWire = checkBoxDeleteWire.Checked;
+        }
+
+        private void AssociateSelectedUserMain(User selectedUser)
+        {
+            textBoxFirstName.Text = selectedUser.First_Name;
+            textBoxLastName.Text = selectedUser.Last_Name;
+            textBoxUserName.Text = selectedUser.UserName;
+
+            textBoxPassword1.Text = selectedUser.Password;
+            textBoxPassword2.Text = selectedUser.Password;
+
+            checkBoxAdmin.Checked = selectedUser.isAdmin;
         }
 
         private void AssociateSelectedUserRole(Role selectedUserRoles)
@@ -108,98 +90,79 @@ namespace FedWire_Batch_File_Creator
             checkBoxDeleteTemplate.Checked = selectedUserRoles.DeleteTemplate;
         }
 
-        private void AssociateSelectedUserMain(User selectedUser)
+        private void ClearAllBoxes()
         {
-            textBoxFirstName.Text = selectedUser.First_Name;
-            textBoxLastName.Text = selectedUser.Last_Name;
-            textBoxUserName.Text = selectedUser.UserName;
-            checkBoxAdmin.Checked = selectedUser.isAdmin;
+            Debug.WriteLine("FORM:  Clearing Form Data");
+            textBoxFirstName.Text = null;
+            textBoxLastName.Text = null;
+            textBoxUserName.Text = null;
+            textBoxPassword1.Text = null;
+            textBoxPassword2.Text = null;
+
+            checkBoxAdmin.Checked = false;
+
+            ToggleEnableBatchCheckBoxes(false);
+            ToggleEnableWireCheckBoxes(false);
+            ToggleEnableTemplateCheckBoxes(false);
         }
 
         private void GetTextBoxValuesSelectedUser()
         {
             string userName = userListComboBox.SelectedValue.ToString();
-            Debug.WriteLine("Looking up User in DB: " + userName);
-            using(FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+            Debug.WriteLine("FORM:  Looking up User in DB: " + userName);
+            using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
             {
                 var selectedUser = context.Users.Where(c => (c.UserID + ": " + c.First_Name + " " + c.Last_Name) == userName).SingleOrDefault();
                 if (selectedUser != null)
                 {
-                    Debug.WriteLine("User Found!");
+                    Debug.WriteLine("FORM:  User Found!");
                     AssociateSelectedUserMain(selectedUser);
-                    ExistingUserFocus.thisUser = selectedUser;
+                    UserFocus.thisUser = selectedUser;
 
                     var selectedUserRoles = context.Roles.Where(c => c.FK_UserID == selectedUser.UserID).SingleOrDefault();
                     if (selectedUserRoles != null)
                     {
-                        Debug.WriteLine("User Roles Found!");
+                        Debug.WriteLine("FORM:  User Roles Found!");
                         AssociateSelectedUserRole(selectedUserRoles);
-                        ExistingUserFocus.thisUserRole = selectedUserRoles;
+                        UserFocus.thisUserRole = selectedUserRoles;
                     }
                     else
                     {
-                        Debug.WriteLine("User Roles Not Found!");
+                        Debug.WriteLine("FORM:  User Roles Not Found!");
                     }
                 }
                 else
                 {
-                    Debug.WriteLine("User Not Found!");
+                    Debug.WriteLine("FORM:  User Not Found!");
                 }
             }
         }
 
-        private void ToggleUnLockAllFields(bool isUnlocked)
+        private List<string> GetUserNamesForCB(UserAccess existingUserFocus)
         {
-            groupBoxPermissions.Enabled = isUnlocked;
-            textBoxFirstName.Enabled = isUnlocked;
-            textBoxLastName.Enabled = isUnlocked;
-            buttonChangePassword.Enabled = isUnlocked;
-            labelFirstName.Enabled = isUnlocked;
-            labelLastName.Enabled = isUnlocked;
+            List<string> applicableUserNames = new List<string>();
+            applicableUserNames.Add(">>New User<<");
+            applicableUserNames.AddRange(existingUserFocus.GetUserNames());
+            return applicableUserNames;
         }
 
-        private void buttonUserModifyMain_Click(object sender, EventArgs e)
+        private void ResetUserFocus()
         {
-            if (buttonUserModifyMain.Text == "Save")
-            {
-                AssociateFieldsExistingUserFocus();
-                ExistingUserFocus.UpdateUserInfo();
-                userListComboBox.DataSource = GetUserNamesForCB(ExistingUserFocus);
-            }
-            if (CanEditExistingUser == true)
-            {
-                ToggleUnLockAllFields(true);
-                buttonUserModifyMain.Text = "Save";
-            }
-            else if (CanEditExistingUser == false)
-            {
-                
-            }
-            
+            UserFocus = new UserAccess();
         }
 
-        private void AssociateFieldsExistingUserFocus()
+        private void ResetPasswordFormFields()
         {
-            ExistingUserFocus.thisUser.First_Name = textBoxFirstName.Text;
-            ExistingUserFocus.thisUser.Last_Name = textBoxLastName.Text;
+            buttonChangePassword.Enabled = true;
+            buttonChangePassword.Text = "Change Password";
+            textBoxPassword1.Enabled = false;
+            textBoxPassword2.Enabled = false;
+        }
 
-            ExistingUserFocus.thisUser.isAdmin = checkBoxAdmin.Checked;
-
-            ExistingUserFocus.thisUserRole.CreateNewBatch = checkBoxCreateNewBatch.Checked;
-            ExistingUserFocus.thisUserRole.ModifyBatch = checkBoxModifyBatch.Checked;
-            ExistingUserFocus.thisUserRole.VerifyBatch = checkBoxVerifyBatch.Checked;
-            ExistingUserFocus.thisUserRole.DeleteBatch = checkBoxDeleteBatch.Checked;
-            ExistingUserFocus.thisUserRole.ExportBatch = checkBoxExportBatch.Checked;
-
-            ExistingUserFocus.thisUserRole.CreateNewTemplate = checkBoxNewTemplate.Checked;
-            ExistingUserFocus.thisUserRole.ModifyTemplate = checkBoxVerifyTemplate.Checked;
-            ExistingUserFocus.thisUserRole.VerifyTemplate = checkBoxVerifyTemplate.Checked;
-            ExistingUserFocus.thisUserRole.DeleteTemplate = checkBoxDeleteTemplate.Checked;
-
-            ExistingUserFocus.thisUserRole.CreateNewWire = checkBoxCreateNewWire.Checked;
-            ExistingUserFocus.thisUserRole.ModifyWire = checkBoxVerifyWire.Checked;
-            ExistingUserFocus.thisUserRole.VerifyWire = checkBoxVerifyWire.Checked;
-            ExistingUserFocus.thisUserRole.DeleteWire = checkBoxDeleteWire.Checked;
+        private void ResetUserListComboBoxData()
+        {
+            Debug.WriteLine("Resetting User List Combo Box Data");
+            userListComboBox.DataSource = GetUserNamesForCB(UserFocus);
         }
 
         private void ToggleEnableBatchCheckBoxes(bool isEnabled)
@@ -227,6 +190,120 @@ namespace FedWire_Batch_File_Creator
             checkBoxDeleteTemplate.Checked = isEnabled;
         }
 
+        private void ToggleUnLockAllFields(bool isUnlocked)
+        {
+            groupBoxPermissions.Enabled = isUnlocked;
+            textBoxFirstName.Enabled = isUnlocked;
+            textBoxLastName.Enabled = isUnlocked;
+            buttonChangePassword.Enabled = isUnlocked;
+            labelFirstName.Enabled = isUnlocked;
+            labelLastName.Enabled = isUnlocked;
+        }
+
+        private void TryEnableUserModifyMainButton()
+        {
+            if (VerifyTextBoxesAreNotEmpty() == true)
+            {
+                buttonUserModifyMain.Enabled = true;
+            }
+            else
+            {
+                buttonUserModifyMain.Enabled = false;
+            }
+        }
+
+        private bool VerifyTextBoxesAreNotEmpty()
+        {
+            bool emptyBoxesFound = false;
+
+            if (textBoxUserName.Text != "" &&
+                textBoxFirstName.Text != "" &&
+                textBoxLastName.Text != "" &&
+                textBoxPassword1.Text != "" &&
+                textBoxPassword2.Text != "")
+            {
+                emptyBoxesFound = true;
+            }
+            return emptyBoxesFound;
+        }
+
+        // ************************ END - HELPER METHODS ************************
+
+        
+
+
+        // ************************ START - FORM METHODS ************************
+
+        private void buttonChangePassword_Click(object sender, EventArgs e)
+        {
+            if (buttonChangePassword.Text == "Change Password")
+            {
+                textBoxPassword1.Enabled = true;
+                textBoxPassword2.Enabled = true;
+                buttonChangePassword.Text = "Save";
+            }
+            else
+            {
+                if (textBoxPassword1.Text != "" && textBoxPassword2.Text != "")
+                {
+                    if (textBoxPassword1.Text == textBoxPassword2.Text)
+                    {
+                        Debug.WriteLine("FORM:  Associating Password to UserFocus");
+                        UserFocus.thisUser.Password = textBoxPassword1.Text;
+                        buttonChangePassword.Text = "Change Password";
+                        textBoxPassword1.Enabled = false;
+                        textBoxPassword2.Enabled = false;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("FORM:  Unable to Save Password - textBoxPassword1 and textBoxPassword2 do not match!");
+                        MessageBox.Show("Passwords must Match!");
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("FORM:  Unable to Save Password - Blank Fields detected!");
+                    MessageBox.Show("Password Fields cannot be Blank!");
+                }
+            }
+
+        }
+
+        private void buttonUserModifyMain_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Clicking buttonUserModifyMain");
+            if (buttonUserModifyMain.Text == "Save")
+            {
+                AssociateFieldsUserFocus();
+                UserFocus.UpdateUserInfo();
+                ResetUserListComboBoxData();
+            }
+            if (CanEditExistingUser == true)
+            {
+                ToggleUnLockAllFields(true);
+                buttonUserModifyMain.Text = "Save";
+                Debug.WriteLine("FORM:  Enabling Edit Mode");
+            }
+            else if (CanEditExistingUser == false)
+            {
+                //ResetUserListComboBoxData();
+                if (textBoxUserName.Text != "" &&
+                    textBoxFirstName.Text != "" &&
+                    textBoxLastName.Text != "" &&
+                    userListComboBox.SelectedValue.ToString() == ">>New User<<")
+                {
+                    Debug.WriteLine("FORM:  Saving New User to DB");
+                    AssociateFieldsUserFocus();
+                    UserFocus.SaveNewUserAccessToDB();
+                    ResetUserListComboBoxData();
+                }
+                else
+                {
+                    Debug.WriteLine("FORM:  Not enough info to save!");
+                }
+            }
+        }
+
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxAdmin.Checked == true)
@@ -236,5 +313,65 @@ namespace FedWire_Batch_File_Creator
                 ToggleEnableTemplateCheckBoxes(true);
             }
         }
+
+        private void userListComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ResetPasswordFormFields();
+            if (userListComboBox.SelectedValue.ToString() == ">>New User<<")
+            {
+                if (buttonUserModifyMain.Text != "Save New User")
+                {
+                    buttonUserModifyMain.Text = "Save New User";
+                }
+
+                Debug.WriteLine("FORM:  >>New User<< Selected");
+
+                buttonUserModifyMain.Enabled = false;
+                AllowEditExistingUser(false);
+                ResetUserFocus();
+                textBoxUserName.Enabled = true;
+                labelUserName.Enabled = true;
+            }
+            else
+            {
+                if (buttonUserModifyMain.Text != "Edit User")
+                {
+                    buttonUserModifyMain.Text = "Edit User";
+                }
+
+                buttonUserModifyMain.Enabled = true;
+                AllowEditExistingUser(true);
+                GetTextBoxValuesSelectedUser();
+                textBoxUserName.Enabled = false;
+                labelUserName.Enabled = false;
+            }
+        }
+
+        private void textBoxFirstName_Leave(object sender, EventArgs e)
+        {
+            TryEnableUserModifyMainButton();
+        }
+
+        private void textBoxLastName_Leave(object sender, EventArgs e)
+        {
+            TryEnableUserModifyMainButton();
+        }
+
+        private void textBoxPassword1_Leave(object sender, EventArgs e)
+        {
+            TryEnableUserModifyMainButton();
+        }
+
+        private void textBoxPassword2_Leave(object sender, EventArgs e)
+        {
+            TryEnableUserModifyMainButton();
+        }
+
+        private void textBoxUserName_Leave(object sender, EventArgs e)
+        {
+            TryEnableUserModifyMainButton();
+        }
+
+        // ************************ END - FORM METHODS ************************
     }
 }
