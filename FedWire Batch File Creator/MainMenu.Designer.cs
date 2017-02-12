@@ -55,7 +55,8 @@
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
             this.labelFNLNShow = new System.Windows.Forms.Label();
-            this.createEditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createEditUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.userOptionsToolStripMenuItem,
+            this.administrationToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
@@ -185,7 +187,6 @@
             this.userOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changePasswordToolStripMenuItem,
             this.securityQuestionsToolStripMenuItem,
-            this.createEditUserToolStripMenuItem,
             this.logoutToolStripMenuItem1});
             this.userOptionsToolStripMenuItem.Name = "userOptionsToolStripMenuItem";
             this.userOptionsToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
@@ -290,12 +291,21 @@
             this.labelFNLNShow.TabIndex = 5;
             this.labelFNLNShow.Text = "Current User: ";
             // 
-            // createEditUserToolStripMenuItem
+            // administrationToolStripMenuItem
             // 
-            this.createEditUserToolStripMenuItem.Name = "createEditUserToolStripMenuItem";
-            this.createEditUserToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.createEditUserToolStripMenuItem.Text = "Create/Edit User";
-            this.createEditUserToolStripMenuItem.Visible = false;
+            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createEditUserToolStripMenuItem1});
+            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.administrationToolStripMenuItem.Text = "Administration";
+            this.administrationToolStripMenuItem.Visible = false;
+            // 
+            // createEditUserToolStripMenuItem1
+            // 
+            this.createEditUserToolStripMenuItem1.Name = "createEditUserToolStripMenuItem1";
+            this.createEditUserToolStripMenuItem1.Size = new System.Drawing.Size(159, 22);
+            this.createEditUserToolStripMenuItem1.Text = "Create/Edit User";
+            this.createEditUserToolStripMenuItem1.Click += new System.EventHandler(this.createEditUserToolStripMenuItem1_Click);
             // 
             // MainMenu
             // 
@@ -348,6 +358,7 @@
         private System.Windows.Forms.Button openReportsButton;
         private System.Windows.Forms.Button openTemplateButton;
         private System.Windows.Forms.Label labelFNLNShow;
-        private System.Windows.Forms.ToolStripMenuItem createEditUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createEditUserToolStripMenuItem1;
     }
 }

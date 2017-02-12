@@ -21,6 +21,15 @@ namespace FedWire_Batch_File_Creator
             ForceUserLogin();
         }
 
+        private void TryEnableAdminOptions()
+        {
+            administrationToolStripMenuItem.Visible = false;
+            if (CurrentUserSession.thisUser.isAdmin == true)
+            {
+                administrationToolStripMenuItem.Visible = true;
+            }
+        }
+
         private void SetCurrentUserNamesLabel()
         {
             if (labelFNLNShow.Text != null)
@@ -39,14 +48,13 @@ namespace FedWire_Batch_File_Creator
                 CurrentUserSession = tsULForm.currentUserSession;
                 SetCurrentUserNamesLabel();
             }
+            TryEnableAdminOptions();
         }
 
         private void CreateNewFedWireBasic()
         {
             DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession);
             newDomesticWire.ShowDialog();
-            
-
         }
 
         private void openNewDomesticWireButton_Click(object sender, EventArgs e)
@@ -76,6 +84,12 @@ namespace FedWire_Batch_File_Creator
                 CurrentUserSession.LogOut();
                 ForceUserLogin();
             }
+        }
+
+        private void createEditUserToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UserEdit newUserEdit = new UserEdit();
+            newUserEdit.ShowDialog();
         }
     }
 }
