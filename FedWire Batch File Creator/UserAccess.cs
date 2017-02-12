@@ -206,5 +206,23 @@ namespace FedWire_Batch_File_Creator
             thisUserRole = new Role();
             thisUserSecurity = new Security();
         }
+
+        public List<string> GetUserNames()
+        {
+            Debug.WriteLine("Acquiring User List from DB");
+            List<string> thisList = new List<string>();
+
+            using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
+            {
+                var userList = context.Users.ToList();
+                foreach (var user in userList)
+                {
+                    thisList.Add(user.UserID + ": " + user.First_Name + " " + user.Last_Name);
+                }
+            }
+
+            return thisList;
+        }
+
     }
 }

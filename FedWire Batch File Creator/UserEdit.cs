@@ -20,25 +20,15 @@ namespace FedWire_Batch_File_Creator
         public UserEdit()
         {
             InitializeComponent();
-            userListComboBox.DataSource = GetUserNamesForCB();
+            userListComboBox.DataSource = GetUserNamesForCB(ExistingUserFocus);
         }
 
-        private List<string> GetUserNamesForCB()
+        private List<string> GetUserNamesForCB(UserAccess existingUserFocus)
         {
-            Debug.WriteLine("Acquiring User List from DB");
-            List<string> thisList = new List<string>();
-            thisList.Add(">>New User<<");
-
-            using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
-            {
-                var userList = context.Users.ToList();
-                foreach (var user in userList)
-                {
-                    thisList.Add(user.First_Name + " " + user.Last_Name);
-                }
-            }
-
-            return thisList;
+            List<string> applicableUserNames = new List<string>();
+            applicableUserNames.Add(">>New User<<");
+            applicableUserNames.AddRange(existingUserFocus.GetUserNames());
+            return applicableUserNames;
         }
 
         private void ClearAllBoxes()
@@ -132,7 +122,7 @@ namespace FedWire_Batch_File_Creator
             Debug.WriteLine("Looking up User in DB: " + userName);
             using(FWFCUsersdbEntities context = new FWFCUsersdbEntities())
             {
-                var selectedUser = context.Users.Where(c => (c.First_Name + " " + c.Last_Name) == userName).SingleOrDefault();
+                var selectedUser = context.Users.Where(c => (c.UserID + ": " + c.First_Name + " " + c.Last_Name) == userName).SingleOrDefault();
                 if (selectedUser != null)
                 {
                     Debug.WriteLine("User Found!");
@@ -174,7 +164,7 @@ namespace FedWire_Batch_File_Creator
             {
                 AssociateFieldsExistingUserFocus();
                 ExistingUserFocus.UpdateUserInfo();
-                userListComboBox.DataSource = GetUserNamesForCB();
+                userListComboBox.DataSource = GetUserNamesForCB(ExistingUserFocus);
             }
             if (CanEditExistingUser == true)
             {
