@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FWFCdbDataSetViews" targetNamespace="http://tempuri.org/FWFCdbDataSetViews.xsd" xmlns:mstns="http://tempuri.org/FWFCdbDataSetViews.xsd" xmlns="http://tempuri.org/FWFCdbDataSetViews.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FWFCdbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FWFCdbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.FedWire_Batch_File_Creator.Properties.Settings.GlobalReference.Default.FWFCdbConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BatchSummaryTableAdapter" GeneratorDataComponentClassName="BatchSummaryTableAdapter" Name="BatchSummary" UserDataComponentName="BatchSummaryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FWFCdbConnectionString (Settings)" DbObjectName="dbo.BatchSummary" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT BatchID, Opened_User, Opened_Time, [Number of Wires], [Total Wire Amt], OFAC_Verified FROM dbo.BatchSummary</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BatchID" DataSetColumn="BatchID" />
+              <Mapping SourceColumn="Opened_User" DataSetColumn="Opened_User" />
+              <Mapping SourceColumn="Opened_Time" DataSetColumn="Opened_Time" />
+              <Mapping SourceColumn="Number of Wires" DataSetColumn="Number of Wires" />
+              <Mapping SourceColumn="Total Wire Amt" DataSetColumn="Total Wire Amt" />
+              <Mapping SourceColumn="OFAC_Verified" DataSetColumn="OFAC_Verified" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FWFCdbDataSetViews" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="FWFCdbDataSetViews" msprop:Generator_UserDSName="FWFCdbDataSetViews">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BatchSummary" msprop:Generator_TableClassName="BatchSummaryDataTable" msprop:Generator_TableVarName="tableBatchSummary" msprop:Generator_TablePropName="BatchSummary" msprop:Generator_RowDeletingName="BatchSummaryRowDeleting" msprop:Generator_RowChangingName="BatchSummaryRowChanging" msprop:Generator_RowEvHandlerName="BatchSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="BatchSummaryRowDeleted" msprop:Generator_UserTableName="BatchSummary" msprop:Generator_RowChangedName="BatchSummaryRowChanged" msprop:Generator_RowEvArgName="BatchSummaryRowChangeEvent" msprop:Generator_RowClassName="BatchSummaryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchID" msprop:Generator_ColumnVarNameInTable="columnBatchID" msprop:Generator_ColumnPropNameInRow="BatchID" msprop:Generator_ColumnPropNameInTable="BatchIDColumn" msprop:Generator_UserColumnName="BatchID" type="xs:int" />
+              <xs:element name="Opened_User" msprop:Generator_ColumnVarNameInTable="columnOpened_User" msprop:Generator_ColumnPropNameInRow="Opened_User" msprop:Generator_ColumnPropNameInTable="Opened_UserColumn" msprop:Generator_UserColumnName="Opened_User" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Opened_Time" msprop:Generator_ColumnVarNameInTable="columnOpened_Time" msprop:Generator_ColumnPropNameInRow="Opened_Time" msprop:Generator_ColumnPropNameInTable="Opened_TimeColumn" msprop:Generator_UserColumnName="Opened_Time" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Number_x0020_of_x0020_Wires" msprop:Generator_ColumnVarNameInTable="columnNumber_of_Wires" msprop:Generator_ColumnPropNameInRow="Number_of_Wires" msprop:Generator_ColumnPropNameInTable="Number_of_WiresColumn" msprop:Generator_UserColumnName="Number of Wires" type="xs:int" minOccurs="0" />
+              <xs:element name="Total_x0020_Wire_x0020_Amt" msprop:Generator_ColumnVarNameInTable="columnTotal_Wire_Amt" msprop:Generator_ColumnPropNameInRow="Total_Wire_Amt" msprop:Generator_ColumnPropNameInTable="Total_Wire_AmtColumn" msprop:Generator_UserColumnName="Total Wire Amt" type="xs:double" minOccurs="0" />
+              <xs:element name="OFAC_Verified" msprop:Generator_ColumnVarNameInTable="columnOFAC_Verified" msprop:Generator_ColumnPropNameInRow="OFAC_Verified" msprop:Generator_ColumnPropNameInTable="OFAC_VerifiedColumn" msprop:Generator_UserColumnName="OFAC_Verified" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BatchSummary" />
+      <xs:field xpath="mstns:BatchID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

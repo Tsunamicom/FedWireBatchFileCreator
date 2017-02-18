@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +60,20 @@
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
             this.labelFNLNShow = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.fWFCdbDataSetViews = new FedWire_Batch_File_Creator.FWFCdbDataSetViews();
+            this.batchSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.batchSummaryTableAdapter = new FedWire_Batch_File_Creator.FWFCdbDataSetViewsTableAdapters.BatchSummaryTableAdapter();
+            this.batchIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openedUserDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openedTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfWiresDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalWireAmtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oFACVerifiedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.mainMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fWFCdbDataSetViews)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchSummaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -308,11 +324,112 @@
             this.labelFNLNShow.TabIndex = 5;
             this.labelFNLNShow.Text = "Current User: ";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.batchIDDataGridViewTextBoxColumn,
+            this.openedUserDataGridViewTextBoxColumn,
+            this.openedTimeDataGridViewTextBoxColumn,
+            this.numberOfWiresDataGridViewTextBoxColumn,
+            this.totalWireAmtDataGridViewTextBoxColumn,
+            this.oFACVerifiedDataGridViewCheckBoxColumn});
+            this.dataGridView1.DataSource = this.batchSummaryBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 166);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 50;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.Size = new System.Drawing.Size(678, 150);
+            this.dataGridView1.TabIndex = 6;
+            // 
+            // fWFCdbDataSetViews
+            // 
+            this.fWFCdbDataSetViews.DataSetName = "FWFCdbDataSetViews";
+            this.fWFCdbDataSetViews.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // batchSummaryBindingSource
+            // 
+            this.batchSummaryBindingSource.DataMember = "BatchSummary";
+            this.batchSummaryBindingSource.DataSource = this.fWFCdbDataSetViews;
+            // 
+            // batchSummaryTableAdapter
+            // 
+            this.batchSummaryTableAdapter.ClearBeforeFill = true;
+            // 
+            // batchIDDataGridViewTextBoxColumn
+            // 
+            this.batchIDDataGridViewTextBoxColumn.DataPropertyName = "BatchID";
+            this.batchIDDataGridViewTextBoxColumn.HeaderText = "Batch ID";
+            this.batchIDDataGridViewTextBoxColumn.Name = "batchIDDataGridViewTextBoxColumn";
+            this.batchIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.batchIDDataGridViewTextBoxColumn.Width = 82;
+            // 
+            // openedUserDataGridViewTextBoxColumn
+            // 
+            this.openedUserDataGridViewTextBoxColumn.DataPropertyName = "Opened_User";
+            this.openedUserDataGridViewTextBoxColumn.HeaderText = "Opened_User";
+            this.openedUserDataGridViewTextBoxColumn.Name = "openedUserDataGridViewTextBoxColumn";
+            this.openedUserDataGridViewTextBoxColumn.ReadOnly = true;
+            this.openedUserDataGridViewTextBoxColumn.Width = 109;
+            // 
+            // openedTimeDataGridViewTextBoxColumn
+            // 
+            this.openedTimeDataGridViewTextBoxColumn.DataPropertyName = "Opened_Time";
+            this.openedTimeDataGridViewTextBoxColumn.HeaderText = "Opened_Time";
+            this.openedTimeDataGridViewTextBoxColumn.Name = "openedTimeDataGridViewTextBoxColumn";
+            this.openedTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.openedTimeDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // numberOfWiresDataGridViewTextBoxColumn
+            // 
+            this.numberOfWiresDataGridViewTextBoxColumn.DataPropertyName = "Number of Wires";
+            this.numberOfWiresDataGridViewTextBoxColumn.HeaderText = "Number of Wires";
+            this.numberOfWiresDataGridViewTextBoxColumn.Name = "numberOfWiresDataGridViewTextBoxColumn";
+            this.numberOfWiresDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numberOfWiresDataGridViewTextBoxColumn.Width = 87;
+            // 
+            // totalWireAmtDataGridViewTextBoxColumn
+            // 
+            this.totalWireAmtDataGridViewTextBoxColumn.DataPropertyName = "Total Wire Amt";
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.totalWireAmtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.totalWireAmtDataGridViewTextBoxColumn.HeaderText = "Total Wire Amt";
+            this.totalWireAmtDataGridViewTextBoxColumn.Name = "totalWireAmtDataGridViewTextBoxColumn";
+            this.totalWireAmtDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalWireAmtDataGridViewTextBoxColumn.Width = 87;
+            // 
+            // oFACVerifiedDataGridViewCheckBoxColumn
+            // 
+            this.oFACVerifiedDataGridViewCheckBoxColumn.DataPropertyName = "OFAC_Verified";
+            this.oFACVerifiedDataGridViewCheckBoxColumn.HeaderText = "OFAC_Verified";
+            this.oFACVerifiedDataGridViewCheckBoxColumn.Name = "oFACVerifiedDataGridViewCheckBoxColumn";
+            this.oFACVerifiedDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.oFACVerifiedDataGridViewCheckBoxColumn.Width = 95;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 315);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.labelFNLNShow);
             this.Controls.Add(this.openTemplateButton);
             this.Controls.Add(this.openReportsButton);
@@ -324,8 +441,12 @@
             this.Name = "MainMenu";
             this.Text = "(FWFC) FedWire File Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fWFCdbDataSetViews)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchSummaryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,5 +483,15 @@
         private System.Windows.Forms.Label labelFNLNShow;
         private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createEditUserToolStripMenuItem1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private FWFCdbDataSetViews fWFCdbDataSetViews;
+        private System.Windows.Forms.BindingSource batchSummaryBindingSource;
+        private FWFCdbDataSetViewsTableAdapters.BatchSummaryTableAdapter batchSummaryTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn batchIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn openedUserDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn openedTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfWiresDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalWireAmtDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn oFACVerifiedDataGridViewCheckBoxColumn;
     }
 }

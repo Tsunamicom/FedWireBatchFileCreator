@@ -93,6 +93,16 @@
     <Compile Include="FItoFI_Info.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FWFCdbDataSetFull.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCdbDataSetFull.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FWFCdbDataSetViews.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FWFCdbDataSetViews.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FWFCdbEFModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,6 +230,28 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FWFCdbEFModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="FWFCdbDataSetFull.xsc">
+      <DependentUpon>FWFCdbDataSetFull.xsd</DependentUpon>
+    </None>
+    <None Include="FWFCdbDataSetFull.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FWFCdbDataSetFull.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FWFCdbDataSetFull.xss">
+      <DependentUpon>FWFCdbDataSetFull.xsd</DependentUpon>
+    </None>
+    <None Include="FWFCdbDataSetViews.xsc">
+      <DependentUpon>FWFCdbDataSetViews.xsd</DependentUpon>
+    </None>
+    <None Include="FWFCdbDataSetViews.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FWFCdbDataSetViews.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FWFCdbDataSetViews.xss">
+      <DependentUpon>FWFCdbDataSetViews.xsd</DependentUpon>
+    </None>
     <None Include="FWFCdbEFModel.edmx.diagram">
       <DependentUpon>FWFCdbEFModel.edmx</DependentUpon>
     </None>
