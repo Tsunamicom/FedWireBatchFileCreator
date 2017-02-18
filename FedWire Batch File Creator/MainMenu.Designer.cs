@@ -47,6 +47,8 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.securityQuestionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createEditUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutFWFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +57,6 @@
             this.openReportsButton = new System.Windows.Forms.Button();
             this.openTemplateButton = new System.Windows.Forms.Button();
             this.labelFNLNShow = new System.Windows.Forms.Label();
-            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createEditUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,6 +106,7 @@
             // 
             // fedWireComplexToolStripMenuItem
             // 
+            this.fedWireComplexToolStripMenuItem.Enabled = false;
             this.fedWireComplexToolStripMenuItem.Name = "fedWireComplexToolStripMenuItem";
             this.fedWireComplexToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.fedWireComplexToolStripMenuItem.Text = "FedWire (Complex)";
@@ -213,6 +214,22 @@
             this.logoutToolStripMenuItem1.Text = "&Logout";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.logoutToolStripMenuItem1_Click);
             // 
+            // administrationToolStripMenuItem
+            // 
+            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createEditUserToolStripMenuItem1});
+            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.administrationToolStripMenuItem.Text = "Administration";
+            this.administrationToolStripMenuItem.Visible = false;
+            // 
+            // createEditUserToolStripMenuItem1
+            // 
+            this.createEditUserToolStripMenuItem1.Name = "createEditUserToolStripMenuItem1";
+            this.createEditUserToolStripMenuItem1.Size = new System.Drawing.Size(159, 22);
+            this.createEditUserToolStripMenuItem1.Text = "Create/Edit User";
+            this.createEditUserToolStripMenuItem1.Click += new System.EventHandler(this.createEditUserToolStripMenuItem1_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -290,22 +307,6 @@
             this.labelFNLNShow.Size = new System.Drawing.Size(86, 13);
             this.labelFNLNShow.TabIndex = 5;
             this.labelFNLNShow.Text = "Current User: ";
-            // 
-            // administrationToolStripMenuItem
-            // 
-            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createEditUserToolStripMenuItem1});
-            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.administrationToolStripMenuItem.Text = "Administration";
-            this.administrationToolStripMenuItem.Visible = false;
-            // 
-            // createEditUserToolStripMenuItem1
-            // 
-            this.createEditUserToolStripMenuItem1.Name = "createEditUserToolStripMenuItem1";
-            this.createEditUserToolStripMenuItem1.Size = new System.Drawing.Size(159, 22);
-            this.createEditUserToolStripMenuItem1.Text = "Create/Edit User";
-            this.createEditUserToolStripMenuItem1.Click += new System.EventHandler(this.createEditUserToolStripMenuItem1_Click);
             // 
             // MainMenu
             // 
