@@ -24,7 +24,7 @@ namespace FedWire_Batch_File_Creator
         public string IMAD_ICD { get; set; }
         public string IMAD_Source { get; set; }
         public string IMAD_Seq { get; set; }
-        public string WireAmount { get; set; }
+        public Nullable<decimal> WireAmount { get; set; }
         public string SenderDI_ABA { get; set; }
         public string SenderDI_ShortName { get; set; }
         public string ReceiverDI_ABA { get; set; }

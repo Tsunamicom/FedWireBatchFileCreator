@@ -14,13 +14,12 @@ namespace FedWire_Batch_File_Creator
     public partial class MainMenu : Form
     {
         public UserAccess CurrentUserSession = new UserAccess();
-        public int SelectedBatchID;
+        
 
         public MainMenu()
         {
             InitializeComponent();
             ForceUserLogin();
-            SelectedBatchID = 1;  // Placeholder until Batch menu is completed
         }
 
         private void TryEnableAdminOptions()
@@ -53,10 +52,38 @@ namespace FedWire_Batch_File_Creator
             TryEnableAdminOptions();
         }
 
+        private int GetSelectedBatchID()
+        {
+            int selectedBatchID;
+            BatchSelect batchSelectForm = new BatchSelect();
+            batchSelectForm.ShowDialog();
+            try
+            {
+                selectedBatchID = batchSelectForm.SelectedBatchID;
+            }
+            catch
+            {
+                Debug.WriteLine("Failed to Associate BatchID!");
+                selectedBatchID = 999999999;  // Default Value on Batch ID Fail
+            }
+            
+            return selectedBatchID;
+        }
+
         private void CreateNewFedWireBasic()
         {
-            DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession, SelectedBatchID);
-            newDomesticWire.ShowDialog();
+            int currentSelectedBatch = GetSelectedBatchID();
+            if (currentSelectedBatch != 999999999)
+            {
+                Debug.WriteLine("MAINMENU: Opening new FedWireBasic under Batch ID: " + currentSelectedBatch);
+                DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession, currentSelectedBatch);
+                newDomesticWire.ShowDialog();
+            }
+            else
+            {
+                Debug.WriteLine("MAINMENU:  Unable to Associate BatchID to new FedWireBasic!");
+            }
+            
         }
 
         private void openNewDomesticWireButton_Click(object sender, EventArgs e)

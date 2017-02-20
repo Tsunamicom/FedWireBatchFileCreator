@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FWFCdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FWFCdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Batch">
           <Key>
             <PropertyRef Name="BatchID" />
@@ -207,7 +207,7 @@
           <Property Name="IMAD_ICD" Type="nchar" MaxLength="8" />
           <Property Name="IMAD_Source" Type="nchar" MaxLength="8" />
           <Property Name="IMAD_Seq" Type="nchar" MaxLength="6" />
-          <Property Name="WireAmount" Type="nchar" MaxLength="12" />
+          <Property Name="WireAmount" Type="money" />
           <Property Name="SenderDI_ABA" Type="nchar" MaxLength="9" />
           <Property Name="SenderDI_ShortName" Type="nvarchar" MaxLength="18" />
           <Property Name="ReceiverDI_ABA" Type="nchar" MaxLength="9" />
@@ -461,6 +461,19 @@
           <Property Name="Date_Created" Type="datetime" />
           <Property Name="Date_LastUsed" Type="datetime" />
           <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\TSUNAMI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\FEDWIRE BATCH FILE CREATOR\FEDWIRE BATCH FILE CREATOR\FWFCDB.MDF.dbo.BatchSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BatchSummary">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="Opened_User" Type="nvarchar" MaxLength="70" />
+          <Property Name="Opened_Time" Type="datetime" />
+          <Property Name="Number of Wires" Type="int" />
+          <Property Name="Total Wire Amt" Type="float" />
+          <Property Name="OFAC_Verified" Type="bit" />
         </EntityType>
         <Association Name="FK_BnfInfo_ToWireMain">
           <End Role="WireMain" Type="Self.WireMain" Multiplicity="0..1" />
@@ -778,6 +791,16 @@
           <EntitySet Name="UnstructAddenda" EntityType="Self.UnstructAddenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WireMain" EntityType="Self.WireMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WireTemplate" EntityType="Self.WireTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BatchSummary" EntityType="Self.BatchSummary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BatchSummary].[BatchID] AS [BatchID], 
+    [BatchSummary].[Opened_User] AS [Opened_User], 
+    [BatchSummary].[Opened_Time] AS [Opened_Time], 
+    [BatchSummary].[Number of Wires] AS [Number of Wires], 
+    [BatchSummary].[Total Wire Amt] AS [Total Wire Amt], 
+    [BatchSummary].[OFAC_Verified] AS [OFAC_Verified]
+    FROM [dbo].[BatchSummary] AS [BatchSummary]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_BnfInfo_ToWireMain" Association="Self.FK_BnfInfo_ToWireMain">
             <End Role="WireMain" EntitySet="WireMain" />
             <End Role="BnfInfo" EntitySet="BnfInfo" />
@@ -879,8 +902,7 @@
             <End Role="WireMain" EntitySet="WireMain" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FWFCdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1095,7 +1117,7 @@
           <Property Name="IMAD_ICD" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
           <Property Name="IMAD_Source" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
           <Property Name="IMAD_Seq" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
-          <Property Name="WireAmount" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="WireAmount" Type="Decimal" />
           <Property Name="SenderDI_ABA" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
           <Property Name="SenderDI_ShortName" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
           <Property Name="ReceiverDI_ABA" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
@@ -1807,7 +1829,19 @@
             <End Role="WireTemplate" EntitySet="WireTemplates" />
             <End Role="UnstructAddenda" EntitySet="UnstructAddendas" />
           </AssociationSet>
+          <EntitySet Name="BatchSummaries" EntityType="FWFCdbModel.BatchSummary" />
         </EntityContainer>
+        <EntityType Name="BatchSummary">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="Opened_User" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Opened_Time" Type="DateTime" Precision="3" />
+          <Property Name="Number_of_Wires" Type="Int32" />
+          <Property Name="Total_Wire_Amt" Type="Double" />
+          <Property Name="OFAC_Verified" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2283,6 +2317,18 @@
                 <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
                 <ScalarProperty Name="Date_LastUsed" ColumnName="Date_LastUsed" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BatchSummaries">
+            <EntityTypeMapping TypeName="FWFCdbModel.BatchSummary">
+              <MappingFragment StoreEntitySet="BatchSummary">
+                <ScalarProperty Name="OFAC_Verified" ColumnName="OFAC_Verified" />
+                <ScalarProperty Name="Total_Wire_Amt" ColumnName="Total Wire Amt" />
+                <ScalarProperty Name="Number_of_Wires" ColumnName="Number of Wires" />
+                <ScalarProperty Name="Opened_Time" ColumnName="Opened_Time" />
+                <ScalarProperty Name="Opened_User" ColumnName="Opened_User" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

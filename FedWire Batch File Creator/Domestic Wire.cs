@@ -94,7 +94,7 @@ namespace FedWire_Batch_File_Creator
             // Mandatory Info
             wire.TypeCode = wireTypeSelect.Text.Substring(0, 2);
             wire.SubType = wireTypeSelect.Text.Substring(2, 2);
-            wire.WireAmount = decimal.Parse(string.Join("", wireAmt.Text.Where(char.IsDigit))).ToString("000000000000").Substring(0,12);
+            wire.WireAmount = decimal.Parse(wireAmt.Text, System.Globalization.NumberStyles.Currency);
             wire.BusinessFunctionCode = "CTR";
 
             // Debit Customer

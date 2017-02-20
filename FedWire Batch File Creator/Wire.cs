@@ -653,7 +653,7 @@ namespace FedWire_Batch_File_Creator
         public string IMAD_Seq { get; set; }
 
         // {2000} Amount
-        public string WireAmount { get; set; }
+        public decimal WireAmount { get; set; }
 
         // {3100} Sender DI
         public string SenderDI_ABA { get; set; }

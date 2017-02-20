@@ -75,6 +75,15 @@
     <Compile Include="Batch.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BatchSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchSelect.Designer.cs">
+      <DependentUpon>BatchSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BatchSummary.cs">
+      <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BnfInfo.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
@@ -196,6 +205,9 @@
     <Compile Include="WireTemplate.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BatchSelect.resx">
+      <DependentUpon>BatchSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Domestic Wire.resx">
       <DependentUpon>Domestic Wire.cs</DependentUpon>
     </EmbeddedResource>
