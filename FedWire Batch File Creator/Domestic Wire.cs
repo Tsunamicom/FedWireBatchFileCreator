@@ -16,17 +16,19 @@ namespace FedWire_Batch_File_Creator
     public partial class DomesticWireForm : Form
     {
         public UserAccess CurrentUser = new UserAccess();
-        Wire CurrentWire { get; set; }
+        public Wire CurrentWire { get; set; }
 
-        public DomesticWireForm(UserAccess activeUser)
+        public DomesticWireForm(UserAccess activeUser, int currentBatchID)
         {
             CurrentUser = activeUser;
-            CurrentWire = new Wire(activeUser);
+            CurrentWire = new Wire(activeUser, currentBatchID);
             InitializeComponent();
-            Debug.WriteLine("Opening DomesticWireForm");
+            Debug.WriteLine("DOMESTICWIREFORM: Opening DomesticWireForm");
             AssociateDomesticWireTextBoxes();
             AssignDefaultWireInfo();
             DisplayDefaultWireInfo();
+            Debug.WriteLine("DOMESTICWIREFORM: Current User => " + activeUser.thisUser.UserName);
+            Debug.WriteLine("DOMESTICWIREFORM: Current Batch => " + currentBatchID);
         }
         
         private void DisplayDefaultWireInfo()
@@ -35,6 +37,7 @@ namespace FedWire_Batch_File_Creator
             wireIDNum.Text = CurrentWire.WireID.ToString();
             activeUser.Text = CurrentUser.thisUser.First_Name + " " + CurrentUser.thisUser.Last_Name;
             wireTypeSelect.SelectedIndex = 0;
+            batchID.Text = CurrentWire.FK_BatchID.ToString();
         }
 
         private void AssignDefaultWireInfo()

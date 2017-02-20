@@ -14,6 +14,7 @@ namespace FedWire_Batch_File_Creator
     public partial class MainMenu : Form
     {
         public UserAccess CurrentUserSession = new UserAccess();
+        public int SelectedBatchID;
 
         public MainMenu()
         {
@@ -53,7 +54,7 @@ namespace FedWire_Batch_File_Creator
 
         private void CreateNewFedWireBasic()
         {
-            DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession);
+            DomesticWireForm newDomesticWire = new DomesticWireForm(CurrentUserSession, SelectedBatchID);
             newDomesticWire.ShowDialog();
         }
 
@@ -99,13 +100,6 @@ namespace FedWire_Batch_File_Creator
             {
                 e.Cancel = true;
             }
-        }
-
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'fWFCdbDataSetViews.BatchSummary' table. You can move, or remove it, as needed.
-            this.batchSummaryTableAdapter.Fill(this.fWFCdbDataSetViews.BatchSummary);
-
         }
     }
 }

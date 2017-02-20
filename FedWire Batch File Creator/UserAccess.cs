@@ -125,7 +125,7 @@ namespace FedWire_Batch_File_Creator
                         context.Roles.Add(thisUserRole);
                     }
 
-                    AttemptSaveChanges(context);
+                    context.AttemptSaveChanges();
                 }
             }
         }
@@ -144,7 +144,7 @@ namespace FedWire_Batch_File_Creator
                 {
                     Debug.WriteLine("USER:  User Not Found in DB!  Unable to update Password.");
                 }
-                AttemptSaveChanges(context);
+                context.AttemptSaveChanges();
             }
         }
 
@@ -160,7 +160,7 @@ namespace FedWire_Batch_File_Creator
                     Debug.WriteLine("USERACCESS: Attempting to Log Out " + logoutUser.UserName);
                     logoutUser.UserStatus = "LOGOUT";
                 }
-                AttemptSaveChanges(context);
+                context.AttemptSaveChanges();
                 ClearAllDBRelation();
             }
         }
@@ -179,7 +179,7 @@ namespace FedWire_Batch_File_Creator
                         Debug.WriteLine("USER:  Password Match!");
                         currentUser.UserStatus = "LOGGEDIN";
                         currentUser.LastAccessDateTime = DateTime.Now;
-                        AttemptSaveChanges(context);
+                        context.AttemptSaveChanges();
                         RetrieveAllUserInfoFromDB();
                     }
                     else { ClearAllDBRelation(); }
@@ -243,24 +243,6 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
-        private void AttemptSaveChanges(FWFCUsersdbEntities context)
-        {
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
-        }
-
         private void SaveNewUserToDB()
         {
             using (FWFCUsersdbEntities context = new FWFCUsersdbEntities())
@@ -269,7 +251,7 @@ namespace FedWire_Batch_File_Creator
                 thisUser.ModifiedDateTime = DateTime.Now;
                 thisUser.UserStatus = "NEW";
                 context.Users.Add(thisUser);
-                AttemptSaveChanges(context);
+                context.AttemptSaveChanges();
                 thisUser = context.Users.Where(c => c.UserName == thisUser.UserName).SingleOrDefault();
                 if (thisUser != null)
                 {

@@ -87,6 +87,7 @@
     <Compile Include="Domestic Wire.Designer.cs">
       <DependentUpon>Domestic Wire.cs</DependentUpon>
     </Compile>
+    <Compile Include="EFHelperExtensions.cs" />
     <Compile Include="FedWireSVCInfo.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
@@ -169,12 +170,6 @@
     <Compile Include="SVCInfo.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Test Start.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Test Start.Designer.cs">
-      <DependentUpon>Test Start.cs</DependentUpon>
-    </Compile>
     <Compile Include="UnstructAddenda.cs">
       <DependentUpon>FWFCdbEFModel.tt</DependentUpon>
     </Compile>
@@ -217,9 +212,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Test Start.resx">
-      <DependentUpon>Test Start.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserEdit.resx">
       <DependentUpon>UserEdit.cs</DependentUpon>
     </EmbeddedResource>

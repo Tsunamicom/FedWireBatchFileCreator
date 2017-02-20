@@ -9,11 +9,12 @@ using System.Data.Entity.Validation;
 
 namespace FedWire_Batch_File_Creator
 {
-    class Wire: IWireFields
+    public class Wire
     {
-        public Wire(UserAccess currentUser)
+
+        public Wire(UserAccess currentUser, int currentBatchID)
         {
-            AssignDefaultWireValues(currentUser);
+            AssignDefaultWireValues(currentUser, currentBatchID);
             AssignNewWireID();
         }
 
@@ -38,17 +39,18 @@ namespace FedWire_Batch_File_Creator
                 context.WireMains.Remove(thiswire);
 
                 Debug.WriteLine("Removing Wire: " + thiswire.WireID.ToString());
-                context.SaveChanges();
+                context.AttemptSaveChanges();
             }
         }
 
-        private void AssignDefaultWireValues(UserAccess currentUser)
+        private void AssignDefaultWireValues(UserAccess currentUser, int currentBatchID)
         {
             Status = "UNVF";
             InitiatedByUser = currentUser.thisUser.UserName;
             InitiatedByDateTime = DateTime.Now;
             ModifiedByUser = currentUser.thisUser.UserName;
             ModifiedByDateTime = DateTime.Now;
+            FK_BatchID = currentBatchID;
 
             SSI_Format = "30";
             SSI_URC = "99999999"; // Placeholder - Based on Institution Profile
@@ -75,10 +77,11 @@ namespace FedWire_Batch_File_Creator
                     Init_UserName = this.InitiatedByUser,
                     Modified_DateTime = this.ModifiedByDateTime,
                     Modified_UserName = this.ModifiedByUser,
-                    Status = this.Status
+                    Status = this.Status,
+                    FK_BatchID = this.FK_BatchID
                 };
                 context.WireMains.Add(_wireID);
-                context.SaveChanges();
+                context.AttemptSaveChanges();
             }
             this.WireID = _wireID.WireID;
         }
@@ -109,7 +112,7 @@ namespace FedWire_Batch_File_Creator
 
                 try
                 { 
-                    context.SaveChanges();
+                    context.AttemptSaveChanges();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -621,6 +624,7 @@ namespace FedWire_Batch_File_Creator
 
         // **** USER, CREATION, AND MODIFICATION INFORMATION ****
         public int WireID { get; set; }
+        public int FK_BatchID { get; set; }
         public string InitiatedByUser { get; set; }
         public DateTime InitiatedByDateTime { get; set; }
         public string ModifiedByUser { get; set; }
@@ -1101,9 +1105,7 @@ namespace FedWire_Batch_File_Creator
         public string Error_Desc { get; set; }
 
 
-        // Foreign Keys
-        public Batch BatchID { get; set; }
-        public WireTemplate TemplateID { get; set; }
+
     }
 }
 
