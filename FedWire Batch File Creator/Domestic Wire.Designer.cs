@@ -544,6 +544,7 @@ namespace FedWire_Batch_File_Creator
             // interBankAcctType
             // 
             this.interBankAcctType.Cursor = System.Windows.Forms.Cursors.Default;
+            this.interBankAcctType.Enabled = false;
             this.interBankAcctType.FormattingEnabled = true;
             this.interBankAcctType.Items.AddRange(new object[] {
             "ABA",
@@ -560,6 +561,7 @@ namespace FedWire_Batch_File_Creator
             // bnfBankAcctType
             // 
             this.bnfBankAcctType.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bnfBankAcctType.Enabled = false;
             this.bnfBankAcctType.FormattingEnabled = true;
             this.bnfBankAcctType.Items.AddRange(new object[] {
             "ABA"});
@@ -595,7 +597,7 @@ namespace FedWire_Batch_File_Creator
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 65);
+            this.label13.Location = new System.Drawing.Point(18, 65);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 13);
             this.label13.TabIndex = 0;
@@ -814,7 +816,7 @@ namespace FedWire_Batch_File_Creator
             // batchID
             // 
             this.batchID.AutoSize = true;
-            this.batchID.Location = new System.Drawing.Point(179, 38);
+            this.batchID.Location = new System.Drawing.Point(77, 34);
             this.batchID.Name = "batchID";
             this.batchID.Size = new System.Drawing.Size(0, 13);
             this.batchID.TabIndex = 1000001;
