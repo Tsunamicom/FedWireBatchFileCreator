@@ -31,6 +31,9 @@ namespace FedWire_Batch_File_Creator
             Debug.WriteLine("DOMESTICWIREFORM: Current Batch => " + currentBatchID);
         }
         
+        /// <summary>
+        /// Assigns various TextBox and Label values to display to the user in order to facilitate a clean user experience.
+        /// </summary>
         private void DisplayDefaultWireInfo()
         {
             initiatedTime.Text = CurrentWire.InitiatedByDateTime.ToString();
@@ -40,12 +43,18 @@ namespace FedWire_Batch_File_Creator
             batchID.Text = CurrentWire.FK_BatchID.ToString();
         }
 
+        /// <summary>
+        /// Assigns various Default Values to the Wire class object
+        /// </summary>
         private void AssignDefaultWireInfo()
         {
             CurrentWire.InitiatedByUser = CurrentUser.thisUser.UserName;
             CurrentWire.ModifiedByUser = CurrentUser.thisUser.UserName;
         }
 
+        /// <summary>
+        /// Adds the appropriate TextBoxes to textBoxList in order to manipulate all items in the list.
+        /// </summary>
         private void AssociateDomesticWireTextBoxes()
         {
             textBoxList.Add(wireAmt);
@@ -76,6 +85,10 @@ namespace FedWire_Batch_File_Creator
             System.Diagnostics.Debug.WriteLine("Finished Writing {0} TextBoxes to textBoxList", textBoxList.Count);
         }
 
+        /// <summary>
+        /// Assigns the Values of the form to the Wire class object
+        /// </summary>
+        /// <param name="wire"></param>
         private void RelateTextBoxInfo(Wire wire)
         {
             // Mandatory Info
@@ -191,6 +204,9 @@ namespace FedWire_Batch_File_Creator
             }
         }
 
+        /// <summary>
+        /// Displays Debug info for (Names, Values) in textBoxList
+        /// </summary>
         private void debugTextBoxValues()
         {
             System.Diagnostics.Debug.WriteLine("**** TEXTBOX VALUE DEBUG START {0} ****", DateTime.Now);

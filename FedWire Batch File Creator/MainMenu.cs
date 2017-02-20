@@ -20,6 +20,7 @@ namespace FedWire_Batch_File_Creator
         {
             InitializeComponent();
             ForceUserLogin();
+            SelectedBatchID = 1;  // Placeholder until Batch menu is completed
         }
 
         private void TryEnableAdminOptions()
